@@ -21,6 +21,10 @@ public abstract class AWeapon : NetworkBehaviour
         if(Physics.Raycast(_cameraTransform.position,_cameraTransform.forward, out RaycastHit hit,maxRange, layerMask)){
             Debug.Log("Shoot");
             SpawnParticle(hitParticle,hit.point,hit.normal);
+
+            if(hit.transform.TryGetComponent(out Enemy enemy)){
+                enemy.TakeDamage(damage);
+            }
         }
     }
 

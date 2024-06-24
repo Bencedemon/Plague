@@ -1141,7 +1141,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 191
+    m_Bits: 1215
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1659,7 +1659,7 @@ MonoBehaviour:
   _componentIndexCache: 7
   _addedNetworkObject: {fileID: 4319170283229056642}
   _networkObjectCache: {fileID: 4319170283229056642}
-  damage: 10
+  damage: 30
   maxRange: 20
   layerMask:
     serializedVersion: 2
@@ -2244,7 +2244,7 @@ MonoBehaviour:
   _componentIndexCache: 5
   _addedNetworkObject: {fileID: 4319170283229056642}
   _networkObjectCache: {fileID: 4319170283229056642}
-  damage: 10
+  damage: 25
   maxRange: 2
   layerMask:
     serializedVersion: 2
@@ -2692,7 +2692,7 @@ MonoBehaviour:
   _componentIndexCache: 6
   _addedNetworkObject: {fileID: 4319170283229056642}
   _networkObjectCache: {fileID: 4319170283229056642}
-  damage: 5
+  damage: 50
   maxRange: 20
   layerMask:
     serializedVersion: 2

@@ -3,7 +3,17 @@ guid: 4612a7eda02cad14d9dcc5dd1ecd6359
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: muzzle1
+    second: {fileID: 2100000, guid: 4e4e2dba0ca8c10459cfb82d81460733, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: muzzle2
+    second: {fileID: 2100000, guid: 2762e8a6b262a624bb9b4cfcd1a59db9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

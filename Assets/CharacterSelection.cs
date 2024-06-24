@@ -14,8 +14,8 @@ public class CharacterSelection : NetworkBehaviour
 
     public override void OnStartClient(){
         base.OnStartClient();
-        if(!base.IsOwner){
-            canvasObject.SetActive(false);
+        if(base.IsOwner){
+            canvasObject.SetActive(true);
         }
     }
     // Start is called before the first frame update

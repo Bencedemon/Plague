@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
+using FishNet.Connection;
 
-public class PlayerHealth : NetworkBehaviour
+public class PlayerStats : NetworkBehaviour
 {
     [SerializeField] private int maxHealth = 100;
 
-    private int _currentHealth;
+    public int _currentHealth;
+
+    [SerializeField] private GameObject hud;
 
     void Awake(){
         _currentHealth = maxHealth;
@@ -18,16 +21,24 @@ public class PlayerHealth : NetworkBehaviour
         if(!IsOwner){
             enabled = false;
             return;
+        }else{
+            hud.SetActive(true);
         }
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void TakeDamage(int damage){
-        _currentHealth -= damage;
-
-        if(_currentHealth <= 0){
+        if(_currentHealth-damage <= 0){
+            _currentHealth=0;
             Die();
+        }else{
+            _currentHealth -= damage;
         }
+        LocalTakeDamage(Owner,_currentHealth);
+    }
+    [TargetRpc]
+    private void LocalTakeDamage(NetworkConnection conn, int newHealth){
+        _currentHealth=newHealth;
     }
 
     private void Die(){

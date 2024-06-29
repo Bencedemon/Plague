@@ -3,7 +3,82 @@ guid: 9e0a64bd66c167745bde430e3a25fe83
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Water - Nodes
+    second: {fileID: 2100000, guid: 9a94e2d38d38f4747bfa134c1b6d957e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: branch1
+    second: {fileID: 2100000, guid: 344d2ff379ca1544da16ae96eed703e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bricks
+    second: {fileID: 2100000, guid: 65edf838289a11845bcd491c2d5b2018, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cobblestone
+    second: {fileID: 2100000, guid: caa4ab7e97e0d80428e4f54ae26bc7a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crate
+    second: {fileID: 2100000, guid: 4e3a2b62b10532348a118dc25a7e2618, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dirt
+    second: {fileID: 2100000, guid: d0fed90353c9afa4abafca55509c2f02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: 2b21ce347e49dad4da33ebb7323c3805, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plaster
+    second: {fileID: 2100000, guid: a05241ea9141b4345bee5fe8fe929b27, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rocks1
+    second: {fileID: 2100000, guid: 408ab032121c1dc4eb92a4c88b572e43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof
+    second: {fileID: 2100000, guid: 299acecf8270af843b5353aa19c4cdad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skydome
+    second: {fileID: 2100000, guid: 00d452081d7ea9d43811fb39556d2ce4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stone
+    second: {fileID: 2100000, guid: 8225143fe98441b45a874833a9d6a9ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: treebark1
+    second: {fileID: 2100000, guid: 4d303b00f06cfb846a8f592c7d7eb112, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: windows
+    second: {fileID: 2100000, guid: 33602ffe23792b04d9ad6396906d04ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: 880b716c97d53a74aa6adc11cc2f11c6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

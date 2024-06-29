@@ -5,27 +5,89 @@ using FishNet.Object;
 
 public abstract class AWeapon : NetworkBehaviour
 {
-    public int damage;
-    public float maxRange = 20f;
+    public WeaponProperty weaponProperty;
+    [Space]
+    public int currentAmmoCount;
+    [Space]
     public LayerMask layerMask;
     public Transform _cameraTransform;
 
-    [SerializeField] private ParticleSystem muzzleFlash;
+    [Header("Self")]
+    [SerializeField] private Animator weaponSelf;
+    [SerializeField] private ParticleSystem muzzleFlashSelf;
+
+
+    [Header("Other")]
+    [SerializeField] private Animator weaponOther;
+    [SerializeField] private ParticleSystem muzzleFlashOther;
+
+    [Space]
+    [SerializeField] public Animator characterAnim;
+    
     [SerializeField] private NetworkObject hitParticle;
 
+    public bool inAction = false;
 
+    public bool automaticShoot=false;
+
+    void Start(){
+        currentAmmoCount=weaponProperty.maxAmmo;
+    }
+    public void ActionEnd(){
+        inAction = false;
+        if(weaponProperty.weaponType==WeaponProperty.WeaponType.auomatic && automaticShoot){
+            if(currentAmmoCount==1){
+                inAction=true;
+                AnimateWeapon();
+                weaponSelf.SetTrigger("FireLast");
+            }else
+            if(currentAmmoCount>0){
+                inAction=true;
+                AnimateWeapon();
+                weaponSelf.SetTrigger("Fire");
+            }
+        }
+    }
 
     public void Fire(){
-        AnimateWeapon();
+        if(inAction) return;
+        if(currentAmmoCount==1){
+            inAction=true;
+            AnimateWeapon();
+            weaponSelf.SetTrigger("FireLast");
+        }else
+        if(currentAmmoCount>0){
+            inAction=true;
+            AnimateWeapon();
+            weaponSelf.SetTrigger("Fire");
+        }else{
+            Reload();
+        }
+    }
 
-        if(Physics.Raycast(_cameraTransform.position,_cameraTransform.forward, out RaycastHit hit,maxRange, layerMask)){
-            Debug.Log("Shoot");
+    public void FireWeapon(){
+        currentAmmoCount--;
+        muzzleFlashSelf.Play();
+
+        if(Physics.Raycast(_cameraTransform.position,_cameraTransform.forward, out RaycastHit hit,weaponProperty.maxRange, layerMask)){
             SpawnParticle(hitParticle,hit.point,hit.normal);
 
             if(hit.transform.TryGetComponent(out Enemy enemy)){
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(weaponProperty.damage);
             }
         }
+    }
+
+    public void Reload(){
+        if(inAction) return;
+        if(currentAmmoCount<weaponProperty.maxAmmo){
+            inAction=true;
+            weaponSelf.SetTrigger("Reload");
+        }
+    }
+
+    public void ReloadWeapon(){
+        currentAmmoCount=weaponProperty.maxAmmo;
     }
 
     
@@ -42,8 +104,9 @@ public abstract class AWeapon : NetworkBehaviour
 
     [ObserversRpc]
     private void AnimateWeaponObserver(){
-        if(muzzleFlash!=null)
-            muzzleFlash.Play();
+        weaponOther.SetTrigger("Fire");
+        if(muzzleFlashOther!=null)
+            muzzleFlashOther.Play();
     }
 
 

@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
+
+public class MainMenu : MonoBehaviour
+{
+    public GameObject titleScreen;
+    public GameObject titleScreenCamera;
+    
+    [Header("Multiplayer")]
+    public GameObject multiplayerScreen;
+    public GameObject multiplayerCamera;
+
+    [Header("Character")]
+    public GameObject characterScreen;
+    public GameObject characterScreenCamera;
+
+    [Header("Battlepass")]
+    public GameObject battlePass;
+
+    [Header("Options")]
+    public GameObject options;
+    public GameObject optionsCamera;
+
+
+    [Header("ButtonManager")]
+    public Button[] buttons;
+    
+    void AWake(){
+        titleScreenCamera.SetActive(true);
+    }
+    public void PlayGame(){
+        titleScreen.SetActive(false);
+        multiplayerScreen.SetActive(true);
+        multiplayerCamera.SetActive(true);
+    }
+    public void BattlePass(){
+        //audioSource.Play();
+        titleScreen.SetActive(false);
+        battlePass.SetActive(true);
+    }
+    public void Option(){
+        //audioSource.Play();
+        titleScreen.SetActive(false);
+        options.SetActive(true);
+        optionsCamera.SetActive(true);
+    }
+    public void Quit(){
+        //audioSource.Play();
+        Application.Quit();
+    }
+
+    public void hoverButton(int _id){
+        buttons[_id].Select();
+    }
+}

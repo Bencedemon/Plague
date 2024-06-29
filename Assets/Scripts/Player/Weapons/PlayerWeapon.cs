@@ -7,6 +7,7 @@ using FishNet.Object.Synchronizing;
 
 public class PlayerWeapon : NetworkBehaviour
 {
+    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private List<AWeapon> weapons = new List<AWeapon>();
 
     private AWeapon currentWeapon;
@@ -37,22 +38,40 @@ public class PlayerWeapon : NetworkBehaviour
 
     public void Shoot(InputAction.CallbackContext context){
         if(context.performed){
+            if(!playerMovement.canMove) return;
             FireWeapon();
+            if(currentWeapon.weaponProperty.weaponType==WeaponProperty.WeaponType.auomatic){
+                currentWeapon.automaticShoot=true;
+            }
+        }
+        if(context.canceled){
+            if(currentWeapon.weaponProperty.weaponType==WeaponProperty.WeaponType.auomatic){
+                currentWeapon.automaticShoot=false;
+            }
+        }
+    }
+    public void Reload(InputAction.CallbackContext context){
+        if(context.performed){
+            if(!playerMovement.canMove) return;
+            ReloadWeapon();
         }
     }
 
     public void SwitchWeapon_1(InputAction.CallbackContext context){
         if(context.performed){
+            if(currentWeapon.inAction) return;
             SwitchWeapon(0);
         }
     }
     public void SwitchWeapon_2(InputAction.CallbackContext context){
         if(context.performed){
+            if(currentWeapon.inAction) return;
             SwitchWeapon(1);
         }
     }
     public void SwitchWeapon_3(InputAction.CallbackContext context){
         if(context.performed){
+            if(currentWeapon.inAction) return;
             SwitchWeapon(2);
         }
     }
@@ -70,9 +89,13 @@ public class PlayerWeapon : NetworkBehaviour
         }
         currentWeapon=weapons[newIndex];
         currentWeapon.gameObject.SetActive(true);
+        currentWeapon.characterAnim.SetBool("rifleType",currentWeapon.weaponProperty.rifleType);
     }
 
     private void FireWeapon(){
         currentWeapon.Fire();
+    }
+    private void ReloadWeapon(){
+        currentWeapon.Reload();
     }
 }

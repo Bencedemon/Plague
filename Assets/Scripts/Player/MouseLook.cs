@@ -26,14 +26,6 @@ public class MouseLook : NetworkBehaviour
     //private PlayerDataManager playerDataManager;
 
     // Start is called before the first frame update
-    public override void OnStartClient(){
-        base.OnStartClient();
-        if(!base.IsOwner){
-            this.enabled = false;
-        }else{
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-    }
     void Start()
     {
         //playerDataManager=FindObjectOfType<PlayerDataManager>();

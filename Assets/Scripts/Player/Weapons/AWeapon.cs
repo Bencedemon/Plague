@@ -7,6 +7,8 @@ public abstract class AWeapon : NetworkBehaviour
 {
     public WeaponProperty weaponProperty;
     [Space]
+    [SerializeField] private PlayerMovement playerMovement;
+    [Space]
     public int currentAmmoCount;
     [Space]
     public LayerMask layerMask;
@@ -56,20 +58,28 @@ public abstract class AWeapon : NetworkBehaviour
             AnimateWeapon();
             weaponSelf.SetTrigger("FireLast");
         }else
-        if(currentAmmoCount>0){
+        if(currentAmmoCount>0 || weaponProperty.maxAmmo==0){
             inAction=true;
             AnimateWeapon();
             weaponSelf.SetTrigger("Fire");
-        }else{
+        }
+        else{
             Reload();
         }
     }
 
     public void FireWeapon(){
         currentAmmoCount--;
-        muzzleFlashSelf.Play();
+        if(muzzleFlashSelf!=null)
+            muzzleFlashSelf.Play();
 
-        if(Physics.Raycast(_cameraTransform.position,_cameraTransform.forward, out RaycastHit hit,weaponProperty.maxRange, layerMask)){
+        float x = Random.Range(-weaponProperty.spread*playerMovement.speedMultiplier,weaponProperty.spread*playerMovement.speedMultiplier);
+        float y = Random.Range(-weaponProperty.spread*playerMovement.speedMultiplier,weaponProperty.spread*playerMovement.speedMultiplier);
+        float z = Random.Range(-weaponProperty.spread*playerMovement.speedMultiplier,weaponProperty.spread*playerMovement.speedMultiplier);
+
+        Vector3 directionWithSpread = _cameraTransform.forward + new Vector3(x,y,z);
+
+        if(Physics.Raycast(_cameraTransform.position,directionWithSpread, out RaycastHit hit,weaponProperty.maxRange, layerMask)){
             SpawnParticle(hitParticle,hit.point,hit.normal);
 
             if(hit.transform.TryGetComponent(out Enemy enemy)){
@@ -80,6 +90,7 @@ public abstract class AWeapon : NetworkBehaviour
 
     public void Reload(){
         if(inAction) return;
+        if(weaponProperty.maxAmmo==0) return;
         if(currentAmmoCount<weaponProperty.maxAmmo){
             inAction=true;
             weaponSelf.SetTrigger("Reload");
@@ -88,6 +99,21 @@ public abstract class AWeapon : NetworkBehaviour
 
     public void ReloadWeapon(){
         currentAmmoCount=weaponProperty.maxAmmo;
+    }
+    public void Punch(){
+        if(inAction) return;
+        inAction=true;
+        weaponSelf.SetTrigger("Punch");
+    }
+
+    public void PunchWeapon(){
+        if(Physics.Raycast(_cameraTransform.position,_cameraTransform.forward, out RaycastHit hit,weaponProperty.punchRange, layerMask)){
+            SpawnParticle(hitParticle,hit.point,hit.normal);
+
+            if(hit.transform.TryGetComponent(out Enemy enemy)){
+                enemy.TakeDamage(weaponProperty.punchDamage);
+            }
+        }
     }
 
     

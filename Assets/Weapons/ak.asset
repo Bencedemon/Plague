@@ -15,6 +15,9 @@ MonoBehaviour:
   weaponName: ak
   damage: 25
   maxRange: 50
+  punchDamage: 10
+  punchRange: 2
   maxAmmo: 30
+  spread: 0.05
   weaponType: 0
   rifleType: 1

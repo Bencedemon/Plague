@@ -15,4 +15,9 @@ MonoBehaviour:
   weaponName: bpPistol
   damage: 10
   maxRange: 20
+  punchDamage: 10
+  punchRange: 2
+  maxAmmo: 9
+  spread: 0.025
   weaponType: 1
+  rifleType: 0

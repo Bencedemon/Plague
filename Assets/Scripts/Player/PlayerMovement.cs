@@ -12,6 +12,7 @@ public class PlayerMovement : NetworkBehaviour
 
     public CharacterController controller;
     public PlayerInput playerInput;
+    public MouseLook mouseLook;
     
     [Header("Layers")]
     public int playerSelfLayer = 6;
@@ -55,7 +56,8 @@ public class PlayerMovement : NetworkBehaviour
 
         if(!base.IsOwner){
             playerInput.enabled = false;
-            this.enabled = false;
+
+            mouseLook.enabled = false;
 
             foreach (GameObject item in hand)
             {
@@ -65,8 +67,11 @@ public class PlayerMovement : NetworkBehaviour
             {
                 item.layer = playerOtherLayer;
             }
+            
+            this.enabled = false;
         }else{
             playerCamera.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
@@ -85,12 +90,14 @@ public class PlayerMovement : NetworkBehaviour
     {   
         if(!canMove) return;
 
-        if(isSprinting){
-            speedMultiplier=3f;
+        if(x==0 && z==0){
+            speedMultiplier=0f;
+        }else if(isSprinting){
+            speedMultiplier=2f;
         }else if(isWalking){
-            speedMultiplier=1f;
+            speedMultiplier=0.5f;
         }else{
-            speedMultiplier=1.5f;
+            speedMultiplier=1f;
         }
 
         if(velocity.y < 0 && controller.isGrounded){

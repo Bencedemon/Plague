@@ -10,7 +10,7 @@ public class PlayerWeapon : NetworkBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private List<AWeapon> weapons = new List<AWeapon>();
 
-    private AWeapon currentWeapon;
+    public AWeapon currentWeapon;
 
     private readonly SyncVar<int> _currentWeaponIndex = new();
 
@@ -39,7 +39,7 @@ public class PlayerWeapon : NetworkBehaviour
     public void Shoot(InputAction.CallbackContext context){
         if(context.performed){
             if(!playerMovement.canMove) return;
-            FireWeapon();
+            currentWeapon.Fire();
             if(currentWeapon.weaponProperty.weaponType==WeaponProperty.WeaponType.auomatic){
                 currentWeapon.automaticShoot=true;
             }
@@ -53,7 +53,14 @@ public class PlayerWeapon : NetworkBehaviour
     public void Reload(InputAction.CallbackContext context){
         if(context.performed){
             if(!playerMovement.canMove) return;
-            ReloadWeapon();
+            currentWeapon.Reload();
+        }
+    }
+
+    public void Punch(InputAction.CallbackContext context){
+        if(context.performed){
+            if(!playerMovement.canMove) return;
+            currentWeapon.Punch();
         }
     }
 
@@ -90,12 +97,5 @@ public class PlayerWeapon : NetworkBehaviour
         currentWeapon=weapons[newIndex];
         currentWeapon.gameObject.SetActive(true);
         currentWeapon.characterAnim.SetBool("rifleType",currentWeapon.weaponProperty.rifleType);
-    }
-
-    private void FireWeapon(){
-        currentWeapon.Fire();
-    }
-    private void ReloadWeapon(){
-        currentWeapon.Reload();
     }
 }

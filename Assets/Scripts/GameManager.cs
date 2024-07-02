@@ -25,11 +25,6 @@ public class GameManager : NetworkBehaviour
         StartCoroutine(CountDown());
     }
 
-    [ServerRpc]
-    public void StartGame(){
-
-    }
-
     private IEnumerator CountDown()
     {
         yield return new WaitForSeconds(1f);
@@ -51,9 +46,9 @@ public class GameManager : NetworkBehaviour
 
         countDownText.text = "";
 
-        if(base.IsServerInitialized){
+        if(base.IsServerInitialized && base.IsOwner){
             countDownText.text = "GameStarted";
-            enemySpawner.SpawnEnemy();
+            StartCoroutine(enemySpawner.WaitAndSpawn());
         }
     }
 }

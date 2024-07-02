@@ -37,10 +37,19 @@ public class EnemyDamage : NetworkBehaviour
             }
 
             if(hasPlayer){
-                inAction = true;
-                enemy.animator.Play(attacks[Random.Range(0,attacks.Length)]);
+                DoAttackServer(Random.Range(0,attacks.Length));
             }
         }
+    }
+
+    [ServerRpc(RequireOwnership=false)]
+    public void DoAttackServer(int _id){
+        DoAttackObserver(_id);
+    }
+    [ObserversRpc]
+    public void DoAttackObserver(int _id){
+        inAction = true;
+        enemy.animator.Play(attacks[_id]);
     }
     
     public void doDamage(){

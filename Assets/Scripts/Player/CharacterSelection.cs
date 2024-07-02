@@ -114,7 +114,7 @@ public class CharacterSelection : NetworkBehaviour
         GameObject player = Instantiate(characters[spawnIndex],new Vector3(-70+Random.Range(-3,3),1.04f,180+Random.Range(-3,3)),Quaternion.identity);
         Spawn(player,conn);
         GameObject manager = Instantiate(gameManagerPrefab,Vector3.zero,Quaternion.identity);
-        Spawn(manager);
+        Spawn(manager,conn);
     }
 
     public void Ready(){

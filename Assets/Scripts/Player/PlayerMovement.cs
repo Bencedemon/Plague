@@ -113,7 +113,7 @@ public class PlayerMovement : NetworkBehaviour
         controller.Move(velocity * Time.fixedDeltaTime);
 
         if(transform.position.y<-50){
-            transform.position=new Vector3(19.5f,2.5f,50);
+            transform.position=new Vector3(-70,1.1f,180);
         }
 
 

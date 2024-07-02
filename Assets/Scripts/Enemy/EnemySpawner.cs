@@ -16,10 +16,12 @@ public class EnemySpawner : NetworkBehaviour
     }
 
 
-    private IEnumerator WaitAndSpawn()
+    public IEnumerator WaitAndSpawn()
     {
-        while (true)
-        {
+        int count=0;
+        while (count < 1)
+        {   
+            count++;
             yield return new WaitForSeconds(Random.Range(2f,5f));
             SpawnEnemy();
         }

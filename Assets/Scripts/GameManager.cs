@@ -8,13 +8,14 @@ public class GameManager : NetworkBehaviour
 {
     private PlayerManager playerManager;
 
-    [SerializeField] private NetworkObject enemySpawnerPrefab;
+    private EnemySpawner enemySpawner;
 
     public TMP_Text countDownText;
 
     private PlayerMovement[] playerMovements;
     void Awake(){
         playerManager = FindObjectOfType<PlayerManager>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
     public override void OnStartClient(){
@@ -22,6 +23,11 @@ public class GameManager : NetworkBehaviour
         
         playerMovements = FindObjectsOfType<PlayerMovement>();
         StartCoroutine(CountDown());
+    }
+
+    [ServerRpc]
+    public void StartGame(){
+
     }
 
     private IEnumerator CountDown()
@@ -47,8 +53,7 @@ public class GameManager : NetworkBehaviour
 
         if(base.IsServerInitialized){
             countDownText.text = "GameStarted";
-            //NetworkObject enemySpawner = Instantiate(enemySpawnerPrefab, new Vector3(-57f,0.0306921005f,179f), Quaternion.identity);
-            //ServerManager.Spawn(enemySpawner);
+            enemySpawner.SpawnEnemy();
         }
     }
 }

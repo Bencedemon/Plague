@@ -47,8 +47,8 @@ public class EnemyMovement : MonoBehaviour
         bool shouldMove = Velocity.magnitude > 0.5f
             && enemy.navMeshAgent.remainingDistance > enemy.navMeshAgent.stoppingDistance;
 
-        enemy.animator.SetBool("move", shouldMove);
-        enemy.animator.SetFloat("locomotion", Velocity.magnitude);
+        //enemy.animator.SetBool("move", shouldMove);
+        //enemy.animator.SetFloat("locomotion", Velocity.magnitude);
 
         float deltaMagnitude = worldDeltaPosition.magnitude;
         if (deltaMagnitude > enemy.navMeshAgent.radius / 2f)

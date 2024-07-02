@@ -11,6 +11,8 @@ public class Enemy : NetworkBehaviour
     public NavMeshAgent navMeshAgent;
     public Transform player;
 
+    public Rigidbody[] rigidbodies;
+
     public override void OnStartClient(){
         base.OnStartClient();
 
@@ -22,7 +24,7 @@ public class Enemy : NetworkBehaviour
 
 
     void FixedUpdate(){
-        if(navMeshAgent!=null)
+        if(navMeshAgent!=null && health>0)
             GoToPosition(GetClosestPlayerPosition());
     }
 
@@ -46,15 +48,35 @@ public class Enemy : NetworkBehaviour
 
     [ServerRpc(RequireOwnership = false)]
     public void TakeDamage(int damage){
+        if(health<=0) return;
         health-=damage;
-
-        if(health < 0){
-            Die();
+        if(health <= 0){
+            DeathRagdoll();
         }
     }
 
     private void Die(){
         ServerManager.Despawn(gameObject);
+    }
+
+    [ObserversRpc]
+    private void DeathRagdoll(){
+        Vector3 originalVelocity;
+        
+        if(animator.applyRootMotion)
+            originalVelocity = animator.velocity;
+        else
+            originalVelocity = navMeshAgent.velocity;
+
+        animator.enabled=false;
+        navMeshAgent.enabled=false;
+        foreach (var body in rigidbodies)
+        {
+            //body.useGravity=true;
+            body.isKinematic=false;
+            body.velocity = originalVelocity;
+        }
+        Destroy(gameObject,25f);
     }
 
 }

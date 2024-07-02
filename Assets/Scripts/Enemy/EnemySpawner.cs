@@ -15,10 +15,6 @@ public class EnemySpawner : NetworkBehaviour
         }
     }
 
-    void Start(){
-        SpawnEnemy();
-        //StartCoroutine("WaitAndSpawn");
-    }
 
     private IEnumerator WaitAndSpawn()
     {
@@ -29,7 +25,7 @@ public class EnemySpawner : NetworkBehaviour
         }
     }
 
-    private void SpawnEnemy(){
+    public void SpawnEnemy(){
         NetworkObject enemy = Instantiate(enemyPrefab, new Vector3(-57f,0.0306921005f,179f), Quaternion.identity);
         ServerManager.Spawn(enemy);
     }

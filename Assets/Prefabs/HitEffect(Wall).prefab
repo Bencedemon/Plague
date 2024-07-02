@@ -4922,7 +4922,7 @@ GameObject:
   - component: {fileID: 9221571704116567173}
   - component: {fileID: 7858676767521322104}
   m_Layer: 0
-  m_Name: HitEffect
+  m_Name: HitEffect(Wall)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4937,7 +4937,7 @@ Transform:
   m_GameObject: {fileID: 1991671177774937050}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -12.73816, y: 5.08, z: 8.729882}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9842,7 +9842,7 @@ MonoBehaviour:
   <SerializedRootNetworkBehaviour>k__BackingField: {fileID: 0}
   <NestedRootNetworkBehaviours>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: -12.73816, y: 5.08, z: 8.729882}
+    Position: {x: 0, y: 0, z: 0}
     Rotation: {x: -0, y: 1, z: -0, w: 0}
     LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   _isNetworked: 1
@@ -9867,7 +9867,7 @@ MonoBehaviour:
   <PrefabId>k__BackingField: 2
   <SpawnableCollectionId>k__BackingField: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 3283169586465914199
+  <AssetPathHash>k__BackingField: 17290466263596503799
 --- !u!1 &6073268315134296822
 GameObject:
   m_ObjectHideFlags: 0

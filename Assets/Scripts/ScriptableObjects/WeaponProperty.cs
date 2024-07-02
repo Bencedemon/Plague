@@ -1,4 +1,5 @@
 using UnityEngine;
+using FishNet.Object;
 
 [CreateAssetMenu(fileName = "WeaponProperty", menuName = "ScriptableObjects/WeaponProperty", order = 1)]
 public class WeaponProperty : ScriptableObject
@@ -22,4 +23,7 @@ public class WeaponProperty : ScriptableObject
     }
     [Space]
     public bool rifleType = false;
+    [Space]
+    public NetworkObject hitParticle_wall;
+    public NetworkObject hitParticle_enemy;
 }

@@ -21,3 +21,7 @@ MonoBehaviour:
   spread: 0.05
   weaponType: 0
   rifleType: 1
+  hitParticle_wall: {fileID: 7858676767521322104, guid: ba59662f92584a64695d7f015e38b7f2,
+    type: 3}
+  hitParticle_enemy: {fileID: 5436153802475618861, guid: b4da7ac7067402c4aaa2d09b1d1f47ba,
+    type: 3}

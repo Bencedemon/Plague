@@ -12,7 +12,7 @@ public class PlayerMovement : NetworkBehaviour
 
     public CharacterController controller;
     public PlayerInput playerInput;
-    public MouseLook mouseLook;
+    public GameObject mouseLook;
     
     [Header("Layers")]
     public int playerSelfLayer = 6;
@@ -55,9 +55,6 @@ public class PlayerMovement : NetworkBehaviour
         Players.Add(OwnerId,this);
 
         if(!base.IsOwner){
-            playerInput.enabled = false;
-
-            mouseLook.enabled = false;
 
             foreach (GameObject item in hand)
             {
@@ -70,7 +67,9 @@ public class PlayerMovement : NetworkBehaviour
             
             this.enabled = false;
         }else{
+            playerInput.enabled = true;
             playerCamera.SetActive(true);
+            mouseLook.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
         }
     }

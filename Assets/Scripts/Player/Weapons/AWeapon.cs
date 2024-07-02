@@ -29,6 +29,7 @@ public abstract class AWeapon : NetworkBehaviour
     [SerializeField] private NetworkObject hitParticle;
 
     public bool inAction = false;
+    private bool inReload = false;
 
     public bool automaticShoot=false;
 
@@ -37,6 +38,7 @@ public abstract class AWeapon : NetworkBehaviour
     }
     public void ActionEnd(){
         inAction = false;
+        inReload = false;
         if(weaponProperty.weaponType==WeaponProperty.WeaponType.auomatic && automaticShoot){
             if(currentAmmoCount==1){
                 inAction=true;
@@ -80,20 +82,26 @@ public abstract class AWeapon : NetworkBehaviour
         Vector3 directionWithSpread = _cameraTransform.forward + new Vector3(x,y,z);
 
         if(Physics.Raycast(_cameraTransform.position,directionWithSpread, out RaycastHit hit,weaponProperty.maxRange, layerMask)){
-            SpawnParticle(hitParticle,hit.point,hit.normal);
 
-            if(hit.transform.TryGetComponent(out Enemy enemy)){
-                enemy.TakeDamage(weaponProperty.damage);
+            if(hit.transform.TryGetComponent(out Enemy_Hitbox enemy)){
+                enemy.HitboxTakeDamage(weaponProperty.damage);
+                SpawnParticle(weaponProperty.hitParticle_enemy,hit.point,hit.normal);
+                return;
             }
+            SpawnParticle(weaponProperty.hitParticle_wall,hit.point,hit.normal);
         }
     }
 
     public void Reload(){
-        if(inAction) return;
+        if(inReload) return;
         if(weaponProperty.maxAmmo==0) return;
         if(currentAmmoCount<weaponProperty.maxAmmo){
             inAction=true;
-            weaponSelf.SetTrigger("Reload");
+            inReload=true;
+            if(currentAmmoCount==0)
+                weaponSelf.SetTrigger("ReloadEmpty");
+            else
+                weaponSelf.SetTrigger("Reload");
         }
     }
 
@@ -108,11 +116,13 @@ public abstract class AWeapon : NetworkBehaviour
 
     public void PunchWeapon(){
         if(Physics.Raycast(_cameraTransform.position,_cameraTransform.forward, out RaycastHit hit,weaponProperty.punchRange, layerMask)){
-            SpawnParticle(hitParticle,hit.point,hit.normal);
 
-            if(hit.transform.TryGetComponent(out Enemy enemy)){
-                enemy.TakeDamage(weaponProperty.punchDamage);
+            if(hit.transform.TryGetComponent(out Enemy_Hitbox enemy)){
+                enemy.HitboxTakeDamage(weaponProperty.punchDamage);
+                SpawnParticle(weaponProperty.hitParticle_enemy,hit.point,hit.normal);
+                return;
             }
+            SpawnParticle(weaponProperty.hitParticle_wall,hit.point,hit.normal);
         }
     }
 

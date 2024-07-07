@@ -53,6 +53,7 @@ public class PlayerMovement : NetworkBehaviour
         base.OnStartClient();
 
         Players.Add(OwnerId,this);
+        FindObjectOfType<PlayerManager>().PlayerGameObject.Add(this.gameObject);
 
         if(!base.IsOwner){
 
@@ -78,6 +79,7 @@ public class PlayerMovement : NetworkBehaviour
         base.OnStopClient();
 
         Players.Remove(OwnerId);
+        FindObjectOfType<PlayerManager>().PlayerGameObject.Remove(this.gameObject);
     }
 
     void Start(){

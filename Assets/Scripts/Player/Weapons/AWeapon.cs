@@ -8,6 +8,7 @@ public abstract class AWeapon : NetworkBehaviour
     public WeaponProperty weaponProperty;
     [Space]
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerStats playerStats;
     [Space]
     public int currentAmmoCount;
     [Space]
@@ -84,7 +85,7 @@ public abstract class AWeapon : NetworkBehaviour
         if(Physics.Raycast(_cameraTransform.position,directionWithSpread, out RaycastHit hit,weaponProperty.maxRange, layerMask)){
 
             if(hit.transform.TryGetComponent(out Enemy_Hitbox enemy)){
-                enemy.HitboxTakeDamage(weaponProperty.damage);
+                enemy.HitboxTakeDamage(weaponProperty.damage,-hit.normal,playerStats);
                 SpawnParticle(weaponProperty.hitParticle_enemy,hit.point,hit.normal);
                 return;
             }
@@ -118,7 +119,7 @@ public abstract class AWeapon : NetworkBehaviour
         if(Physics.Raycast(_cameraTransform.position,_cameraTransform.forward, out RaycastHit hit,weaponProperty.punchRange, layerMask)){
 
             if(hit.transform.TryGetComponent(out Enemy_Hitbox enemy)){
-                enemy.HitboxTakeDamage(weaponProperty.punchDamage);
+                enemy.HitboxTakeDamage(weaponProperty.punchDamage,-hit.normal,playerStats);
                 SpawnParticle(weaponProperty.hitParticle_enemy,hit.point,hit.normal);
                 return;
             }

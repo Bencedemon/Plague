@@ -822,7 +822,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 6
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
+  rigidbody: {fileID: 5778897267933483196}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &8176781510111316550
 CharacterJoint:
@@ -938,7 +942,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 9
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
+  rigidbody: {fileID: 5311955897207832628}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &3832974524221513121
 CharacterJoint:
@@ -1054,7 +1062,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 13
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
+  rigidbody: {fileID: 4223830703281465636}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &3905173520629238521
 CharacterJoint:
@@ -1168,7 +1180,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 7
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 1
+  rigidbody: {fileID: 3249245074050340475}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &3462861624321648184
 CharacterJoint:
@@ -1284,7 +1300,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 12
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
+  rigidbody: {fileID: 5983921803187350319}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &8842949458681699499
 CharacterJoint:
@@ -1398,7 +1418,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 4
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 1
+  rigidbody: {fileID: 6692312890457886851}
   enemy: {fileID: 7796650377709073211}
 --- !u!1 &2050408902639474787 stripped
 GameObject:
@@ -1468,7 +1492,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 14
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
+  rigidbody: {fileID: 7024066288520279635}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &3107739809913305156
 CharacterJoint:
@@ -1560,6 +1588,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   health: 100
+  attackRange: 1.25
   animator: {fileID: 8205981931366973613}
   navMeshAgent: {fileID: 8930412722649699713}
   player: {fileID: 0}
@@ -1575,6 +1604,7 @@ MonoBehaviour:
   - {fileID: 1403534141275804553}
   - {fileID: 5983921803187350319}
   - {fileID: 7024066288520279635}
+  enemySpawner: {fileID: 0}
 --- !u!114 &5419693331719330980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1634,6 +1664,17 @@ MonoBehaviour:
   - {fileID: 7297545927220193945}
   - {fileID: 720286808098250414}
   - {fileID: 6604087614853341597}
+  - {fileID: 7749274693219881910}
+  - {fileID: 648307700135734148}
+  - {fileID: 2702524349681116460}
+  - {fileID: 4255471594296804822}
+  - {fileID: 2857890694281803025}
+  - {fileID: 4499511518936462337}
+  - {fileID: 7807079489551432856}
+  - {fileID: 4050440014765601177}
+  - {fileID: 8243002951045394150}
+  - {fileID: 6013202360804572477}
+  - {fileID: 3737204808487400802}
   <SerializedRootNetworkBehaviour>k__BackingField: {fileID: 0}
   <NestedRootNetworkBehaviours>k__BackingField: []
   SerializedTransformProperties:
@@ -1798,7 +1839,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 5
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
+  rigidbody: {fileID: 6392897484439140216}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &7598173233198931870
 CharacterJoint:
@@ -1914,7 +1959,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 10
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
+  rigidbody: {fileID: 7221152064973333203}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &144552488015995833
 CharacterJoint:
@@ -2028,7 +2077,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 11
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 0
+  rigidbody: {fileID: 1403534141275804553}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &1698040435364767827
 CharacterJoint:
@@ -2144,7 +2197,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005e9439d89e3640862a2bae15c2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 8
+  _addedNetworkObject: {fileID: 2471342499990687217}
+  _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
+  rigidbody: {fileID: 6601772032160733357}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &6309977295986789074
 CharacterJoint:

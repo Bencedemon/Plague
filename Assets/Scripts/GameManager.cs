@@ -48,7 +48,7 @@ public class GameManager : NetworkBehaviour
 
         if(base.IsServerInitialized && base.IsOwner){
             countDownText.text = "GameStarted";
-            StartCoroutine(enemySpawner.WaitAndSpawn());
+            StartCoroutine(enemySpawner.StartNewWave());
         }
     }
 }

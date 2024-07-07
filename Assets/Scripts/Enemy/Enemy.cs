@@ -7,11 +7,14 @@ using FishNet.Object;
 public class Enemy : NetworkBehaviour
 {
     public float health = 100f;
+    public float attackRange=2f;
     public Animator animator;
     public NavMeshAgent navMeshAgent;
     public Transform player;
 
     public Rigidbody[] rigidbodies;
+
+    public EnemySpawner enemySpawner;
 
     public override void OnStartClient(){
         base.OnStartClient();
@@ -38,6 +41,9 @@ public class Enemy : NetworkBehaviour
                 closestPlayerPosition = player.transform.position;
             }
         }
+
+        animator.SetBool("walking", closestDistance<attackRange);
+
         return closestPlayerPosition;
     }
 
@@ -47,11 +53,16 @@ public class Enemy : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void TakeDamage(int damage){
+    public void TakeDamage(int damage, Vector3 direction, Enemy_Hitbox _rigidbody,PlayerStats _playerStats){
         if(health<=0) return;
         health-=damage;
         if(health <= 0){
-            DeathRagdoll();
+            if(enemySpawner!=null){
+                enemySpawner.currentEnemyCount--;
+                enemySpawner.SetEnemyCount(-1);
+                _playerStats.SetKills(1);
+            }
+            DeathRagdoll(damage,direction,_rigidbody);
         }
     }
 
@@ -60,7 +71,7 @@ public class Enemy : NetworkBehaviour
     }
 
     [ObserversRpc]
-    private void DeathRagdoll(){
+    private void DeathRagdoll(int damage, Vector3 direction, Enemy_Hitbox _rigidbody){
         Vector3 originalVelocity;
         
         if(animator.applyRootMotion)
@@ -76,6 +87,7 @@ public class Enemy : NetworkBehaviour
             body.isKinematic=false;
             body.velocity = originalVelocity;
         }
+        _rigidbody.rigidbody.AddForce(direction*damage*50f);
         Destroy(gameObject,25f);
     }
 

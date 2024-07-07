@@ -87,6 +87,23 @@ public class PlayerWeapon : NetworkBehaviour
         SetWeaponIndex(_id);
     }
 
+    
+    public void Scroll(InputAction.CallbackContext context){
+        if(currentWeapon.inAction) return;
+        float scroll = context.ReadValue<Vector2>().y;
+        if(scroll>0){
+            if(_currentWeaponIndex.Value+1<weapons.Count)
+                SwitchWeapon(_currentWeaponIndex.Value+1);
+            else
+                SwitchWeapon(0);
+        }else if(scroll<0){
+            if(_currentWeaponIndex.Value-1>=0)
+                SwitchWeapon(_currentWeaponIndex.Value-1);
+            else
+                SwitchWeapon(weapons.Count-1);
+        }
+    }
+
     [ServerRpc] private void SetWeaponIndex(int _id) => _currentWeaponIndex.Value = _id;
 
     private void OnCurrentWeaponIndexChanged(int oldIndex, int newIndex, bool asServer){

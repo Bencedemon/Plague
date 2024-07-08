@@ -10,7 +10,19 @@ public class GameManager : NetworkBehaviour
 
     private EnemySpawner enemySpawner;
 
-    public TMP_Text countDownText;
+    [SerializeField] private PlayerStats playerStats;
+
+    [Space]
+
+    [SerializeField] private TMP_Text countDownText;
+
+
+    [Space]
+    [SerializeField] private GameObject endPanel;
+    [SerializeField] private TMP_Text killsText;
+    [SerializeField] private TMP_Text damageDealtText;
+    [SerializeField] private TMP_Text damageTakenText;
+    [SerializeField] private TMP_Text deathsText;
 
     private PlayerMovement[] playerMovements;
     void Awake(){
@@ -22,7 +34,15 @@ public class GameManager : NetworkBehaviour
         base.OnStartClient();
         
         playerMovements = FindObjectsOfType<PlayerMovement>();
-        StartCoroutine(CountDown());
+        playerManager.GameManagers.Add(this);
+
+        if(base.IsOwner)
+            StartCoroutine(CountDown());
+    }
+    public override void OnStopClient(){
+        base.OnStopClient();
+
+        playerManager.GameManagers.Remove(this);
     }
 
     private IEnumerator CountDown()
@@ -46,9 +66,35 @@ public class GameManager : NetworkBehaviour
 
         countDownText.text = "";
 
-        if(base.IsServerInitialized && base.IsOwner){
+        if(base.IsServerInitialized){
             countDownText.text = "GameStarted";
             StartCoroutine(enemySpawner.StartNewWave());
         }
+    }
+
+    public void gameEnd(){
+        if(base.IsOwner){
+            killsText.text = ""+playerStats.kills.Value;
+
+            Cursor.lockState = CursorLockMode.None;
+            endPanel.SetActive(true);
+        }
+    }
+
+    public void Continue(){
+        DespawnPlayer();
+        foreach (var item in playerManager.Players)
+        {
+            item.backToLobby();
+        }
+    }
+
+    [ServerRpc]
+    private void DespawnPlayer(){
+        enemySpawner.ResetEnemySpawner();
+        if(playerStats.deadBodyReference!=null){
+            ServerManager.Despawn(playerStats.deadBodyReference);
+        }
+        ServerManager.Despawn(playerStats.transform.gameObject);
     }
 }

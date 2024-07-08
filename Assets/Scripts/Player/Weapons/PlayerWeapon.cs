@@ -12,6 +12,10 @@ public class PlayerWeapon : NetworkBehaviour
 
     public AWeapon currentWeapon;
 
+
+    [Header("Stats")]
+    public PlayerStats playerStats;
+
     private readonly SyncVar<int> _currentWeaponIndex = new();
 
     void Awake(){
@@ -37,6 +41,7 @@ public class PlayerWeapon : NetworkBehaviour
     }
 
     public void Shoot(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
         if(context.performed){
             if(!playerMovement.canMove) return;
             currentWeapon.Fire();
@@ -51,6 +56,7 @@ public class PlayerWeapon : NetworkBehaviour
         }
     }
     public void Reload(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
         if(context.performed){
             if(!playerMovement.canMove) return;
             currentWeapon.Reload();
@@ -58,6 +64,7 @@ public class PlayerWeapon : NetworkBehaviour
     }
 
     public void Punch(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
         if(context.performed){
             if(!playerMovement.canMove) return;
             currentWeapon.Punch();
@@ -65,18 +72,21 @@ public class PlayerWeapon : NetworkBehaviour
     }
 
     public void SwitchWeapon_1(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
         if(context.performed){
             if(currentWeapon.inAction) return;
             SwitchWeapon(0);
         }
     }
     public void SwitchWeapon_2(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
         if(context.performed){
             if(currentWeapon.inAction) return;
             SwitchWeapon(1);
         }
     }
     public void SwitchWeapon_3(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
         if(context.performed){
             if(currentWeapon.inAction) return;
             SwitchWeapon(2);
@@ -89,6 +99,7 @@ public class PlayerWeapon : NetworkBehaviour
 
     
     public void Scroll(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
         if(currentWeapon.inAction) return;
         float scroll = context.ReadValue<Vector2>().y;
         if(scroll>0){

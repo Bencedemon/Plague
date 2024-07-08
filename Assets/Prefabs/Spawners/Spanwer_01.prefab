@@ -133,7 +133,7 @@ MonoBehaviour:
         type: 3}
       weight: 100
     startDelay: 0
-    enemyCount: 10
+    enemyCount: 100
     enemyCountDispersion: 0
     frequency: 2
     frequencyDispersion: 0

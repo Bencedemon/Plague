@@ -12,7 +12,6 @@ public class PlayerMovement : NetworkBehaviour
 
     public CharacterController controller;
     public PlayerInput playerInput;
-    public GameObject mouseLook;
     
     [Header("Layers")]
     public int playerSelfLayer = 6;
@@ -47,6 +46,9 @@ public class PlayerMovement : NetworkBehaviour
 
     Vector3 move;
 
+    [Header("Stats")]
+    public PlayerStats playerStats;
+
     //private GameData gameData;
 
     public override void OnStartClient(){
@@ -70,7 +72,6 @@ public class PlayerMovement : NetworkBehaviour
         }else{
             playerInput.enabled = true;
             playerCamera.SetActive(true);
-            mouseLook.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
@@ -89,11 +90,12 @@ public class PlayerMovement : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {   
+        if(playerStats._currentHealth.Value<=0) return;
         if(!canMove) return;
 
         if(x==0 && z==0){
             speedMultiplier=0f;
-        }else if(isSprinting){
+        }else if(isSprinting && z>0){
             speedMultiplier=2f;
         }else if(isWalking){
             speedMultiplier=0.5f;
@@ -127,16 +129,21 @@ public class PlayerMovement : NetworkBehaviour
 
     }
     public void Move(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
         x = context.ReadValue<Vector2>().x;
         z = context.ReadValue<Vector2>().y;
     }
     public void Escape(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
         if(context.performed){
-           
+            playerInput.SwitchCurrentActionMap("InMenu");
+            pauseMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     public void Sprinting(InputAction.CallbackContext context){
-        if(context.performed){
+        if(playerStats._currentHealth.Value<=0) return;
+        if(context.performed && controller.isGrounded){
             isSprinting=true;
         }
         if(context.canceled){
@@ -144,7 +151,8 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
     public void Walking(InputAction.CallbackContext context){
-        if(context.performed){
+        if(playerStats._currentHealth.Value<=0) return;
+        if(context.performed && controller.isGrounded){
             isWalking=true;
         }
         if(context.canceled){
@@ -152,10 +160,25 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
     public void Jump(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
         if(context.performed && controller.isGrounded){
             if(!canMove) return;
             velocity.y+=jumpPower;
             animator.SetTrigger("Jump");
         }
+    }
+
+    [ServerRpc]
+    private void StopTime(){
+        if(Time.timeScale == 1f){
+            StopTimeObserver(0f);
+        }else{
+            StopTimeObserver(1f);
+        }
+    }
+
+    [ObserversRpc]
+    private void StopTimeObserver(float _timeScale){
+        Time.timeScale = _timeScale;
     }
 }

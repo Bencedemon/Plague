@@ -1634,7 +1634,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   enemy: {fileID: 7796650377709073211}
-  damage: 10
+  damage: 100
   attackPoint: {fileID: 8830962620422263225}
   attackRadius: 0.5
   layerMask:

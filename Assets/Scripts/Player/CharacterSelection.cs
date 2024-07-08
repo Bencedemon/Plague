@@ -75,6 +75,7 @@ public class CharacterSelection : NetworkBehaviour
 
         if(playerManager.gameStarted){
             playerManager.gameStarted = false;
+            SetReady(false);
             fade.SetTrigger("Fade");
             StartCoroutine(SpawnPlayer(0));
         }
@@ -113,8 +114,8 @@ public class CharacterSelection : NetworkBehaviour
     void Spawn(int spawnIndex,NetworkConnection conn){
         GameObject player = Instantiate(characters[spawnIndex],new Vector3(-70+Random.Range(-3,3),1.04f,180+Random.Range(-3,3)),Quaternion.identity);
         Spawn(player,conn);
-        GameObject manager = Instantiate(gameManagerPrefab,Vector3.zero,Quaternion.identity);
-        Spawn(manager,conn);
+        //GameObject manager = Instantiate(gameManagerPrefab,Vector3.zero,Quaternion.identity);
+        //Spawn(manager,conn);
     }
 
     public void Ready(){
@@ -127,6 +128,15 @@ public class CharacterSelection : NetworkBehaviour
         {
             if(playerManager.Players[i]==this){
                 lobbyCharacters.transform.position=points[i];
+            }
+        }
+    }
+
+    public void backToLobby(){
+        if(base.IsOwner){
+            characterSelectorPanel.SetActive(true);
+            if(base.IsServerInitialized){
+                startButton.SetActive(true);
             }
         }
     }

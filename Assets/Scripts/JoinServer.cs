@@ -16,10 +16,15 @@ public class JoinServer : MonoBehaviour
     public TMP_InputField inputField;
 
     public NetworkManager _networkManager;
-    public bool canJoin = false;
 	
+    [Space]
+    public GameObject joinButton,cancelButton;
 
     public void Join(){
+        joinButton.SetActive(false);
+        cancelButton.SetActive(true);
+        inputField.interactable=false;
+
         tugboat.SetClientAddress(inputField.text);
         
         _networkManager.ClientManager.StartConnection();
@@ -28,10 +33,20 @@ public class JoinServer : MonoBehaviour
         StartCoroutine(TryConnection());
 
     }
+    public void Cancel(){
+        StopCoroutine(TryConnection());
+        cancelButton.SetActive(false);
+        joinButton.SetActive(true);
+        inputField.interactable=true;
+        connectionNotification.text = "";
+
+        _networkManager.ClientManager.StopConnection();
+    }
 
     private IEnumerator TryConnection(){
         CharacterSelection[] characterSelections;
         int tries=0;
+        bool connected = false;
         while(tries<=30){
             connectionNotification.text = "Tries: "+tries;
             yield return new WaitForSeconds(1f);
@@ -40,10 +55,17 @@ public class JoinServer : MonoBehaviour
 
             if(characterSelections.Length>0){
                 openLobby();
+                connected=true;
                 break;
             }
         }
-        connectionNotification.text = "Connection not found";
+        if(!connected){
+            cancelButton.SetActive(false);
+            joinButton.SetActive(true);
+            inputField.interactable=true;
+            _networkManager.ClientManager.StopConnection();
+            connectionNotification.text = "Connection not found";
+        }
     }
 
     private void openLobby(){
@@ -52,6 +74,12 @@ public class JoinServer : MonoBehaviour
 
     public void Back(){
         StopCoroutine(TryConnection());
+        cancelButton.SetActive(false);
+        joinButton.SetActive(true);
+        inputField.interactable=true;
+        connectionNotification.text = "";
+
+        _networkManager.ClientManager.StopConnection();
         joinPanel.SetActive(false);
         menu.SetActive(true);
     }

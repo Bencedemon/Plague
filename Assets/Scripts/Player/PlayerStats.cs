@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using FishNet.Object;
 using FishNet.Connection;
 using FishNet.Object.Synchronizing;
@@ -12,7 +13,7 @@ public class PlayerStats : NetworkBehaviour
     //public int _currentHealth;
     public readonly SyncVar<int> _currentHealth = new(100);
 
-    [SerializeField] private GameObject hud,scoreBoard;
+    [SerializeField] private GameObject hud,scoreBoard, mouseLook;
     
 
     [Header("PlayerProfile")]
@@ -20,6 +21,15 @@ public class PlayerStats : NetworkBehaviour
     public readonly SyncVar<string> playerName = new();
     public readonly SyncVar<int> kills = new(0);
     private PlayerProfileManager playerProfileManager;
+
+
+    [Space]
+    [SerializeField] private PlayerSpectator playerSpectator;
+    [SerializeField] private PlayerInput playerInput;
+
+    [Space]
+    [SerializeField] private GameObject deadBodyPrefab;
+    public GameObject deadBodyReference; 
 
     void Awake(){
         //_currentHealth = maxHealth;
@@ -33,13 +43,16 @@ public class PlayerStats : NetworkBehaviour
             SetPlayerName(playerProfileManager.playerProfile.playerName);
             hud.SetActive(true);
             scoreBoard.SetActive(true);
+            mouseLook.SetActive(true);
         }
     }
 
     public void TakeDamage(int damage){
+        if(_currentHealth.Value<=0) return;
         if(_currentHealth.Value-damage <= 0){
             SetHealth(0);
-            Die();
+            Spawn();
+            Die(Owner);
         }else{
             SetHealth(_currentHealth.Value-damage);
         }
@@ -60,10 +73,19 @@ public class PlayerStats : NetworkBehaviour
         _currentHealth=newHealth;
     }*/
 
-    private void Die(){
+    [TargetRpc]
+    private void Die(NetworkConnection conn){
+        playerSpectator.spectator.SetActive(true);
+        playerInput.SwitchCurrentActionMap("InSpectate");
+        mouseLook.SetActive(false);
         Debug.Log("Dead");
     }
 
+    [ServerRpc(RequireOwnership=false)]
+    void Spawn(){
+        deadBodyReference = Instantiate(deadBodyPrefab,transform.position,transform.rotation);
+        Spawn(deadBodyReference);
+    }
 
     
     [ServerRpc(RequireOwnership = false)] private void SetHealth(int _health) => _currentHealth.Value = _health;

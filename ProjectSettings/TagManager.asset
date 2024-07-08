@@ -16,7 +16,7 @@ TagManager:
   - WeaponSelf
   - WeaponOther
   - Enemy
-  - 
+  - PlayerDeadBody
   - 
   - 
   - 

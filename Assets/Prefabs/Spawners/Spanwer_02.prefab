@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6817510058529993699}
   - component: {fileID: 3323177947919244669}
   m_Layer: 0
-  m_Name: Spanwer_01 1
+  m_Name: Spanwer_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
         type: 3}
       weight: 100
     startDelay: 0
-    enemyCount: 4
+    enemyCount: 10
     enemyCountDispersion: 0
     frequency: 1
     frequencyDispersion: 0
@@ -183,4 +183,4 @@ MonoBehaviour:
   <PrefabId>k__BackingField: 8
   <SpawnableCollectionId>k__BackingField: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 11089248826446953373
+  <AssetPathHash>k__BackingField: 10167486412934914597

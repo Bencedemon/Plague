@@ -33,7 +33,7 @@ public class Spawner : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(!IsServer) return;
+        if(!IsServerInitialized) return;
         maxWeight=0;
         for(int i=0;i<spawner_Groups.spawner_Units.Length;i++){
             maxWeight+=spawner_Groups.spawner_Units[i].weight;
@@ -66,7 +66,7 @@ public class Spawner : NetworkBehaviour
     }
 
     private void SpawnEnemy(){
-        if(!IsServer) return;
+        if(!IsServerInitialized) return;
         int spawnerId = Random.Range(0,enemySpawnLocations.Length);
 
         float x = Random.Range(enemySpawnLocations[spawnerId].size.x * -0.5f,enemySpawnLocations[spawnerId].size.x * 0.5f) + enemySpawnLocations[spawnerId].position.x;

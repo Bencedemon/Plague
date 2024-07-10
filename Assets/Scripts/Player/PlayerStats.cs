@@ -20,6 +20,10 @@ public class PlayerStats : NetworkBehaviour
     public readonly SyncVar<int> pictureId = new();
     public readonly SyncVar<string> playerName = new();
     public readonly SyncVar<int> kills = new(0);
+    public readonly SyncVar<int> damageDealt = new(0);
+    public readonly SyncVar<int> damageTaken = new(0);
+    public readonly SyncVar<int> deaths = new(0);
+    private PlayerPerformance playerPerformance;
     private PlayerProfileManager playerProfileManager;
 
 
@@ -33,6 +37,11 @@ public class PlayerStats : NetworkBehaviour
 
     void Awake(){
         //_currentHealth = maxHealth;
+        playerPerformance=FindObjectOfType<PlayerPerformance>();
+        kills.OnChange += OnKillsChanged;;
+        damageDealt.OnChange += OnDamageDealtChanged;;
+        damageTaken.OnChange += OnDamageTakenChanged;;
+        deaths.OnChange += OnDeathsChanged;;
     }
 
     public override void OnStartClient(){
@@ -50,28 +59,16 @@ public class PlayerStats : NetworkBehaviour
     public void TakeDamage(int damage){
         if(_currentHealth.Value<=0) return;
         if(_currentHealth.Value-damage <= 0){
+            SetDamageTaken(_currentHealth.Value);
             SetHealth(0);
             Spawn();
             Die(Owner);
         }else{
+            SetDamageTaken(damage);
+            SetDeaths(1);
             SetHealth(_currentHealth.Value-damage);
         }
     }
-/*
-    [ServerRpc(RequireOwnership = false)]
-    public void TakeDamage(int damage){
-        if(_currentHealth-damage <= 0){
-            _currentHealth=0;
-            Die();
-        }else{
-            _currentHealth -= damage;
-        }
-        LocalTakeDamage(Owner,_currentHealth);
-    }
-    [TargetRpc]
-    private void LocalTakeDamage(NetworkConnection conn, int newHealth){
-        _currentHealth=newHealth;
-    }*/
 
     [TargetRpc]
     private void Die(NetworkConnection conn){
@@ -92,4 +89,28 @@ public class PlayerStats : NetworkBehaviour
     [ServerRpc] private void SetPictureId(int _pictureId) => pictureId.Value = _pictureId;
     [ServerRpc] private void SetPlayerName(string _playerName) => playerName.Value = _playerName;
     [ServerRpc(RequireOwnership = false)] public void SetKills(int _kills) => kills.Value += _kills;
+    [ServerRpc(RequireOwnership = false)] public void SetDamageDealt(int _damageDealt) => damageDealt.Value += _damageDealt;
+    [ServerRpc(RequireOwnership = false)] public void SetDamageTaken(int _damageTaken) => damageTaken.Value += _damageTaken;
+    [ServerRpc(RequireOwnership = false)] public void SetDeaths(int _deaths) => deaths.Value += _deaths;
+
+    private void OnKillsChanged(int oldValue, int newValue, bool asServer){
+        if(base.IsOwner){
+            playerPerformance.kills=newValue;
+        }
+    }
+    private void OnDamageDealtChanged(int oldValue, int newValue, bool asServer){
+        if(base.IsOwner){
+            playerPerformance.damageDealt=newValue;
+        }
+    }
+    private void OnDamageTakenChanged(int oldValue, int newValue, bool asServer){
+        if(base.IsOwner){
+            playerPerformance.damageTaken=newValue;
+        }
+    }
+    private void OnDeathsChanged(int oldValue, int newValue, bool asServer){
+        if(base.IsOwner){
+            playerPerformance.deaths=newValue;
+        }
+    }
 }

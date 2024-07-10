@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using Unity.Mathematics;
 using UnityEngine.UI;
 using FishNet.Connection;
 using FishNet.Object;
@@ -10,9 +9,7 @@ using TMPro;
 
 public class CharacterSelection : NetworkBehaviour
 {
-    //public static Dictionary<int, CharacterSelection> Players = new Dictionary<int, CharacterSelection>();
     public int characterId=-1;
-    [SerializeField] private List<GameObject> characters = new List<GameObject>();
     [SerializeField] private GameObject characterSelectorPanel;
     [SerializeField] private GameObject canvasObject;
     [SerializeField] private GameObject mainCamera;
@@ -31,7 +28,9 @@ public class CharacterSelection : NetworkBehaviour
     [SerializeField] private Vector3[] points;
     private GameObject lobbyPlayer;
 
-    [SerializeField] private GameObject gameManagerPrefab;
+    //=====================
+    [SerializeField] private FishNet.Example.Scened.SceneLoader sceneLoader;
+    //=====================
     
     private PlayerProfileManager playerProfileManager;
     private PlayerManager playerManager;
@@ -72,13 +71,6 @@ public class CharacterSelection : NetworkBehaviour
 
     void FixedUpdate(){
         if(!base.IsOwner) return;
-
-        if(playerManager.gameStarted){
-            playerManager.gameStarted = false;
-            SetReady(false);
-            fade.SetTrigger("Fade");
-            StartCoroutine(SpawnPlayer(0));
-        }
         if(!base.IsServerInitialized) return;
 
         bool canStart=false;
@@ -93,35 +85,14 @@ public class CharacterSelection : NetworkBehaviour
         startButton.GetComponent<Button>().interactable=true;
     }
 
-    [ServerRpc(RequireOwnership=false)]
     public void StartGame(){
         startButton.SetActive(false);
-        StartGameObserver();
-    }
-    [ObserversRpc]
-    private void StartGameObserver(){
-        playerManager.gameStarted=true;
-    }
-
-    private IEnumerator SpawnPlayer(int id)
-    {
-        yield return new WaitForSeconds(1f);
-        characterSelectorPanel.SetActive(false);
-        Spawn(id,LocalConnection);
-    }
-
-    [ServerRpc(RequireOwnership=false)]
-    void Spawn(int spawnIndex,NetworkConnection conn){
-        GameObject player = Instantiate(characters[spawnIndex],new Vector3(-70+Random.Range(-3,3),1.04f,180+Random.Range(-3,3)),Quaternion.identity);
-        Spawn(player,conn);
-        //GameObject manager = Instantiate(gameManagerPrefab,Vector3.zero,Quaternion.identity);
-        //Spawn(manager,conn);
+        sceneLoader.StartLoading("01_Game");
     }
 
     public void Ready(){
         SetReady(!ready.Value);
     }
-
 
     void LobbySpawn(int id){
         for (int i = 0; i < playerManager.Players.Count; i++)
@@ -132,14 +103,6 @@ public class CharacterSelection : NetworkBehaviour
         }
     }
 
-    public void backToLobby(){
-        if(base.IsOwner){
-            characterSelectorPanel.SetActive(true);
-            if(base.IsServerInitialized){
-                startButton.SetActive(true);
-            }
-        }
-    }
     
     [ServerRpc] private void SetPP(int _pp) => pp.Value = _pp;
     [ServerRpc] private void SetName(string _name) => name.Value = _name;

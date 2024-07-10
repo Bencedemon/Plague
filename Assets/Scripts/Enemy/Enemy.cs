@@ -55,6 +55,7 @@ public class Enemy : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void TakeDamage(int damage, Vector3 direction, Enemy_Hitbox _rigidbody,PlayerStats _playerStats){
         if(health<=0) return;
+        _playerStats.SetDamageDealt(damage);
         health-=damage;
         if(health <= 0){
             if(enemySpawner!=null){

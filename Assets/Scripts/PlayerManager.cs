@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public List<Client> Clients = new List<Client>();
     public List<CharacterSelection> Players = new List<CharacterSelection>();
     public List<GameObject> PlayerGameObject = new List<GameObject>();
-    public List<GameManager> GameManagers = new List<GameManager>();
 
     public bool gameStarted = false;
 
 
-    void FixedUpdate(){
+    /*void FixedUpdate(){
         if(GameManagers.Count==0) return;
         int count=0;
         foreach (var item in PlayerGameObject)
@@ -26,5 +26,5 @@ public class PlayerManager : MonoBehaviour
                 manager.gameEnd();
             }
         }
-    }
+    }*/
 }

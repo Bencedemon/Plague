@@ -1310,6 +1310,7 @@ GameObject:
   - component: {fileID: 3399181980825541066}
   - component: {fileID: 2307849431291843115}
   - component: {fileID: 1305101226888557216}
+  - component: {fileID: 571680892626404569}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1349,13 +1350,11 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1305101226888557216}
   _networkObjectCache: {fileID: 1305101226888557216}
-  playerStats: {fileID: 0}
+  enemySpawner: {fileID: 0}
   countDownText: {fileID: 6669765800493170225}
-  endPanel: {fileID: 1759999359921959808}
-  killsText: {fileID: 3208346284030111230}
-  damageDealtText: {fileID: 5934619630205391648}
-  damageTakenText: {fileID: 574815477870482747}
-  deathsText: {fileID: 7288648645178928786}
+  playerPrefab: {fileID: 240083147034756227, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
+    type: 3}
+  sceneLoader: {fileID: 571680892626404569}
 --- !u!114 &1305101226888557216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,6 +1401,28 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 17981935845437572623
+--- !u!114 &571680892626404569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3692315017868262921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0bd615c19366a4bac7b4dac9310f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveObject: 1
+  _moveAllObjects: 0
+  _replaceOption: 2
+  _scenes:
+  - 00_MainMenu
+  - 01_Game
+  _connectionOnly: 0
+  _automaticallyUnload: 1
+  _onTriggerEnter: 1
+  _unloadUnused: 1
 --- !u!1 &4054569287209541134
 GameObject:
   m_ObjectHideFlags: 0

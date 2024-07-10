@@ -27,6 +27,7 @@ public class EnemySpawner : NetworkBehaviour
     public override void OnStartClient(){
         base.OnStartClient();
     }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -58,27 +59,5 @@ public class EnemySpawner : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)] public void SetEnemyCount(int _enemyCount) => enemyCount.Value += _enemyCount;
-
-    public void ResetEnemySpawner(){
-        StopCoroutine(StartNewWave());
-        currentWaveId=0;
-        currentEnemyCount=0;
-        _enemyCount=0;
-        waveStart=false;
-        SetEnemyCount(0);
-        DespawnAllEnemies();
-        for (var i = transform.childCount - 1; i >= 0; i--)
-        {
-            ServerManager.Despawn(transform.GetChild(i).gameObject);
-        }
-    }
     
-    [ServerRpc(RequireOwnership = false)]
-    private void DespawnAllEnemies(){
-        foreach (var enemy in FindObjectsOfType<Enemy>())
-        {
-            ServerManager.Despawn(enemy.transform.gameObject);
-        }
-    }
-
 }

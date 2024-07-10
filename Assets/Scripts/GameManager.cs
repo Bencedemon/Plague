@@ -2,47 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
+using FishNet.Connection;
+using FishNet.Object.Synchronizing;
 using TMPro;
 
 public class GameManager : NetworkBehaviour
 {
-    private PlayerManager playerManager;
-
-    private EnemySpawner enemySpawner;
-
-    [SerializeField] private PlayerStats playerStats;
-
+    [SerializeField] private  EnemySpawner enemySpawner;
     [Space]
-
     [SerializeField] private TMP_Text countDownText;
 
-
+    [SerializeField] private GameObject playerPrefab;
     [Space]
-    [SerializeField] private GameObject endPanel;
-    [SerializeField] private TMP_Text killsText;
-    [SerializeField] private TMP_Text damageDealtText;
-    [SerializeField] private TMP_Text damageTakenText;
-    [SerializeField] private TMP_Text deathsText;
+    [SerializeField] private FishNet.Example.Scened.SceneLoader sceneLoader;
+
+    private bool gameStarted = false;
+    private bool gameEnded = false;
 
     private PlayerMovement[] playerMovements;
+    private PlayerManager playerManager;
     void Awake(){
         playerManager = FindObjectOfType<PlayerManager>();
-        enemySpawner = FindObjectOfType<EnemySpawner>();
-    }
 
+    }
     public override void OnStartClient(){
         base.OnStartClient();
-        
-        playerMovements = FindObjectsOfType<PlayerMovement>();
-        playerManager.GameManagers.Add(this);
 
-        if(base.IsOwner)
-            StartCoroutine(CountDown());
+        Spawn(LocalConnection);
     }
-    public override void OnStopClient(){
-        base.OnStopClient();
 
-        playerManager.GameManagers.Remove(this);
+    void FixedUpdate(){
+        if(playerManager==null) return;
+        if(!gameStarted){
+            if(playerManager.PlayerGameObject.Count==playerManager.Clients.Count){
+                gameStarted=true;
+                StartCoroutine(CountDown());
+            }
+        }else if(!gameEnded){
+            int count=0;
+            foreach (var player in playerManager.PlayerGameObject)
+            {
+                if(player.GetComponent<PlayerStats>()._currentHealth.Value<=0){
+                    count++;
+                }
+            }
+            if(count==playerManager.PlayerGameObject.Count){
+                gameEnded=true;
+                if(base.IsServerInitialized){
+                    EndGame();
+                }
+            }
+        }
+    }
+
+    [ServerRpc(RequireOwnership=false)]
+    private void Spawn(NetworkConnection conn){
+        GameObject player = Instantiate(playerPrefab,new Vector3(-70+Random.Range(-3,3),1.04f,180+Random.Range(-3,3)),Quaternion.identity);
+        Spawn(player,conn);
     }
 
     private IEnumerator CountDown()
@@ -59,6 +75,8 @@ public class GameManager : NetworkBehaviour
         countDownText.text = "1";
         yield return new WaitForSeconds(1f);
 
+        playerMovements = FindObjectsOfType<PlayerMovement>();
+
         foreach (var player in playerMovements)
         {
             player.canMove=true;
@@ -72,29 +90,7 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    public void gameEnd(){
-        if(base.IsOwner){
-            killsText.text = ""+playerStats.kills.Value;
-
-            Cursor.lockState = CursorLockMode.None;
-            endPanel.SetActive(true);
-        }
-    }
-
-    public void Continue(){
-        DespawnPlayer();
-        foreach (var item in playerManager.Players)
-        {
-            item.backToLobby();
-        }
-    }
-
-    [ServerRpc]
-    private void DespawnPlayer(){
-        enemySpawner.ResetEnemySpawner();
-        if(playerStats.deadBodyReference!=null){
-            ServerManager.Despawn(playerStats.deadBodyReference);
-        }
-        ServerManager.Despawn(playerStats.transform.gameObject);
+    private void EndGame(){
+        sceneLoader.StartLoading("00_MainMenu");
     }
 }

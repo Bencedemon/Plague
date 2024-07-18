@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: bpPistol
   m_EditorClassIdentifier: 
   weaponName: bpPistol
-  damage: 10
+  icon: {fileID: 21300000, guid: 4404eb2cd56653a4db859d2479107b9b, type: 3}
+  damage: 35
   maxRange: 20
   punchDamage: 10
   punchRange: 2
   maxAmmo: 9
+  totalAmmo: 90
   spread: 0.025
   weaponType: 1
   rifleType: 0
@@ -25,3 +27,13 @@ MonoBehaviour:
     type: 3}
   hitParticle_enemy: {fileID: 5436153802475618861, guid: b4da7ac7067402c4aaa2d09b1d1f47ba,
     type: 3}
+  shoot:
+  - {fileID: 8300000, guid: 2180783572c95984985d40dc6d8dead5, type: 3}
+  - {fileID: 8300000, guid: 6b85c23b6a5f5ee4f8e540dbb9bf5c64, type: 3}
+  - {fileID: 8300000, guid: c00bc3f861f1a2e4b9a6ee5108c18c46, type: 3}
+  - {fileID: 8300000, guid: bf7992df680ea2940ba314fbdabda08d, type: 3}
+  reloadLast: {fileID: 8300000, guid: 2f9cce2c3cc68034590b7aa0c5858465, type: 3}
+  reload: {fileID: 8300000, guid: f455e2b195c68a043ad9055f424b76d9, type: 3}
+  cock: {fileID: 8300000, guid: 518bf141e97dc724aa98f11ae7902e19, type: 3}
+  punch:
+  - {fileID: 8300000, guid: 6c00eae89383aae4984f2934aac0896f, type: 3}

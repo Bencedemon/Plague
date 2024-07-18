@@ -8,34 +8,38 @@ public abstract class AWeapon : NetworkBehaviour
     public WeaponProperty weaponProperty;
     [Space]
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] public PlayerStats playerStats;
     [Space]
     public int currentAmmoCount;
+    public int currentTotalAmmo;
     [Space]
     public LayerMask layerMask;
     public Transform _cameraTransform;
 
     [Header("Self")]
-    [SerializeField] private Animator weaponSelf;
-    [SerializeField] private ParticleSystem muzzleFlashSelf;
+    [SerializeField] public Animator weaponSelf;
+    [SerializeField] public ParticleSystem muzzleFlashSelf;
+    [SerializeField] public AudioSource audioSource;
 
 
     [Header("Other")]
-    [SerializeField] private Animator weaponOther;
-    [SerializeField] private ParticleSystem muzzleFlashOther;
+    [SerializeField] public Animator weaponOther;
+    [SerializeField] public ParticleSystem muzzleFlashOther;
+    [SerializeField] public AudioSource audioSourceOther;
 
     [Space]
     [SerializeField] public Animator characterAnim;
     
-    [SerializeField] private NetworkObject hitParticle;
 
+    [Space]
     public bool inAction = false;
-    private bool inReload = false;
+    public bool inReload = false;
 
     public bool automaticShoot=false;
 
     void Start(){
         currentAmmoCount=weaponProperty.maxAmmo;
+        currentTotalAmmo=weaponProperty.totalAmmo;
     }
     public void ActionEnd(){
         inAction = false;
@@ -43,12 +47,12 @@ public abstract class AWeapon : NetworkBehaviour
         if(weaponProperty.weaponType==WeaponProperty.WeaponType.auomatic && automaticShoot){
             if(currentAmmoCount==1){
                 inAction=true;
-                AnimateWeapon();
+                AnimateWeaponShoot();
                 weaponSelf.SetTrigger("FireLast");
             }else
             if(currentAmmoCount>0){
                 inAction=true;
-                AnimateWeapon();
+                AnimateWeaponShoot();
                 weaponSelf.SetTrigger("Fire");
             }
         }
@@ -58,12 +62,12 @@ public abstract class AWeapon : NetworkBehaviour
         if(inAction) return;
         if(currentAmmoCount==1){
             inAction=true;
-            AnimateWeapon();
+            AnimateWeaponShoot();
             weaponSelf.SetTrigger("FireLast");
         }else
         if(currentAmmoCount>0 || weaponProperty.maxAmmo==0){
             inAction=true;
-            AnimateWeapon();
+            AnimateWeaponShoot();
             weaponSelf.SetTrigger("Fire");
         }
         else{
@@ -76,6 +80,9 @@ public abstract class AWeapon : NetworkBehaviour
         if(muzzleFlashSelf!=null)
             muzzleFlashSelf.Play();
 
+        audioSource.clip = weaponProperty.shoot[Random.Range(0,weaponProperty.shoot.Length)];
+        audioSource.Play();
+
         float x = Random.Range(-weaponProperty.spread*playerMovement.speedMultiplier,weaponProperty.spread*playerMovement.speedMultiplier);
         float y = Random.Range(-weaponProperty.spread*playerMovement.speedMultiplier,weaponProperty.spread*playerMovement.speedMultiplier);
         float z = Random.Range(-weaponProperty.spread*playerMovement.speedMultiplier,weaponProperty.spread*playerMovement.speedMultiplier);
@@ -85,7 +92,8 @@ public abstract class AWeapon : NetworkBehaviour
         if(Physics.Raycast(_cameraTransform.position,directionWithSpread, out RaycastHit hit,weaponProperty.maxRange, layerMask)){
 
             if(hit.transform.TryGetComponent(out Enemy_Hitbox enemy)){
-                enemy.HitboxTakeDamage(weaponProperty.damage,-hit.normal,playerStats);
+                Vector3 direction = (hit.point-_cameraTransform.position).normalized;
+                enemy.HitboxTakeDamage(weaponProperty.damage,direction,playerStats);
                 SpawnParticle(weaponProperty.hitParticle_enemy,hit.point,hit.normal);
                 return;
             }
@@ -93,26 +101,44 @@ public abstract class AWeapon : NetworkBehaviour
         }
     }
 
-    public void Reload(){
+    public virtual void Reload(){
         if(inReload) return;
         if(weaponProperty.maxAmmo==0) return;
+        if(currentTotalAmmo<=0) return;
         if(currentAmmoCount<weaponProperty.maxAmmo){
             inAction=true;
             inReload=true;
-            if(currentAmmoCount==0)
+            if(currentAmmoCount==0){
+                AnimateWeaponReload(true);
                 weaponSelf.SetTrigger("ReloadEmpty");
-            else
+                audioSource.clip = weaponProperty.reloadLast;
+                audioSource.Play();
+            }
+            else{
+                AnimateWeaponReload(false);
                 weaponSelf.SetTrigger("Reload");
+                audioSource.clip = weaponProperty.reload;
+                audioSource.Play();
+            }
         }
     }
 
     public void ReloadWeapon(){
-        currentAmmoCount=weaponProperty.maxAmmo;
+        int missingBullet = weaponProperty.maxAmmo-currentAmmoCount;
+        if(currentTotalAmmo-missingBullet >= 0){
+            currentAmmoCount+=missingBullet;
+            currentTotalAmmo-=missingBullet;
+        }else{
+            currentAmmoCount+=currentTotalAmmo;
+            currentTotalAmmo=0;
+        }
     }
     public void Punch(){
         if(inAction) return;
         inAction=true;
         weaponSelf.SetTrigger("Punch");
+        audioSource.clip = weaponProperty.punch[Random.Range(0,weaponProperty.punch.Length)];
+        audioSource.Play();
     }
 
     public void PunchWeapon(){
@@ -127,6 +153,10 @@ public abstract class AWeapon : NetworkBehaviour
         }
     }
 
+    public void Cocking(){
+        audioSource.clip = weaponProperty.cock;
+        audioSource.Play();
+    }
     
     [ServerRpc]
     public virtual void SpawnParticle(NetworkObject hitParticle,Vector3 _point, Vector3 _normal){
@@ -135,15 +165,32 @@ public abstract class AWeapon : NetworkBehaviour
     }
 
     [ServerRpc]
-    public virtual void AnimateWeapon(){
-        AnimateWeaponObserver();
+    public virtual void AnimateWeaponShoot(){
+        AnimateWeaponShootObserver();
     }
 
     [ObserversRpc]
-    private void AnimateWeaponObserver(){
+    private void AnimateWeaponShootObserver(){
         weaponOther.SetTrigger("Fire");
         if(muzzleFlashOther!=null)
             muzzleFlashOther.Play();
+        audioSourceOther.clip = weaponProperty.shoot[Random.Range(0,weaponProperty.shoot.Length)];
+        audioSourceOther.Play();
+    }
+
+    [ServerRpc]
+    public virtual void AnimateWeaponReload(bool _empty){
+        AnimateWeaponReloadObserver(_empty);
+    }
+
+    [ObserversRpc]
+    private void AnimateWeaponReloadObserver(bool _empty){
+        if(_empty){
+            audioSourceOther.clip = weaponProperty.reloadLast;
+        }else{
+            audioSourceOther.clip = weaponProperty.reload;
+        }
+        audioSourceOther.Play();
     }
 
 

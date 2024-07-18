@@ -3,7 +3,17 @@ guid: 0853ae4b625716e4aa68cec553e7d362
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ak74
+    second: {fileID: 2100000, guid: 728fb3e4241ed2b4e91a61b5f71db38b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: arms
+    second: {fileID: 2100000, guid: e8dd20af5244f234bb641d10dc22f5a8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

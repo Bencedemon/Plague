@@ -6,19 +6,23 @@ using FishNet.Object.Synchronizing;
 
 public class EnemySpawner : NetworkBehaviour
 {
-    public Spawner_Wave[] spawner_Waves;
-    public int currentWaveId=0;
+    [SerializeField] private Spawner_Wave[] spawner_Waves;
+    [SerializeField] private int currentWaveId=0;
     public int currentEnemyCount=0;
     public readonly SyncVar<int> enemyCount = new(0);
-    public int _enemyCount;
+    [SerializeField] public int _enemyCount;
 
-    public Transform enemySpawners;
+    [SerializeField] private Transform enemySpawners;
 
-    public Animator musicAnimator;
-    public AudioSource fight,calm;
+    [Space]
+    [SerializeField] private Animator musicAnimator;
+    [SerializeField] private AudioSource fight,calm;
 
+    [Space]
+    [SerializeField] private GameObject exit;
 
     private bool waveStart=true;
+    private bool gameEnded=false;
 
     [Space]
     public EnemySpawnLocation[] enemySpawnLocations;
@@ -31,15 +35,28 @@ public class EnemySpawner : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(!IsServerInitialized) return;
         _enemyCount=enemyCount.Value;
-        if(currentWaveId<spawner_Waves.Length){
+        if(currentWaveId<spawner_Waves.Length+1){
             if(currentEnemyCount==0 && enemySpawners.childCount==0){
                 if(!waveStart){
                     waveStart=true;
-                    StartCoroutine(StartNewWave());
+                    if(currentWaveId==spawner_Waves.Length){
+                        OpenExitServer();
+                    }else{
+                        StartCoroutine(StartNewWave());
+                    }
                 }
             }
         }
+    }
+    [ServerRpc(RequireOwnership = false)]
+    private void OpenExitServer(){
+        OpenExitObserver();
+    }
+    [ObserversRpc]
+    private void OpenExitObserver(){
+        exit.SetActive(true);
     }
 
     public IEnumerator StartNewWave(){

@@ -15,10 +15,20 @@ public class Enemy_Hitbox : NetworkBehaviour
 
 
     public void HitboxTakeDamage(int damage,Vector3 direction,PlayerStats _playerStats){
-        if(hitboxType==HitboxType.head){
-            enemy.TakeDamage(damage*2,direction,this,_playerStats);
-        }else{
-            enemy.TakeDamage(damage,direction,this,_playerStats);
+        switch (hitboxType)
+        {
+            case HitboxType.head:
+                enemy.TakeDamage(damage*3,direction,this,_playerStats);
+            break;
+            case HitboxType.body:
+                enemy.TakeDamage(damage,direction,this,_playerStats);
+            break;
+            case HitboxType.limb:
+                enemy.TakeDamage(damage,direction,this,_playerStats);
+            break;
+            default:
+                Debug.LogError(""+hitboxType+" not excists");
+            break;
         }
     }
 

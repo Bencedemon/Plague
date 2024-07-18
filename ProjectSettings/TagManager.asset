@@ -17,8 +17,8 @@ TagManager:
   - WeaponOther
   - Enemy
   - PlayerDeadBody
-  - 
-  - 
+  - Item
+  - Marker
   - 
   - 
   - 

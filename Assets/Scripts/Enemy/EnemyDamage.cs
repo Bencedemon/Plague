@@ -60,7 +60,7 @@ public class EnemyDamage : NetworkBehaviour
         foreach (var hitCollider in hitColliders)
         {
             if(hitCollider.gameObject.TryGetComponent(out PlayerStats playerStats)){
-                playerStats.TakeDamage(damage);
+                playerStats.TakeDamage(Random.Range(damage-5,damage+5));
             }
         }
     }

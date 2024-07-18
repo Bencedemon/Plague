@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: knife
   m_EditorClassIdentifier: 
   weaponName: knife
-  damage: 15
+  icon: {fileID: 21300000, guid: 3ec2a78fac9c96d4f98b9209ee48feb1, type: 3}
+  damage: 25
   maxRange: 2
-  punchDamage: 15
+  punchDamage: 50
   punchRange: 2
   maxAmmo: 0
+  totalAmmo: 0
   spread: 0
   weaponType: 1
   rifleType: 0
@@ -25,3 +27,10 @@ MonoBehaviour:
     type: 3}
   hitParticle_enemy: {fileID: 5436153802475618861, guid: b4da7ac7067402c4aaa2d09b1d1f47ba,
     type: 3}
+  shoot:
+  - {fileID: 8300000, guid: e657530a8642937459e78f113071ae53, type: 3}
+  reloadLast: {fileID: 0}
+  reload: {fileID: 0}
+  cock: {fileID: 0}
+  punch:
+  - {fileID: 8300000, guid: 2c68acb8bc623624788502f4e0bf8a7f, type: 3}

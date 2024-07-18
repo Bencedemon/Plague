@@ -1592,6 +1592,8 @@ MonoBehaviour:
   animator: {fileID: 8205981931366973613}
   navMeshAgent: {fileID: 8930412722649699713}
   player: {fileID: 0}
+  organPrefab: {fileID: 64975020644958329, guid: 9db0ebc17b3ed3847b879962c7e6861c,
+    type: 3}
   rigidbodies:
   - {fileID: 6692312890457886851}
   - {fileID: 6392897484439140216}
@@ -1634,7 +1636,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   enemy: {fileID: 7796650377709073211}
-  damage: 100
+  damage: 10
   attackPoint: {fileID: 8830962620422263225}
   attackRadius: 0.5
   layerMask:

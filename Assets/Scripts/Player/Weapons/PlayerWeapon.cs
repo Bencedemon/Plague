@@ -8,15 +8,21 @@ using FishNet.Object.Synchronizing;
 public class PlayerWeapon : NetworkBehaviour
 {
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private List<AWeapon> weapons = new List<AWeapon>();
+    //[SerializeField] private List<AWeapon> weapons = new List<AWeapon>();
+    [Header("Weapons")]
+    [SerializeField] private AWeapon primary;
+    [SerializeField] private AWeapon secondary;
+    [SerializeField] private AWeapon melee;
 
+    [Space]
     public AWeapon currentWeapon;
 
 
+    [Space]
     [Header("Stats")]
     public PlayerStats playerStats;
 
-    private readonly SyncVar<int> _currentWeaponIndex = new();
+    public readonly SyncVar<int> _currentWeaponIndex = new();
 
     void Awake(){
         _currentWeaponIndex.OnChange += OnCurrentWeaponIndexChanged;;
@@ -32,11 +38,10 @@ public class PlayerWeapon : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (var weapon in weapons)
-        {
-            weapon.gameObject.SetActive(false);
-        }
-        currentWeapon=weapons[0];
+        primary.gameObject.SetActive(false);
+        secondary.gameObject.SetActive(false);
+        melee.gameObject.SetActive(false);
+        currentWeapon=primary;
         currentWeapon.gameObject.SetActive(true);
     }
 
@@ -103,7 +108,7 @@ public class PlayerWeapon : NetworkBehaviour
         if(currentWeapon.inAction) return;
         float scroll = context.ReadValue<Vector2>().y;
         if(scroll>0){
-            if(_currentWeaponIndex.Value+1<weapons.Count)
+            if(_currentWeaponIndex.Value<2)
                 SwitchWeapon(_currentWeaponIndex.Value+1);
             else
                 SwitchWeapon(0);
@@ -111,19 +116,61 @@ public class PlayerWeapon : NetworkBehaviour
             if(_currentWeaponIndex.Value-1>=0)
                 SwitchWeapon(_currentWeaponIndex.Value-1);
             else
-                SwitchWeapon(weapons.Count-1);
+                SwitchWeapon(2);
         }
     }
 
     [ServerRpc] private void SetWeaponIndex(int _id) => _currentWeaponIndex.Value = _id;
 
     private void OnCurrentWeaponIndexChanged(int oldIndex, int newIndex, bool asServer){
-        foreach (var weapon in weapons)
+        primary.gameObject.SetActive(false);
+        secondary.gameObject.SetActive(false);
+        melee.gameObject.SetActive(false);
+        switch (newIndex)
         {
-            weapon.gameObject.SetActive(false);
+            case 0:
+                currentWeapon=primary;
+            break;
+            case 1:
+                currentWeapon=secondary;
+            break;
+            case 2:
+                currentWeapon=melee;
+            break;
+            default:
+                Debug.LogError(newIndex+" is out of range");
+            break;
         }
-        currentWeapon=weapons[newIndex];
         currentWeapon.gameObject.SetActive(true);
         currentWeapon.characterAnim.SetBool("rifleType",currentWeapon.weaponProperty.rifleType);
+    }
+
+    public bool CanGetAmmo(){
+        if(primary.currentTotalAmmo<primary.weaponProperty.totalAmmo){
+            return true;
+        }
+        if(secondary.currentTotalAmmo<secondary.weaponProperty.totalAmmo){
+            return true;
+        }
+        return false;
+    }
+    public void GetAmmo(){
+        if(primary.weaponProperty.maxAmmo!=0){
+            int ammo = primary.weaponProperty.totalAmmo/10;
+            if(primary.currentTotalAmmo+ammo<=primary.weaponProperty.totalAmmo){
+                primary.currentTotalAmmo += ammo;
+            }else{
+                primary.currentTotalAmmo = primary.weaponProperty.totalAmmo;
+            }
+        }
+        
+        if(secondary.weaponProperty.maxAmmo!=0){
+            int ammo = secondary.weaponProperty.totalAmmo/10;
+            if(secondary.currentTotalAmmo+ammo<=secondary.weaponProperty.totalAmmo){
+                secondary.currentTotalAmmo += ammo;
+            }else{
+                secondary.currentTotalAmmo = secondary.weaponProperty.totalAmmo;
+            }
+        }
     }
 }

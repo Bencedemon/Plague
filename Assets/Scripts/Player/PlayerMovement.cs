@@ -13,17 +13,11 @@ public class PlayerMovement : NetworkBehaviour
     public CharacterController controller;
     public PlayerInput playerInput;
     
-    [Header("Layers")]
-    public int playerSelfLayer = 6;
-    public int playerOtherLayer = 7;
-    public int weaponSelfLayer = 8;
-    public int weaponOtherLayer = 9;
-    public GameObject[] body, hand;
 
     [Header("Movement")]
     public bool canMove=false;
     public float moveSpeed = 10f;
-    public float speedMultiplier = 1.5f;
+    public float speedMultiplier = 1f;
     public float jumpPower;
     private bool isSprinting=false,isWalking=false;
 
@@ -49,6 +43,9 @@ public class PlayerMovement : NetworkBehaviour
     [Header("Stats")]
     public PlayerStats playerStats;
 
+    [Header("Light")]
+    [SerializeField] private GameObject lightObject;
+
     //private GameData gameData;
 
     public override void OnStartClient(){
@@ -58,16 +55,6 @@ public class PlayerMovement : NetworkBehaviour
         FindObjectOfType<PlayerManager>().PlayerGameObject.Add(this.gameObject);
 
         if(!base.IsOwner){
-
-            foreach (GameObject item in hand)
-            {
-                item.layer = weaponOtherLayer;
-            }
-            foreach (GameObject item in body)
-            {
-                item.layer = playerOtherLayer;
-            }
-            
             this.enabled = false;
         }else{
             playerInput.enabled = true;
@@ -167,6 +154,21 @@ public class PlayerMovement : NetworkBehaviour
             animator.SetTrigger("Jump");
         }
     }
+    public void Light(InputAction.CallbackContext context){
+        if(playerStats._currentHealth.Value<=0) return;
+        if(context.performed){
+            LightServer(!lightObject.activeSelf);
+        }
+    }
+    [ServerRpc]
+    private void LightServer(bool _active){
+        LightObserver(_active);
+    }
+
+    [ObserversRpc]
+    private void LightObserver(bool _active){
+        lightObject.SetActive(_active);
+    }
 
     [ServerRpc]
     private void StopTime(){
@@ -180,5 +182,12 @@ public class PlayerMovement : NetworkBehaviour
     [ObserversRpc]
     private void StopTimeObserver(float _timeScale){
         Time.timeScale = _timeScale;
+    }
+
+
+
+    public bool isMoving(){
+        if(x!=0 || z!=0 && controller.isGrounded) return true;
+        else return false;
     }
 }

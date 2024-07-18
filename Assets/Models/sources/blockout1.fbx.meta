@@ -3,7 +3,52 @@ guid: 635837c74f350124e8d51560055c6600
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brick1
+    second: {fileID: 2100000, guid: 25a24b5cbf14d6146b9dd7aa0ae4a6a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cobblestone
+    second: {fileID: 2100000, guid: 8548e92754965144c8241aefc814ceb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: concrete
+    second: {fileID: 2100000, guid: e9280a0b6639a044c87b132393fa2c63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: 86fcdb4690484774fbde0aa34fdfbf40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof
+    second: {fileID: 2100000, guid: c7690a8303c83734aba8b15b040acbe5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rubble
+    second: {fileID: 2100000, guid: 39b9b97bd656709449576f51dd5b73a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall1
+    second: {fileID: 2100000, guid: 25aad6a3365909940b3ce65af9dc4bc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: woodfloor
+    second: {fileID: 2100000, guid: 33370184a7df99549afdb9fb90cc2e41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: woodplanks
+    second: {fileID: 2100000, guid: 621103a114730004d85efd2eecc7f878, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

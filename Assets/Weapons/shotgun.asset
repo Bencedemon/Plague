@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acff20a38adca0f44ae5ae53efcf6f78, type: 3}
+  m_Name: shotgun
+  m_EditorClassIdentifier: 
+  weaponName: Shotgun
+  icon: {fileID: 21300000, guid: a153d4dd036d3fd418ac63bc2761fe38, type: 3}
+  damage: 25
+  maxRange: 100
+  punchDamage: 10
+  punchRange: 2
+  maxAmmo: 7
+  totalAmmo: 70
+  spread: 0.075
+  weaponType: 1
+  rifleType: 1
+  hitParticle_wall: {fileID: 7858676767521322104, guid: ba59662f92584a64695d7f015e38b7f2,
+    type: 3}
+  hitParticle_enemy: {fileID: 5436153802475618861, guid: b4da7ac7067402c4aaa2d09b1d1f47ba,
+    type: 3}
+  shoot:
+  - {fileID: 8300000, guid: f7c3b171f047b654bbf02c737875fceb, type: 3}
+  reloadLast: {fileID: 8300000, guid: 574aa4a15cdc02a4790923d5fc6dd3e9, type: 3}
+  reload: {fileID: 8300000, guid: 574aa4a15cdc02a4790923d5fc6dd3e9, type: 3}
+  cock: {fileID: 8300000, guid: 851528beb08ec9144a9b23f7dbf3e3e1, type: 3}
+  punch:
+  - {fileID: 8300000, guid: 6c00eae89383aae4984f2934aac0896f, type: 3}

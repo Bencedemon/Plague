@@ -8,12 +8,13 @@ using FishNet.Object.Synchronizing;
 
 public class PlayerStats : NetworkBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
+    public int maxHealth = 100;
 
     //public int _currentHealth;
     public readonly SyncVar<int> _currentHealth = new(100);
 
     [SerializeField] private GameObject hud,scoreBoard, mouseLook;
+    public int revives = 0;
     
 
     [Header("PlayerProfile")]
@@ -33,11 +34,14 @@ public class PlayerStats : NetworkBehaviour
 
     [Space]
     [SerializeField] private GameObject deadBodyPrefab;
+    [SerializeField] private GameObject body;
     public GameObject deadBodyReference; 
 
+    private PlayerManager playerManager;
     void Awake(){
         //_currentHealth = maxHealth;
         playerPerformance=FindObjectOfType<PlayerPerformance>();
+        playerManager=FindObjectOfType<PlayerManager>();
         kills.OnChange += OnKillsChanged;;
         damageDealt.OnChange += OnDamageDealtChanged;;
         damageTaken.OnChange += OnDamageTakenChanged;;
@@ -61,7 +65,7 @@ public class PlayerStats : NetworkBehaviour
         if(_currentHealth.Value-damage <= 0){
             SetDamageTaken(_currentHealth.Value);
             SetHealth(0);
-            Spawn();
+            SpawnDeadBody();
             Die(Owner);
         }else{
             SetDamageTaken(damage);
@@ -78,10 +82,58 @@ public class PlayerStats : NetworkBehaviour
         Debug.Log("Dead");
     }
 
+    public void ReviveFallenAlly(InputAction.CallbackContext context){
+        if(_currentHealth.Value<=0) return;
+        if(revives<=0) return;
+        if(context.performed){
+            PlayerStats[] stats = FindObjectsOfType<PlayerStats>();
+            foreach (var stat in stats)
+            {
+                if(stat._currentHealth.Value<=0 && Vector3.Distance(stat.transform.position,transform.position)<=3f){
+                    revives--;
+                    stat.ReviveServer();
+                    return;
+                }
+            }
+        }
+    }
+    [ServerRpc(RequireOwnership = false)]
+    public void ReviveServer(){
+        PlayerBody(true);
+        ServerManager.Despawn(deadBodyReference);
+        Revive(Owner);
+    }
+
+    [TargetRpc]
+    public void Revive(NetworkConnection conn){
+        SetHealth(100);
+        playerSpectator.spectator.SetActive(false);
+        foreach (var player in playerManager.PlayerGameObject)
+        {
+            player.GetComponent<PlayerSpectator>().spectator.SetActive(false);
+        }
+        mouseLook.SetActive(true);
+        playerInput.SwitchCurrentActionMap("InGame");
+        Debug.Log("Revived");
+    }
+
+    public void HealPlayer(int heal){
+        if(_currentHealth.Value+heal >= maxHealth){
+            SetHealth(maxHealth);
+        }else{
+            SetHealth(_currentHealth.Value+heal);
+        }
+    }
+
     [ServerRpc(RequireOwnership=false)]
-    void Spawn(){
+    void SpawnDeadBody(){
+        PlayerBody(false);
         deadBodyReference = Instantiate(deadBodyPrefab,transform.position,transform.rotation);
         Spawn(deadBodyReference);
+    }
+    [ObserversRpc]
+    private void PlayerBody(bool _active){
+        body.SetActive(_active);
     }
 
     

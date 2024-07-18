@@ -12,6 +12,8 @@ public class Enemy : NetworkBehaviour
     public NavMeshAgent navMeshAgent;
     public Transform player;
 
+    [SerializeField] private NetworkObject organPrefab;
+
     public Rigidbody[] rigidbodies;
 
     public EnemySpawner enemySpawner;
@@ -63,11 +65,15 @@ public class Enemy : NetworkBehaviour
                 enemySpawner.SetEnemyCount(-1);
                 _playerStats.SetKills(1);
             }
+            NetworkObject organ = Instantiate(organPrefab, transform.position, Quaternion.identity);
+            ServerManager.Spawn(organ);
             DeathRagdoll(damage,direction,_rigidbody);
         }
     }
 
     private void Die(){
+        NetworkObject organ = Instantiate(organPrefab, transform.position, Quaternion.identity);
+        ServerManager.Spawn(organ);
         ServerManager.Despawn(gameObject);
     }
 
@@ -88,7 +94,7 @@ public class Enemy : NetworkBehaviour
             body.isKinematic=false;
             body.velocity = originalVelocity;
         }
-        _rigidbody.rigidbody.AddForce(direction*damage*50f);
+        _rigidbody.rigidbody.AddForce(direction*damage*25f);
         Destroy(gameObject,25f);
     }
 

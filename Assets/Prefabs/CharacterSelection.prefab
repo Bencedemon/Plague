@@ -1200,6 +1200,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lobby
       objectReference: {fileID: 0}
+    - target: {fileID: 262684122117145422, guid: 1f86ec8a2db9df9499942282379c9f1c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 635164959687424303, guid: 1f86ec8a2db9df9499942282379c9f1c,
         type: 3}
       propertyPath: m_AnchorMax.y

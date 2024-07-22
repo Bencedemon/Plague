@@ -11,9 +11,15 @@ public class PlayerWeapon : NetworkBehaviour
     //[SerializeField] private List<AWeapon> weapons = new List<AWeapon>();
     [Header("Weapons")]
     [SerializeField] private AWeapon primary;
+    [SerializeField] private AWeapon[] primaries;
+    [Space]
     [SerializeField] private AWeapon secondary;
+    [SerializeField] private AWeapon[] secondaries;
+    [Space]
     [SerializeField] private AWeapon melee;
+    [SerializeField] private AWeapon[] melees;
 
+    [Space]
     [Space]
     public AWeapon currentWeapon;
 
@@ -24,7 +30,9 @@ public class PlayerWeapon : NetworkBehaviour
 
     public readonly SyncVar<int> _currentWeaponIndex = new();
 
+    private PlayerProfileManager playerProfileManager;
     void Awake(){
+        playerProfileManager=FindObjectOfType<PlayerProfileManager>();
         _currentWeaponIndex.OnChange += OnCurrentWeaponIndexChanged;;
     }
 
@@ -38,9 +46,10 @@ public class PlayerWeapon : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        primary.gameObject.SetActive(false);
-        secondary.gameObject.SetActive(false);
-        melee.gameObject.SetActive(false);
+        primary=primaries[playerProfileManager.playerProfile.primaryId];
+        secondary=secondaries[playerProfileManager.playerProfile.secondaryId];
+        melee=melees[playerProfileManager.playerProfile.meeleId];
+        
         currentWeapon=primary;
         currentWeapon.gameObject.SetActive(true);
     }

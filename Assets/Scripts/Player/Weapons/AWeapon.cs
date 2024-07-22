@@ -93,7 +93,7 @@ public abstract class AWeapon : NetworkBehaviour
 
             if(hit.transform.TryGetComponent(out Enemy_Hitbox enemy)){
                 Vector3 direction = (hit.point-_cameraTransform.position).normalized;
-                enemy.HitboxTakeDamage(weaponProperty.damage,direction,playerStats);
+                enemy.HitboxTakeDamage(weaponProperty.damage*playerStats.strength,direction,playerStats);
                 SpawnParticle(weaponProperty.hitParticle_enemy,hit.point,hit.normal);
                 return;
             }
@@ -106,6 +106,7 @@ public abstract class AWeapon : NetworkBehaviour
         if(weaponProperty.maxAmmo==0) return;
         if(currentTotalAmmo<=0) return;
         if(currentAmmoCount<weaponProperty.maxAmmo){
+            weaponSelf.SetFloat("reloadSpeed",playerStats.reloadSpeed);
             inAction=true;
             inReload=true;
             if(currentAmmoCount==0){
@@ -145,7 +146,7 @@ public abstract class AWeapon : NetworkBehaviour
         if(Physics.Raycast(_cameraTransform.position,_cameraTransform.forward, out RaycastHit hit,weaponProperty.punchRange, layerMask)){
 
             if(hit.transform.TryGetComponent(out Enemy_Hitbox enemy)){
-                enemy.HitboxTakeDamage(weaponProperty.punchDamage,-hit.normal,playerStats);
+                enemy.HitboxTakeDamage(weaponProperty.punchDamage*playerStats.strength,-hit.normal,playerStats);
                 SpawnParticle(weaponProperty.hitParticle_enemy,hit.point,hit.normal);
                 return;
             }

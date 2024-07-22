@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acff20a38adca0f44ae5ae53efcf6f78, type: 3}
   m_Name: bpPistol
   m_EditorClassIdentifier: 
+  weaponId: 1
   weaponName: bpPistol
   icon: {fileID: 21300000, guid: 4404eb2cd56653a4db859d2479107b9b, type: 3}
+  iconSmall: {fileID: 21300000, guid: 6336170a587f37b48a27af30c8f2e573, type: 3}
   damage: 35
   maxRange: 20
   punchDamage: 10

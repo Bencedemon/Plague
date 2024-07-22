@@ -55,7 +55,7 @@ public class Enemy : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void TakeDamage(int damage, Vector3 direction, Enemy_Hitbox _rigidbody,PlayerStats _playerStats){
+    public void TakeDamage(float damage, Vector3 direction, Enemy_Hitbox _rigidbody,PlayerStats _playerStats){
         if(health<=0) return;
         _playerStats.SetDamageDealt(damage);
         health-=damage;
@@ -78,7 +78,7 @@ public class Enemy : NetworkBehaviour
     }
 
     [ObserversRpc]
-    private void DeathRagdoll(int damage, Vector3 direction, Enemy_Hitbox _rigidbody){
+    private void DeathRagdoll(float damage, Vector3 direction, Enemy_Hitbox _rigidbody){
         Vector3 originalVelocity;
         
         if(animator.applyRootMotion)

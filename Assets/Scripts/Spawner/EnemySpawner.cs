@@ -42,6 +42,7 @@ public class EnemySpawner : NetworkBehaviour
                 if(!waveStart){
                     waveStart=true;
                     if(currentWaveId==spawner_Waves.Length){
+                        MusicServer(false);
                         OpenExitServer();
                     }else{
                         StartCoroutine(StartNewWave());
@@ -60,16 +61,16 @@ public class EnemySpawner : NetworkBehaviour
     }
 
     public IEnumerator StartNewWave(){
-        /*if(spawner_Waves[currentWaveId].delay>0){
-            musicAnimator.SetBool("fight",false);
-        }*/
+        if(spawner_Waves[currentWaveId].delay>0){
+            MusicServer(false);
+        }
         yield return new WaitForSeconds(spawner_Waves[currentWaveId].delay);
         for(int i=0;i<spawner_Waves[currentWaveId].spawners.Length;i++){
             GameObject spawner = Instantiate(spawner_Waves[currentWaveId].spawners[i],transform.position, Quaternion.identity);
             spawner.GetComponent<Spawner>().enemySpawner=this;
             spawner.transform.SetParent(enemySpawners);
             ServerManager.Spawn(spawner);
-            //musicAnimator.SetBool("fight",true);
+            MusicServer(true);
         }
         currentWaveId++;
         waveStart=false;
@@ -77,4 +78,8 @@ public class EnemySpawner : NetworkBehaviour
 
     [ServerRpc(RequireOwnership = false)] public void SetEnemyCount(int _enemyCount) => enemyCount.Value += _enemyCount;
     
+
+    [ServerRpc(RequireOwnership = false)] private void MusicServer(bool _fight) => MusicObserver(_fight);
+    [ObserversRpc] private void MusicObserver(bool _fight) => musicAnimator.SetBool("fight",_fight);
+
 }

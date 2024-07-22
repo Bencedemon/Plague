@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acff20a38adca0f44ae5ae53efcf6f78, type: 3}
+  m_Name: smg9
+  m_EditorClassIdentifier: 
+  weaponId: 2
+  weaponName: smg9
+  icon: {fileID: 21300000, guid: f26dbf0dbe791b44ba384687d2a2727d, type: 3}
+  iconSmall: {fileID: 21300000, guid: 7977699b39d26fa4db16015dc3aaa39c, type: 3}
+  damage: 10
+  maxRange: 20
+  punchDamage: 10
+  punchRange: 2
+  maxAmmo: 24
+  totalAmmo: 240
+  spread: 0.055
+  weaponType: 0
+  rifleType: 0
+  hitParticle_wall: {fileID: 7858676767521322104, guid: ba59662f92584a64695d7f015e38b7f2,
+    type: 3}
+  hitParticle_enemy: {fileID: 5436153802475618861, guid: b4da7ac7067402c4aaa2d09b1d1f47ba,
+    type: 3}
+  shoot:
+  - {fileID: 8300000, guid: 2180783572c95984985d40dc6d8dead5, type: 3}
+  - {fileID: 8300000, guid: 6b85c23b6a5f5ee4f8e540dbb9bf5c64, type: 3}
+  - {fileID: 8300000, guid: c00bc3f861f1a2e4b9a6ee5108c18c46, type: 3}
+  - {fileID: 8300000, guid: bf7992df680ea2940ba314fbdabda08d, type: 3}
+  reloadLast: {fileID: 8300000, guid: 2f9cce2c3cc68034590b7aa0c5858465, type: 3}
+  reload: {fileID: 8300000, guid: f455e2b195c68a043ad9055f424b76d9, type: 3}
+  cock: {fileID: 8300000, guid: 518bf141e97dc724aa98f11ae7902e19, type: 3}
+  punch:
+  - {fileID: 8300000, guid: 6c00eae89383aae4984f2934aac0896f, type: 3}

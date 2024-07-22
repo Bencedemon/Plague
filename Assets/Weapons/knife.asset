@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acff20a38adca0f44ae5ae53efcf6f78, type: 3}
   m_Name: knife
   m_EditorClassIdentifier: 
+  weaponId: 0
   weaponName: knife
   icon: {fileID: 21300000, guid: 3ec2a78fac9c96d4f98b9209ee48feb1, type: 3}
+  iconSmall: {fileID: 21300000, guid: 1a3061bc266202342a9e258f189f1cc5, type: 3}
   damage: 25
   maxRange: 2
   punchDamage: 50

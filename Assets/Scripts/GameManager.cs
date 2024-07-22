@@ -15,6 +15,10 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private GameObject playerPrefab;
     [Space]
     [SerializeField] private FishNet.Example.Scened.SceneLoader sceneLoader;
+    [Space]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips_tick;
+    [SerializeField] private AudioClip audioClipBell;
 
     private bool gameStarted = false;
     private bool gameEnded = false;
@@ -65,14 +69,29 @@ public class GameManager : NetworkBehaviour
     {
         yield return new WaitForSeconds(1f);
         countDownText.text = "5";
+        audioSource.clip=audioClips_tick[Random.Range(0,audioClips_tick.Length)];
+        audioSource.Play();
+        
         yield return new WaitForSeconds(1f);
         countDownText.text = "4";
+        audioSource.clip=audioClips_tick[Random.Range(0,audioClips_tick.Length)];
+        audioSource.Play();
+        
         yield return new WaitForSeconds(1f);
         countDownText.text = "3";
+        audioSource.clip=audioClips_tick[Random.Range(0,audioClips_tick.Length)];
+        audioSource.Play();
+        
         yield return new WaitForSeconds(1f);
         countDownText.text = "2";
+        audioSource.clip=audioClips_tick[Random.Range(0,audioClips_tick.Length)];
+        audioSource.Play();
+
         yield return new WaitForSeconds(1f);
         countDownText.text = "1";
+        audioSource.clip=audioClips_tick[Random.Range(0,audioClips_tick.Length)];
+        audioSource.Play();
+        
         yield return new WaitForSeconds(1f);
 
         playerMovements = FindObjectsOfType<PlayerMovement>();
@@ -83,6 +102,8 @@ public class GameManager : NetworkBehaviour
         }
 
         countDownText.text = "";
+        audioSource.clip=audioClipBell;
+        audioSource.Play();
 
         if(base.IsServerInitialized){
             countDownText.text = "GameStarted";

@@ -133,7 +133,7 @@ MonoBehaviour:
         type: 3}
       weight: 100
     startDelay: 0
-    enemyCount: 10
+    enemyCount: 15
     enemyCountDispersion: 0
     frequency: 1
     frequencyDispersion: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 8
+  <PrefabId>k__BackingField: 12
   <SpawnableCollectionId>k__BackingField: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 10167486412934914597

@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acff20a38adca0f44ae5ae53efcf6f78, type: 3}
   m_Name: ak
   m_EditorClassIdentifier: 
+  weaponId: 1
   weaponName: ak
   icon: {fileID: 21300000, guid: 0f42ffe5a2e86d949bcd0f479c1d919b, type: 3}
+  iconSmall: {fileID: 21300000, guid: 9feb94576b09fc845b259485d9314b7c, type: 3}
   damage: 45
   maxRange: 50
   punchDamage: 10

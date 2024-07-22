@@ -40,7 +40,7 @@ public class GameStart : MonoBehaviour
             damageTaken.text = ""+playerPerformance.damageTaken;
             deaths.text = ""+playerPerformance.deaths;
 
-            int experiance = playerPerformance.kills*10+playerPerformance.damageDealt;
+            int experiance = playerPerformance.kills*10+(int)playerPerformance.damageDealt;
             xp.text = "+"+experiance+" xp";
         }
         fade.Play("FadeIn");

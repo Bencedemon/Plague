@@ -16,7 +16,7 @@ public class Shotgun : AWeapon
         if(Physics.Raycast(_cameraTransform.position,_cameraTransform.forward,out hit,weaponProperty.maxRange, layerMask)){
             if(hit.transform.TryGetComponent(out Enemy_Hitbox enemy)){
                 Vector3 direction = (hit.point-_cameraTransform.position).normalized;
-                enemy.HitboxTakeDamage(weaponProperty.damage,direction,playerStats);
+                enemy.HitboxTakeDamage(weaponProperty.damage*playerStats.strength,direction,playerStats);
                 SpawnParticle(weaponProperty.hitParticle_enemy,hit.point,hit.normal);
             }else
                 SpawnParticle(weaponProperty.hitParticle_wall,hit.point,hit.normal);
@@ -33,7 +33,7 @@ public class Shotgun : AWeapon
                 //Debug.Log("Hit: "+hit.transform.name);
                 if(hit.transform.TryGetComponent(out Enemy_Hitbox enemy)){
                     Vector3 direction = (hit.point-_cameraTransform.position).normalized;
-                    enemy.HitboxTakeDamage(weaponProperty.damage,direction,playerStats);
+                    enemy.HitboxTakeDamage(weaponProperty.damage*playerStats.strength,direction,playerStats);
                     //Debug.Log("Enemy hit: "+hit.transform.name+" Damage: "+weaponProperty.damage);
                     SpawnParticle(weaponProperty.hitParticle_enemy,hit.point,hit.normal);
                 }else
@@ -46,6 +46,7 @@ public class Shotgun : AWeapon
         if(weaponProperty.maxAmmo==0) return;
         if(currentTotalAmmo<=0) return;
         if(currentAmmoCount<weaponProperty.maxAmmo){
+            weaponSelf.SetFloat("reloadSpeed",playerStats.reloadSpeed);
             inAction=true;
             inReload=true;
             Debug.Log("Reload");

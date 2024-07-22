@@ -8,20 +8,27 @@ using FishNet.Object.Synchronizing;
 
 public class PlayerStats : NetworkBehaviour
 {
-    public int maxHealth = 100;
 
     //public int _currentHealth;
     public readonly SyncVar<int> _currentHealth = new(100);
 
     [SerializeField] private GameObject hud,scoreBoard, mouseLook;
+
+    [Header("Upgrades")]
+    public int maxHealth = 100;
     public int revives = 0;
+    public float movementSpeed = 1f;
+    public float strength = 1f;
+    public float damageReduction = 0f;
+    public float reloadSpeed = 1f;
+    public float healPower = 1f;
     
 
     [Header("PlayerProfile")]
     public readonly SyncVar<int> pictureId = new();
     public readonly SyncVar<string> playerName = new();
     public readonly SyncVar<int> kills = new(0);
-    public readonly SyncVar<int> damageDealt = new(0);
+    public readonly SyncVar<float> damageDealt = new(0);
     public readonly SyncVar<int> damageTaken = new(0);
     public readonly SyncVar<int> deaths = new(0);
     private PlayerPerformance playerPerformance;
@@ -66,7 +73,12 @@ public class PlayerStats : NetworkBehaviour
             SetDamageTaken(_currentHealth.Value);
             SetHealth(0);
             SpawnDeadBody();
-            Die(Owner);
+            if(playerManager.PlayerGameObject.Count>1 || revives == 0){
+                Die(Owner);
+            }else{
+                revives--;
+                HealPlayer(maxHealth);
+            }
         }else{
             SetDamageTaken(damage);
             SetDeaths(1);
@@ -118,6 +130,7 @@ public class PlayerStats : NetworkBehaviour
     }
 
     public void HealPlayer(int heal){
+        int actualHeal = (int)(heal*healPower);
         if(_currentHealth.Value+heal >= maxHealth){
             SetHealth(maxHealth);
         }else{
@@ -141,7 +154,7 @@ public class PlayerStats : NetworkBehaviour
     [ServerRpc] private void SetPictureId(int _pictureId) => pictureId.Value = _pictureId;
     [ServerRpc] private void SetPlayerName(string _playerName) => playerName.Value = _playerName;
     [ServerRpc(RequireOwnership = false)] public void SetKills(int _kills) => kills.Value += _kills;
-    [ServerRpc(RequireOwnership = false)] public void SetDamageDealt(int _damageDealt) => damageDealt.Value += _damageDealt;
+    [ServerRpc(RequireOwnership = false)] public void SetDamageDealt(float _damageDealt) => damageDealt.Value += _damageDealt;
     [ServerRpc(RequireOwnership = false)] public void SetDamageTaken(int _damageTaken) => damageTaken.Value += _damageTaken;
     [ServerRpc(RequireOwnership = false)] public void SetDeaths(int _deaths) => deaths.Value += _deaths;
 
@@ -150,7 +163,7 @@ public class PlayerStats : NetworkBehaviour
             playerPerformance.kills=newValue;
         }
     }
-    private void OnDamageDealtChanged(int oldValue, int newValue, bool asServer){
+    private void OnDamageDealtChanged(float oldValue, float newValue, bool asServer){
         if(base.IsOwner){
             playerPerformance.damageDealt=newValue;
         }

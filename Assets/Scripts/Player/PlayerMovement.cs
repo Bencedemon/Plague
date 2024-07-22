@@ -97,7 +97,7 @@ public class PlayerMovement : NetworkBehaviour
         move = transform.right * x + transform.forward * z;
 
 
-        controller.Move(move * moveSpeed * speedMultiplier * Time.fixedDeltaTime);
+        controller.Move(move * moveSpeed * speedMultiplier * playerStats.movementSpeed * Time.fixedDeltaTime);
 
         velocity.y += gravity * Time.fixedDeltaTime;
 
@@ -116,6 +116,7 @@ public class PlayerMovement : NetworkBehaviour
 
     }
     public void Move(InputAction.CallbackContext context){
+        if(!canMove) return;
         if(playerStats._currentHealth.Value<=0) return;
         x = context.ReadValue<Vector2>().x;
         z = context.ReadValue<Vector2>().y;

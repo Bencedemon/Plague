@@ -25,6 +25,7 @@ public class PlayerHUDManager : MonoBehaviour
 
     private LevelManager levelManager;
     [Space]
+    [SerializeField] private TMP_Text percentage;
     [SerializeField] private TMP_Text level;
     [SerializeField] private Image blood;
 
@@ -50,8 +51,8 @@ public class PlayerHUDManager : MonoBehaviour
         }
 
         if(levelManager!=null){
-            level.text="XP: "+levelManager._experiance.Value+" Level: "+levelManager._level.Value+" NextLevel: "+levelManager._nextLevel.Value;
-            
+            //level.text="XP: "+levelManager._experiance.Value+" Level: "+levelManager._level.Value+" NextLevel: "+levelManager._nextLevel.Value;
+            percentage.text=(int)((levelManager._experiance.Value/levelManager._nextLevel.Value)*100)+"%";
             if(levelManager._experiance.Value<=0){
                 blood.fillAmount = 0f;
             }else{

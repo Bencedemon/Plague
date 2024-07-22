@@ -14,7 +14,7 @@ public class Enemy_Hitbox : NetworkBehaviour
     public Enemy enemy;
 
 
-    public void HitboxTakeDamage(int damage,Vector3 direction,PlayerStats _playerStats){
+    public void HitboxTakeDamage(float damage,Vector3 direction,PlayerStats _playerStats){
         switch (hitboxType)
         {
             case HitboxType.head:

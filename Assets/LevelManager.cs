@@ -33,11 +33,12 @@ public class LevelManager : NetworkBehaviour
     }
 
     void Update(){
-        if(Time.timeScale>0 && levelingUp){
-            slowDownTime((1f / slowDonwLength)*Time.unscaledDeltaTime);
-        }
+        if(!base.IsServer) return;
         if(Time.timeScale<1 && levelingUpEnd){
             speedUpTime((1f / slowDonwLength)*Time.unscaledDeltaTime);
+        }else
+        if(Time.timeScale>0 && levelingUp){
+            slowDownTime((1f / slowDonwLength)*Time.unscaledDeltaTime);
         }
     }
 

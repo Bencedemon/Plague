@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using FishNet.Managing;
 using TMPro;
 
 public class CharacterSelection : NetworkBehaviour
@@ -20,23 +21,28 @@ public class CharacterSelection : NetworkBehaviour
     public readonly SyncVar<int> level = new();
     public readonly SyncVar<bool> ready = new(false);
 
-
+    [Space]
     [SerializeField] private GameObject fadePanel;
     [SerializeField] private Animator fade;
 
+    [Space]
     [SerializeField] private GameObject lobbyCharacters;
     [SerializeField] private Vector3[] points;
     private GameObject lobbyPlayer;
 
     //=====================
+    [Space]
     [SerializeField] private FishNet.Example.Scened.SceneLoader sceneLoader;
     //=====================
     
     private PlayerProfileManager playerProfileManager;
     private PlayerManager playerManager;
+    private NetworkManager _networkManager;
+
     void Awake(){
         playerProfileManager = FindObjectOfType<PlayerProfileManager>();
         playerManager = FindObjectOfType<PlayerManager>();
+        _networkManager = FindObjectOfType<NetworkManager>();
     }
 
     public override void OnStartClient(){
@@ -103,6 +109,16 @@ public class CharacterSelection : NetworkBehaviour
         }
     }
 
+    public void Leave(){
+        MainMenu mainMenu = FindObjectOfType<MainMenu>();
+        mainMenu.multiplayerScreen.SetActive(true);
+        mainMenu.multiplayerCamera.SetActive(true);
+        
+        if(base.IsServer)
+            _networkManager.ServerManager.StopConnection(true);
+            
+        _networkManager.ClientManager.StopConnection();
+    }
     
     [ServerRpc] private void SetPP(int _pp) => pp.Value = _pp;
     [ServerRpc] private void SetName(string _name) => name.Value = _name;

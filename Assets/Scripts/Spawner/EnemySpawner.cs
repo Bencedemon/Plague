@@ -16,7 +16,6 @@ public class EnemySpawner : NetworkBehaviour
 
     [Space]
     [SerializeField] private Animator musicAnimator;
-    [SerializeField] private AudioSource fight,calm;
 
     [Space]
     [SerializeField] private GameObject exit;

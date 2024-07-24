@@ -8,8 +8,11 @@ public class PlayerProfileManager : MonoBehaviour
 
     public PlayerProfile playerProfile;
 
+    [Space]
+
     public Sprite[] sprites;
     public Sprite[] crosshairs;
+    public MusicPlaylist[] musicPlaylists;
     void Awake()
     {
         if(SaveSystem.LoadData()==null){
@@ -28,6 +31,8 @@ public class PlayerProfileManager : MonoBehaviour
             {
                 playerProfile.crosshairColor[i]=1;
             }
+
+            playerProfile.playlistId=0;
 
             SaveSystem.SaveData(playerProfile);
         }

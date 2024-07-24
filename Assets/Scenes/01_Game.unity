@@ -245,7 +245,7 @@ PrefabInstance:
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 4227308541
+      value: 4260359008
       objectReference: {fileID: 0}
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
@@ -423,7 +423,7 @@ PrefabInstance:
     - target: {fileID: 4319170283229056642, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 4210551150
+      value: 4227321331
       objectReference: {fileID: 0}
     - target: {fileID: 5360960327159401445, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
@@ -705,7 +705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e39e0f2640f4e4468f716312e18b976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicAnimator: {fileID: 446266190}
   fight: {fileID: 481119880}
   calm: {fileID: 979055490}
 --- !u!1 &458763149
@@ -859,7 +858,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 4602763372849222344, guid: aba8e3f3b342a934181e237eeaaae865,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 128694ec716e0014f9e455f78e2c7153, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
   Loop: 1
@@ -1027,7 +1026,7 @@ MonoBehaviour:
   _teleportThreshold: 1
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  <SceneId>k__BackingField: 4294946680
+  <SceneId>k__BackingField: 4226796006
   <AssetPathHash>k__BackingField: 0
 --- !u!1001 &709685068
 PrefabInstance:
@@ -1040,7 +1039,7 @@ PrefabInstance:
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 4176989692
+      value: 4293893501
       objectReference: {fileID: 0}
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
@@ -1435,7 +1434,7 @@ PrefabInstance:
     - target: {fileID: 1305101226888557216, guid: 8915ae256aa1b2549b1154cc2db9a7f6,
         type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 4259827583
+      value: 4278188409
       objectReference: {fileID: 0}
     - target: {fileID: 2307849431291843115, guid: 8915ae256aa1b2549b1154cc2db9a7f6,
         type: 3}
@@ -1546,7 +1545,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 4602763372849222344, guid: aba8e3f3b342a934181e237eeaaae865,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 98f5ade516260ac43a9498add983712e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
   Loop: 1
@@ -1648,7 +1647,7 @@ PrefabInstance:
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 4176478058
+      value: 4175948798
       objectReference: {fileID: 0}
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
@@ -1911,7 +1910,7 @@ PrefabInstance:
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 4278177785
+      value: 4243042160
       objectReference: {fileID: 0}
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
@@ -2083,7 +2082,7 @@ PrefabInstance:
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 4227309559
+      value: 4226279910
       objectReference: {fileID: 0}
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
@@ -2232,7 +2231,7 @@ MonoBehaviour:
   _teleportThreshold: 1
   <PrefabId>k__BackingField: 10
   <SpawnableCollectionId>k__BackingField: 0
-  <SceneId>k__BackingField: 4277644652
+  <SceneId>k__BackingField: 4244626415
   <AssetPathHash>k__BackingField: 15434232404202698659
 --- !u!114 &2018164552
 MonoBehaviour:
@@ -2264,8 +2263,6 @@ MonoBehaviour:
   _enemyCount: 0
   enemySpawners: {fileID: 2018164553}
   musicAnimator: {fileID: 446266190}
-  fight: {fileID: 481119880}
-  calm: {fileID: 979055490}
   exit: {fileID: 838908496}
   enemySpawnLocations:
   - position: {x: -70, y: 1.5, z: 182.5}
@@ -2366,7 +2363,7 @@ PrefabInstance:
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 4226801138
+      value: 4293889897
       objectReference: {fileID: 0}
     - target: {fileID: 3450334933171801184, guid: 7b7cf25fbbb013c4f897bff6d4293e47,
         type: 3}

@@ -15,7 +15,9 @@ public class PlayerProfile
     public int crosshairId;
     public float[] crosshairColor = new float[4];
 
-    public PlayerProfile(int _pictureId,string _playerName,int _playerLevel,int _primaryId,int _secondaryId,int _meeleId,int _crosshairId,float[] _crosshairColor){
+    public int playlistId;
+
+    public PlayerProfile(int _pictureId,string _playerName,int _playerLevel,int _primaryId,int _secondaryId,int _meeleId,int _crosshairId,float[] _crosshairColor,int _playlistId){
         pictureId = _pictureId;
         playerName = _playerName;
         playerLevel = _playerLevel;
@@ -26,5 +28,7 @@ public class PlayerProfile
 
         crosshairId = _crosshairId;
         crosshairColor = _crosshairColor;
+
+        playlistId = _playlistId;
     }
 }

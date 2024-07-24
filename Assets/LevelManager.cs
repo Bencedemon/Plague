@@ -22,13 +22,13 @@ public class LevelManager : NetworkBehaviour
     private PlayerManager playerManager;
     void Awake(){
         playerManager=FindObjectOfType<PlayerManager>();
-        SetNextLevel(100*playerManager.Clients.Count);
     }
     public override void OnStartClient(){
         base.OnStartClient();
         if(base.IsServer){
             _experiance.OnChange += OnExperianceChanged;;
             _playerDone.OnChange += OnPlayerDoneChanged;;
+            SetNextLevel(100*playerManager.Clients.Count);
         }
     }
 

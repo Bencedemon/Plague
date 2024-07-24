@@ -681,7 +681,7 @@ MonoBehaviour:
     m_ActionId: 80dc1609-34a5-4e04-ac11-4157c08a20e7
     m_ActionName: InGame/Revive[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard
+  m_DefaultControlScheme: 
   m_DefaultActionMap: InGame
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -2914,6 +2914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 4382132314798828345}
+  crosshair: {fileID: 3263426854106580225}
   healthText: {fileID: 1586148420254994229}
   nearDeadVolume: {fileID: 6975275302660510703}
   borderAnimator: {fileID: 2263391105173811152}
@@ -5331,7 +5332,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &231869632877967264
 CanvasRenderer:
@@ -5361,7 +5362,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: aa3cf6823f54002418ae61aab5af09db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8783,6 +8784,7 @@ MonoBehaviour:
   weaponSelf: {fileID: 6576314156877664037}
   muzzleFlashSelf: {fileID: 0}
   audioSource: {fileID: 6834294754560343253}
+  bulletTrail: {fileID: 0}
   weaponOther: {fileID: 1822966262573349952}
   muzzleFlashOther: {fileID: 0}
   audioSourceOther: {fileID: 4161548824254580031}
@@ -11212,6 +11214,8 @@ MonoBehaviour:
   weaponSelf: {fileID: 5864544853576191026}
   muzzleFlashSelf: {fileID: 9099880218257374994}
   audioSource: {fileID: 8460568063973819551}
+  bulletTrail: {fileID: 4953688851930253063, guid: c0a8b36496bc5104aaa0f7e384f637ca,
+    type: 3}
   weaponOther: {fileID: 1822966262573349952}
   muzzleFlashOther: {fileID: 8005943609983418654}
   audioSourceOther: {fileID: 4161548824254580031}
@@ -13416,6 +13420,8 @@ MonoBehaviour:
   weaponSelf: {fileID: 7334796874261632169}
   muzzleFlashSelf: {fileID: 5187879348099547512}
   audioSource: {fileID: 3811175132869459939}
+  bulletTrail: {fileID: 4953688851930253063, guid: c0a8b36496bc5104aaa0f7e384f637ca,
+    type: 3}
   weaponOther: {fileID: 1822966262573349952}
   muzzleFlashOther: {fileID: 8005943609983418654}
   audioSourceOther: {fileID: 4161548824254580031}
@@ -15229,6 +15235,8 @@ MonoBehaviour:
   weaponSelf: {fileID: 5133006024117296062}
   muzzleFlashSelf: {fileID: 8275624741143204268}
   audioSource: {fileID: 6687331477195933417}
+  bulletTrail: {fileID: 4953688851930253063, guid: c0a8b36496bc5104aaa0f7e384f637ca,
+    type: 3}
   weaponOther: {fileID: 1822966262573349952}
   muzzleFlashOther: {fileID: 8005943609983418654}
   audioSourceOther: {fileID: 4161548824254580031}
@@ -16800,6 +16808,8 @@ MonoBehaviour:
   weaponSelf: {fileID: 3008412016679553320}
   muzzleFlashSelf: {fileID: 3437326940565346381}
   audioSource: {fileID: 752973187874379977}
+  bulletTrail: {fileID: 4953688851930253063, guid: c0a8b36496bc5104aaa0f7e384f637ca,
+    type: 3}
   weaponOther: {fileID: 1822966262573349952}
   muzzleFlashOther: {fileID: 8005943609983418654}
   audioSourceOther: {fileID: 4161548824254580031}

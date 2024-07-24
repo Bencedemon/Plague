@@ -39,7 +39,7 @@ public class Spawner : NetworkBehaviour
             maxWeight+=spawner_Groups.spawner_Units[i].weight;
             weights.Add(maxWeight);
         }
-        enemySpawner.SetEnemyCount(spawner_Groups.enemyCount);
+        enemySpawner.SetEnemyCount(spawner_Groups.enemyCount*playerManager.PlayerGameObject.Count);
         StartCoroutine(spawnerStart());
     }
 
@@ -47,7 +47,7 @@ public class Spawner : NetworkBehaviour
     void FixedUpdate()
     {
         if(!base.IsServerInitialized) return;
-        if(enemyCount>=spawner_Groups.enemyCount){
+        if(enemyCount>=spawner_Groups.enemyCount*playerManager.PlayerGameObject.Count){
             Destroy(gameObject);   
         }
     }
@@ -59,7 +59,7 @@ public class Spawner : NetworkBehaviour
 
     public IEnumerator WaitAndSpawn()
     {
-        while(enemyCount<spawner_Groups.enemyCount){
+        while(enemyCount<spawner_Groups.enemyCount*playerManager.PlayerGameObject.Count){
             yield return new WaitForSeconds(Random.Range(spawner_Groups.frequency-spawner_Groups.frequencyDispersion,spawner_Groups.frequency+spawner_Groups.frequencyDispersion));
             SpawnEnemy();
         }

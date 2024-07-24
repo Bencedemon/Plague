@@ -13,7 +13,13 @@ public class PlayerProfilePanel : MonoBehaviour
     public TMP_Text levelText;
 
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
+    {
+        pp.sprite = playerProfileManager.sprites[playerProfileManager.playerProfile.pictureId];
+        nameText.text = playerProfileManager.playerProfile.playerName;
+        levelText.text = "Level "+playerProfileManager.playerProfile.playerLevel;
+    }*/
+    void OnEnable()
     {
         pp.sprite = playerProfileManager.sprites[playerProfileManager.playerProfile.pictureId];
         nameText.text = playerProfileManager.playerProfile.playerName;

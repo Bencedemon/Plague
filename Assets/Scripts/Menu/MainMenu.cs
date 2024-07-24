@@ -13,9 +13,9 @@ public class MainMenu : MonoBehaviour
     public GameObject multiplayerScreen;
     public GameObject multiplayerCamera;
 
-    [Header("Character")]
-    public GameObject characterScreen;
-    public GameObject characterScreenCamera;
+    [Header("Profile")]
+    public GameObject profileScreen;
+    public GameObject profileScreenCamera;
 
     [Header("Battlepass")]
     public GameObject battlePass;
@@ -35,6 +35,11 @@ public class MainMenu : MonoBehaviour
         titleScreen.SetActive(false);
         multiplayerScreen.SetActive(true);
         multiplayerCamera.SetActive(true);
+    }
+    public void Profile(){
+        titleScreen.SetActive(false);
+        profileScreen.SetActive(true);
+        profileScreenCamera.SetActive(true);
     }
     public void BattlePass(){
         //audioSource.Play();

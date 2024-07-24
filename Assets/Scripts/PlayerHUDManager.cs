@@ -8,6 +8,10 @@ public class PlayerHUDManager : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
 
+    [Space]
+    [SerializeField] private Image crosshair;
+
+    [Space]
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private GameObject nearDeadVolume;
     [SerializeField] private Animator borderAnimator;
@@ -29,10 +33,21 @@ public class PlayerHUDManager : MonoBehaviour
     [SerializeField] private TMP_Text level;
     [SerializeField] private Image blood;
 
+    private PlayerProfileManager playerProfileManager;
+
     void Awake(){
         enemySpawner=FindObjectOfType<EnemySpawner>();
         levelManager=FindObjectOfType<LevelManager>();
+        playerProfileManager = FindObjectOfType<PlayerProfileManager>();
+        crosshair.sprite = playerProfileManager.crosshairs[playerProfileManager.playerProfile.crosshairId];
+        crosshair.color = new Color(
+            playerProfileManager.playerProfile.crosshairColor[0],
+            playerProfileManager.playerProfile.crosshairColor[1],
+            playerProfileManager.playerProfile.crosshairColor[2],
+            playerProfileManager.playerProfile.crosshairColor[3]
+        );
     }
+
 
     void FixedUpdate()
     {

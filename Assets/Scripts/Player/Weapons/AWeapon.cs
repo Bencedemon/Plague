@@ -20,6 +20,7 @@ public abstract class AWeapon : NetworkBehaviour
     [SerializeField] public Animator weaponSelf;
     [SerializeField] public ParticleSystem muzzleFlashSelf;
     [SerializeField] public AudioSource audioSource;
+    [SerializeField] public TrailRenderer bulletTrail;
 
 
     [Header("Other")]
@@ -75,7 +76,7 @@ public abstract class AWeapon : NetworkBehaviour
         }
     }
 
-    public void FireWeapon(){
+    public virtual void FireWeapon(){
         currentAmmoCount--;
         if(muzzleFlashSelf!=null)
             muzzleFlashSelf.Play();
@@ -90,6 +91,10 @@ public abstract class AWeapon : NetworkBehaviour
         Vector3 directionWithSpread = _cameraTransform.forward + new Vector3(x,y,z);
 
         if(Physics.Raycast(_cameraTransform.position,directionWithSpread, out RaycastHit hit,weaponProperty.maxRange, layerMask)){
+            if(bulletTrail!=null){
+                TrailRenderer trail = Instantiate(bulletTrail,muzzleFlashSelf.transform.position,Quaternion.identity);
+                StartCoroutine(trail.transform.GetComponent<BulletTrail>().SpawnTrail(trail,hit.point));
+            }
 
             if(hit.transform.TryGetComponent(out Enemy_Hitbox enemy)){
                 Vector3 direction = (hit.point-_cameraTransform.position).normalized;
@@ -98,6 +103,11 @@ public abstract class AWeapon : NetworkBehaviour
                 return;
             }
             SpawnParticle(weaponProperty.hitParticle_wall,hit.point,hit.normal);
+        }else{
+            if(bulletTrail!=null){
+                TrailRenderer trail = Instantiate(bulletTrail,muzzleFlashSelf.transform.position,Quaternion.identity);
+                StartCoroutine(trail.transform.GetComponent<BulletTrail>().SpawnTrail(trail,_cameraTransform.position+directionWithSpread*weaponProperty.maxRange));
+            }
         }
     }
 
@@ -193,6 +203,22 @@ public abstract class AWeapon : NetworkBehaviour
         }
         audioSourceOther.Play();
     }
+
+
+    /*public virtual IEnumerator SpawnTrail(TrailRenderer _trail, RaycastHit _hit){
+        float time = 0f;
+        Vector3 startPosition = _trail.transform.position;
+
+        while(time < 1){
+            _trail.transform.position = Vector3.Lerp(startPosition, _hit.point, time);
+            time += Time.deltaTime/_trail.time;
+
+            yield return null;
+        }
+        _trail.transform.position = _hit.point;
+
+        Destroy(_trail.gameObject, _trail.time);
+    }*/
 
 
 

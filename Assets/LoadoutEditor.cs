@@ -58,15 +58,21 @@ public class LoadoutEditor : MonoBehaviour
         playerProfileManager.playerProfile.primaryId=id;
         primaryIcon.sprite = primaries[id].iconSmall;
         primariesPanel.SetActive(false);
+
+        SaveSystem.SaveData(playerProfileManager.playerProfile);
     }
     public void selectSecondary(int id){
         playerProfileManager.playerProfile.secondaryId=id;
         secondaryIcon.sprite = secondaries[id].iconSmall;
         secondariesPanel.SetActive(false);
+        
+        SaveSystem.SaveData(playerProfileManager.playerProfile);
     }
     public void selectMeele(int id){
         playerProfileManager.playerProfile.meeleId=id;
         meeleIcon.sprite = meeles[id].iconSmall;
         meelesPanel.SetActive(false);
+        
+        SaveSystem.SaveData(playerProfileManager.playerProfile);
     }
 }

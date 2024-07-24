@@ -9,7 +9,7 @@ public class Item_Xp : Item
 
         LevelManager levelManager=FindObjectOfType<LevelManager>();
         if(levelManager!=null){
-            levelManager.AddExperiance(Random.Range(50f,100f));
+            levelManager.AddExperiance(50f);
         }
         DespawnObject(parent);
     }

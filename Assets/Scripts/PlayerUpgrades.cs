@@ -11,6 +11,7 @@ public class PlayerUpgrades : NetworkBehaviour
     private LevelManager levelManager;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerAbility playerAbility;
 
     void Awake(){
         levelManager=FindObjectOfType<LevelManager>();
@@ -74,6 +75,9 @@ public class PlayerUpgrades : NetworkBehaviour
             case 8:
                 Strength();
             break;
+            case 16:
+                TheTower();
+            break;
             case 19:
                 TheSun();
             break;
@@ -113,7 +117,10 @@ public class PlayerUpgrades : NetworkBehaviour
     private void Strength(){
         playerStats.strength+=0.10f;
     }
-
+    private void TheTower(){
+        Debug.Log("Tower");
+        playerAbility.SelectAbility(16,0.1f,0.1f,0.1f,0.1f);
+    }
     private void TheSun(){
         playerStats.maxHealth+=10;
         playerStats.HealPlayer(10);

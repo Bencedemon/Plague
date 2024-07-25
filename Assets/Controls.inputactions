@@ -148,6 +148,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Ability 1",
+                    "type": "Button",
+                    "id": "6b7f87d1-90ed-4932-80b8-9801ef0d240e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ability 2",
+                    "type": "Button",
+                    "id": "b36b1e5b-7060-455b-a19f-60377f8ba45a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -361,39 +379,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "870a9d86-725d-456e-9808-6e10a1aaf23c",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Scroll",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "cdc6d296-1b4e-4804-929e-f80b9dd0e3b3",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Scroll",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "8e9dcd34-e7a3-41dc-942a-4f39b6fef6aa",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Scroll",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "f946871c-a5b7-4593-b68f-f461ca7d738c",
                     "path": "<Gamepad>/rightStick",
@@ -440,7 +425,7 @@
                 {
                     "name": "",
                     "id": "144aca0f-59c3-479e-98bf-9385e832cd33",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -577,6 +562,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4026c1ba-f89f-476e-8e9b-09095a0d19bc",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Ability 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3affead9-479d-4564-af34-2afe7972b12d",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Ability 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7adff388-d404-4626-9d55-4623c1f56cbb",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Ability 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "102dfa6d-3ef0-4152-8150-93500277cf43",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Ability 2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

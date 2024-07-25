@@ -24,6 +24,7 @@ public abstract class AWeapon : NetworkBehaviour
 
 
     [Header("Other")]
+    [SerializeField] public GameObject weaponOtherObject;
     [SerializeField] public Animator weaponOther;
     [SerializeField] public ParticleSystem muzzleFlashOther;
     [SerializeField] public AudioSource audioSourceOther;
@@ -42,6 +43,16 @@ public abstract class AWeapon : NetworkBehaviour
         currentAmmoCount=weaponProperty.maxAmmo;
         currentTotalAmmo=weaponProperty.totalAmmo;
     }
+
+    void OnEnable()
+    {
+        WeaponChangedServer(true);
+    }
+    void OnDisable()
+    {
+        WeaponChangedServer(false);
+    }
+
     public void ActionEnd(){
         inAction = false;
         inReload = false;
@@ -204,6 +215,15 @@ public abstract class AWeapon : NetworkBehaviour
         audioSourceOther.Play();
     }
 
+    [ServerRpc]
+    private void WeaponChangedServer(bool _active){
+        WeaponChangedObserver(_active);
+    }
+
+    [ObserversRpc]
+    private void WeaponChangedObserver(bool _active){
+        weaponOtherObject.SetActive(_active);
+    }
 
     /*public virtual IEnumerator SpawnTrail(TrailRenderer _trail, RaycastHit _hit){
         float time = 0f;

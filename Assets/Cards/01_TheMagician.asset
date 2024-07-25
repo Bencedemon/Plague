@@ -16,3 +16,4 @@ MonoBehaviour:
   cardName: TheMagician
   cardDesc: Increase Reload speed by 5%.
   cardTexture: {fileID: 21300000, guid: 472ea26c3bad51644805ba5ba42d104c, type: 3}
+  weight: 10

@@ -7,4 +7,6 @@ public class CardProperty : ScriptableObject
     public string cardName;
     public string cardDesc;
     public Sprite cardTexture;
+
+    public float weight;
 }

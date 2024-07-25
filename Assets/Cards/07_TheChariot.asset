@@ -16,3 +16,4 @@ MonoBehaviour:
   cardName: TheChariot
   cardDesc: Increase Movement speed by 10%.
   cardTexture: {fileID: 21300000, guid: 528433e1de5a08942a872d05c2bef7c0, type: 3}
+  weight: 10

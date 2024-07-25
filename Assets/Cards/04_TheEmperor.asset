@@ -16,3 +16,4 @@ MonoBehaviour:
   cardName: TheEmperor
   cardDesc: Increase Damage Reduction by 5%.
   cardTexture: {fileID: 21300000, guid: b55b0f8deded3f94d92984d21826d306, type: 3}
+  weight: 10

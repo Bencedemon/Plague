@@ -28,6 +28,21 @@ public class UpgradesPanel : MonoBehaviour
 
     private int countDown = 30;
 
+
+    
+    public float maxWeight;
+    public List<float> weights = new List<float>();
+    // Start is called before the first frame update
+    void Awake()
+    {
+        maxWeight=0;
+        foreach (var card in cardProperties)
+        {
+            maxWeight+=card.weight;
+            weights.Add(maxWeight);
+        }
+    }
+
     public void ShowCrads(){
         StartCoroutine(CountDown());
         CreateCards();
@@ -48,30 +63,35 @@ public class UpgradesPanel : MonoBehaviour
         }*/
         //selectetCardId = tarotCards[0].cardProperty.cardId;
     }
-
     private void CreateCards(){
         List<int> ids = new List<int>();
         for (int i = 0; i < 3; i++)
         {
             TarotCard newCard = Instantiate(cardPrefab,cardParent);
             tarotCards[i]=newCard;
-            int random;
+            float random;
+            int cardId = 0;
             bool exists = false;
             do
             {
                 exists = false;
-                random = Random.Range(0,cardProperties.Length);
+                random = Random.Range(0f,maxWeight);
+                for (int j = 0; j < weights.Count; j++){
+                    if(random<=weights[j]){
+                        cardId=j;
+                        break;
+                    }
+                }
                 foreach (var id in ids)
                 {
-                    if(id==random){
+                    if(id==cardId){
                         exists = true;
-                        Debug.Log("Duplicate");
                         break;
                     }
                 }
             } while (exists);
-            ids.Add(random);
-            newCard.Initialize(cardProperties[random],toggleGroup,this,selectButton);
+            ids.Add(cardId);
+            newCard.Initialize(cardProperties[cardId],toggleGroup,this,selectButton);
             audioSource.Play();
         }
     }

@@ -16,3 +16,4 @@ MonoBehaviour:
   cardName: TheEmpress
   cardDesc: Increase Heal receive by 10%.
   cardTexture: {fileID: 21300000, guid: 6ee65eeb26605714cab631a9c19189f6, type: 3}
+  weight: 10

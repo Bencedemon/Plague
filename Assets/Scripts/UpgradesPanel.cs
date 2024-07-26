@@ -8,10 +8,21 @@ public class UpgradesPanel : MonoBehaviour
 {
     
     [SerializeField] private PlayerUpgrades playerUpgrades;
+    [SerializeField] private PlayerAbility playerAbility;
 
     [SerializeField] private TarotCard cardPrefab;
 
-    [SerializeField] private CardProperty[] cardProperties; 
+    [SerializeField] private CardProperty[] statCards; 
+    [SerializeField] private CardProperty[] abilityCards; 
+
+    [Space]
+    [SerializeField] private CardProperty[] cupsCards; 
+    [SerializeField] private CardProperty[] swordsCards; 
+    [SerializeField] private CardProperty[] pentaclesCards; 
+    [SerializeField] private CardProperty[] wandsCards; 
+
+    [Space]
+    [SerializeField] private List<CardProperty> cardProperties = new List<CardProperty>(); 
 
     [SerializeField] private ToggleGroup toggleGroup;
 
@@ -35,15 +46,52 @@ public class UpgradesPanel : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        maxWeight=0;
-        foreach (var card in cardProperties)
-        {
-            maxWeight+=card.weight;
-            weights.Add(maxWeight);
-        }
     }
 
     public void ShowCrads(){
+        maxWeight=0;
+        weights.Clear();
+        cardProperties.Clear();
+        foreach (var card in statCards)
+        {
+            maxWeight+=card.weight;
+            weights.Add(maxWeight);
+            cardProperties.Add(card);
+        }
+        if(playerAbility.ability==null){
+            foreach (var card in abilityCards)
+            {
+                maxWeight+=card.weight;
+                weights.Add(maxWeight);
+                cardProperties.Add(card);
+            }
+        }else{
+            if(playerAbility.ability.strength!=0 && playerAbility.ability.strengthLevel<swordsCards.Length){
+                CardProperty card = swordsCards[playerAbility.ability.strengthLevel];
+                maxWeight+=card.weight;
+                weights.Add(maxWeight);
+                cardProperties.Add(card);
+            }
+            if(playerAbility.ability.range!=0 && playerAbility.ability.rangeLevel<wandsCards.Length){
+                CardProperty card = wandsCards[playerAbility.ability.rangeLevel];
+                maxWeight+=card.weight;
+                weights.Add(maxWeight);
+                cardProperties.Add(card);
+            }
+            if(playerAbility.ability.duration!=0 && playerAbility.ability.durationLevel<pentaclesCards.Length){
+                CardProperty card = pentaclesCards[playerAbility.ability.durationLevel];
+                maxWeight+=card.weight;
+                weights.Add(maxWeight);
+                cardProperties.Add(card);
+            }
+            if(playerAbility.ability.cooldown!=0 && playerAbility.ability.cooldownLevel<cupsCards.Length){
+                CardProperty card = cupsCards[playerAbility.ability.cooldownLevel];
+                maxWeight+=card.weight;
+                weights.Add(maxWeight);
+                cardProperties.Add(card);
+            }
+        }
+
         StartCoroutine(CountDown());
         CreateCards();
         selectetCardId = tarotCards[0].cardProperty.cardId;

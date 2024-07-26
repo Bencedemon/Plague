@@ -4,7 +4,37 @@ using UnityEngine;
 
 public class Ability_TheTower : Ability
 {
+    [Space]
+    public LayerMask layerMask;
+    private float currentDuration=0;
+    void FixedUpdate(){
+        if(currentCooldown>0){
+            currentCooldown-=Time.fixedDeltaTime;
+        }
+    }
     public override void UseAbility(){
         Debug.Log("TheTower");
+        if(currentCooldown>0) return;
+        StartCoroutine(Curse());
+    }
+    private IEnumerator Curse()
+    {
+        currentCooldown=cooldown;
+        currentDuration=duration;
+        while (currentDuration>0)
+        {
+            currentDuration-=0.25f;
+            yield return new WaitForSeconds(0.25f);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, range, layerMask);
+            foreach (var hitCollider in hitColliders)
+            {
+                if(hitCollider.transform.TryGetComponent(out Enemy_Hitbox enemy)){
+                    if(enemy.tag=="EnemyCore"){
+                        enemy.enemy.TakeDamage(strength,Vector3.zero,playerStats);
+                    }
+                }
+            }
+        }
+        currentDuration=duration;
     }
 }

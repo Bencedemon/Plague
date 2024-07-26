@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fae2fae03d45644e9e92b55e6b4aa22, type: 3}
+  m_Name: 22_3OfCups
+  m_EditorClassIdentifier: 
+  cardId: 22
+  cardName: 3OfCups
+  cardDesc: 
+  cardTexture: {fileID: 21300000, guid: 53d1de0b1e1eb7445b100794919db0f9, type: 3}
+  weight: 10

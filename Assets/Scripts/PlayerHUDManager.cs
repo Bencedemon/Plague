@@ -7,6 +7,7 @@ using TMPro;
 public class PlayerHUDManager : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerAbility playerAbility;
 
     [Space]
     [SerializeField] private Image crosshair;
@@ -32,6 +33,10 @@ public class PlayerHUDManager : MonoBehaviour
     [SerializeField] private TMP_Text percentage;
     [SerializeField] private TMP_Text level;
     [SerializeField] private Image blood;
+
+    [Space]
+    [SerializeField] private TMP_Text abilityCooldown;
+    [SerializeField] private Image abilityIcon;
 
     private PlayerProfileManager playerProfileManager;
 
@@ -73,6 +78,17 @@ public class PlayerHUDManager : MonoBehaviour
             }else{
                 blood.fillAmount = levelManager._experiance.Value/levelManager._nextLevel.Value;
             }
+        }
+
+        if(playerAbility.ability!=null){
+            abilityIcon.sprite=playerAbility.ability.cardProperty.cardTexture;
+            abilityIcon.fillAmount=1-playerAbility.ability.currentCooldown/playerAbility.ability.cooldown;
+            if(playerAbility.ability.currentCooldown<=0){
+                abilityCooldown.text="";
+            }else{
+                abilityCooldown.text = (int)playerAbility.ability.currentCooldown+"s";
+            }
+            
         }
 
     }

@@ -75,11 +75,26 @@ public class PlayerUpgrades : NetworkBehaviour
             case 8:
                 Strength();
             break;
+            case 15:
+                TheDevil();
+            break;
             case 16:
                 TheTower();
             break;
             case 19:
                 TheSun();
+            break;
+            case 22:
+                Cups();
+            break;
+            case 23:
+                Swords();
+            break;
+            case 24:
+                Pentacles();
+            break;
+            case 25:
+                Wands();
             break;
             default:
                 Debug.LogError("ID: "+_id+" does not exists!");
@@ -117,12 +132,31 @@ public class PlayerUpgrades : NetworkBehaviour
     private void Strength(){
         playerStats.strength+=0.10f;
     }
+    private void TheDevil(){
+        playerAbility.SelectAbility(15);
+    }
     private void TheTower(){
-        Debug.Log("Tower");
-        playerAbility.SelectAbility(16,0.1f,0.1f,0.1f,0.1f);
+        playerAbility.SelectAbility(16);
     }
     private void TheSun(){
         playerStats.maxHealth+=10;
         playerStats.HealPlayer(10);
+    }
+
+    private void Cups(){
+        playerAbility.ability.cooldownLevel++;
+        playerAbility.ability.cooldown-=5f;
+    }
+    private void Swords(){
+        playerAbility.ability.strengthLevel++;
+        playerAbility.ability.strength+=5f;
+    }
+    private void Pentacles(){
+        playerAbility.ability.durationLevel++;
+        playerAbility.ability.duration+=5f;
+    }
+    private void Wands(){
+        playerAbility.ability.rangeLevel++;
+        playerAbility.ability.range+=5f;
     }
 }

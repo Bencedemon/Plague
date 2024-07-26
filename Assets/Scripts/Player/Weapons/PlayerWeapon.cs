@@ -50,8 +50,18 @@ public class PlayerWeapon : NetworkBehaviour
         secondary=secondaries[playerProfileManager.playerProfile.secondaryId];
         melee=melees[playerProfileManager.playerProfile.meeleId];
         
-        currentWeapon=primary;
+        if(primary!=null){
+            SetWeaponIndex(0);
+            currentWeapon=primary;
+        }else if(secondary!=null){
+            SetWeaponIndex(1);
+            currentWeapon=primary;
+        }else{
+            SetWeaponIndex(2);
+            currentWeapon=melee;
+        }
         currentWeapon.gameObject.SetActive(true);
+        currentWeapon.characterAnim.SetBool("rifleType",currentWeapon.weaponProperty.rifleType);
     }
 
     public void Shoot(InputAction.CallbackContext context){
@@ -86,6 +96,7 @@ public class PlayerWeapon : NetworkBehaviour
     }
 
     public void SwitchWeapon_1(InputAction.CallbackContext context){
+        if(primary==null) return;
         if(playerStats._currentHealth.Value<=0) return;
         if(context.performed){
             if(currentWeapon.inAction) return;
@@ -93,6 +104,7 @@ public class PlayerWeapon : NetworkBehaviour
         }
     }
     public void SwitchWeapon_2(InputAction.CallbackContext context){
+        if(secondary==null) return;
         if(playerStats._currentHealth.Value<=0) return;
         if(context.performed){
             if(currentWeapon.inAction) return;
@@ -113,14 +125,17 @@ public class PlayerWeapon : NetworkBehaviour
 
     
     public void Scroll(InputAction.CallbackContext context){
+        if(primary==null && secondary==null) return;
         if(playerStats._currentHealth.Value<=0) return;
         if(currentWeapon.inAction) return;
         float scroll = context.ReadValue<Vector2>().y;
         if(scroll>0){
-            if(_currentWeaponIndex.Value<2)
+            if(_currentWeaponIndex.Value<2){
                 SwitchWeapon(_currentWeaponIndex.Value+1);
-            else
+            }
+            else{
                 SwitchWeapon(0);
+            }
         }else if(scroll<0){
             if(_currentWeaponIndex.Value-1>=0)
                 SwitchWeapon(_currentWeaponIndex.Value-1);

@@ -150,18 +150,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability 1",
+                    "name": "Ability",
                     "type": "Button",
                     "id": "6b7f87d1-90ed-4932-80b8-9801ef0d240e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Ability 2",
-                    "type": "Button",
-                    "id": "b36b1e5b-7060-455b-a19f-60377f8ba45a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -572,7 +563,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Ability 1",
+                    "action": "Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -583,29 +574,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Ability 1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7adff388-d404-4626-9d55-4623c1f56cbb",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Ability 2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "102dfa6d-3ef0-4152-8150-93500277cf43",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Ability 2",
+                    "action": "Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

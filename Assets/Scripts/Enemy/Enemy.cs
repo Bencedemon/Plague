@@ -55,7 +55,7 @@ public class Enemy : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void TakeDamage(float damage, Vector3 direction, Enemy_Hitbox _rigidbody,PlayerStats _playerStats){
+    public void TakeDamage(float damage, Vector3 direction,PlayerStats _playerStats,Enemy_Hitbox _rigidbody=null){
         if(health<=0) return;
         _playerStats.SetDamageDealt(damage);
         health-=damage;
@@ -94,7 +94,8 @@ public class Enemy : NetworkBehaviour
             body.isKinematic=false;
             body.velocity = originalVelocity;
         }
-        _rigidbody.rigidbody.AddForce(direction*damage*25f);
+        if(_rigidbody!=null)
+            _rigidbody.rigidbody.AddForce(direction*damage*25f);
         Destroy(gameObject,25f);
     }
 

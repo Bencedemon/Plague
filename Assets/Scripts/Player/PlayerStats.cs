@@ -72,6 +72,7 @@ public class PlayerStats : NetworkBehaviour
         if(_currentHealth.Value-damage <= 0){
             SetDamageTaken(_currentHealth.Value);
             SetHealth(0);
+            SetDeaths(1);
             SpawnDeadBody();
             if(playerManager.PlayerGameObject.Count>1 || revives == 0){
                 Die(Owner);
@@ -81,7 +82,6 @@ public class PlayerStats : NetworkBehaviour
             }
         }else{
             SetDamageTaken(damage);
-            SetDeaths(1);
             SetHealth(_currentHealth.Value-damage);
         }
     }

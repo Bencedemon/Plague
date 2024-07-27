@@ -44,19 +44,19 @@ public class LoadoutEditor : MonoBehaviour
         for (int i = 0; i < primaries.Length; i++)
         {
             LoadoutWeapon loadoutWeapon = Instantiate(loadoutWeaponPrefab,primariesParent);
-            loadoutWeapon.Initialize(this,primaries[i],WeaponCategory.primary);
+            loadoutWeapon.Initialize(this,primaries[i],WeaponCategory.primary,playerProfileManager);
         }
 
         for (int i = 0; i < secondaries.Length; i++)
         {
             LoadoutWeapon loadoutWeapon = Instantiate(loadoutWeaponPrefab,secondariesParent);
-            loadoutWeapon.Initialize(this,secondaries[i],WeaponCategory.secondary);
+            loadoutWeapon.Initialize(this,secondaries[i],WeaponCategory.secondary,playerProfileManager);
         }
 
         for (int i = 0; i < meeles.Length; i++)
         {
             LoadoutWeapon loadoutWeapon = Instantiate(loadoutWeaponPrefab,meelesParent);
-            loadoutWeapon.Initialize(this,meeles[i],WeaponCategory.meele);
+            loadoutWeapon.Initialize(this,meeles[i],WeaponCategory.meele,playerProfileManager);
         }
     }
 

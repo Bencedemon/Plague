@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class ScoreBoardManager : MonoBehaviour
 {
+    [Header("ScoreBoard")]
     [SerializeField] private ScorePlayerCard scorePlayerCardPrefab;
     [SerializeField] private Transform scorePlayerCardParent;
 
@@ -12,6 +14,10 @@ public class ScoreBoardManager : MonoBehaviour
     public List<ScorePlayerCard> playerCards = new List<ScorePlayerCard>();
 
     [SerializeField] private GameObject board;
+
+    [Header("ScoreBoard")]
+    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private TMP_Text maxHealthValue,movementSpeedValue,strengthValue,damageReductionValue,reloadSpeedValue,healPowerValue;
 
     private PlayerManager playerManager;
     void Awake(){
@@ -30,13 +36,21 @@ public class ScoreBoardManager : MonoBehaviour
             }
             playerCount=playerManager.PlayerGameObject.Count;
         }
+
+        maxHealthValue.text = ""+playerStats.maxHealth;
+
+        movementSpeedValue.text = playerStats.movementSpeed*100+"%";
+        strengthValue.text = playerStats.strength*100+"%";
+        damageReductionValue.text = playerStats.damageReduction*100+"%";
+        reloadSpeedValue.text = playerStats.reloadSpeed*100+"%";
+        healPowerValue.text = playerStats.healPower*100+"%";
     }
     public void ScoreBoard(InputAction.CallbackContext context){
         if(context.performed){
-            board.SetActive(!board.activeSelf);
+            board.SetActive(true);
         }
-        //if(context.canceled){
-            //board.SetActive(false);
-        //}
+        if(context.canceled){
+            board.SetActive(false);
+        }
     }
 }

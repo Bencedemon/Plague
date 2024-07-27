@@ -36,3 +36,4 @@ MonoBehaviour:
   cock: {fileID: 8300000, guid: 851528beb08ec9144a9b23f7dbf3e3e1, type: 3}
   punch:
   - {fileID: 8300000, guid: 6c00eae89383aae4984f2934aac0896f, type: 3}
+  level: 0

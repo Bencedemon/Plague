@@ -85,8 +85,11 @@ public class PlayerHUDManager : MonoBehaviour
             abilityIcon.fillAmount=1-playerAbility.ability.currentCooldown/playerAbility.ability.cooldown;
             if(playerAbility.ability.currentCooldown<=0){
                 abilityCooldown.text="";
-            }else{
-                abilityCooldown.text = (int)playerAbility.ability.currentCooldown+"s";
+            }else if(playerAbility.ability.currentCooldown<=1){
+                abilityCooldown.text = playerAbility.ability.currentCooldown.ToString("F1")+"s";
+            }
+            else{
+                abilityCooldown.text = playerAbility.ability.currentCooldown.ToString("F0")+"s";
             }
             
         }

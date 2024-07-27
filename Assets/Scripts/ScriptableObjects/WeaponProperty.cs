@@ -37,4 +37,6 @@ public class WeaponProperty : ScriptableObject
     public AudioClip reload;
     public AudioClip cock;
     public AudioClip[] punch;
+    [Space]
+    public int level;
 }

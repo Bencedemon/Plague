@@ -21,8 +21,8 @@ TagManager:
   - Item
   - Marker
   - Trap
-  - 
-  - 
+  - Projectile
+  - EnemyDeadBody
   - 
   - 
   - 

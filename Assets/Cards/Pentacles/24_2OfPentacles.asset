@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardId: 24
   cardName: 2OfPentacles
-  cardDesc: 
+  cardDesc: Increase ability duration by
   cardTexture: {fileID: 21300000, guid: 5040e7de6941cdc42a2031a86e5412f2, type: 3}
   weight: 10

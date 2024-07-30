@@ -16,18 +16,15 @@ public class Menu : MonoBehaviour
     [Header("ButtonManager")]
     public Button[] buttons;
     private int selectedButtonId=0;
-    private bool selected;
 
     public void OpenItem(int id){
         selectedButtonId=0;
-        selected=false;
         gameObject.SetActive(false);
         menuItems[id].SetActive(true);
     }
 
     public void Back(){
         selectedButtonId=0;
-        selected=false;
         gameObject.SetActive(false);
         menuCamera.SetActive(false);
         back.SetActive(true);
@@ -41,7 +38,6 @@ public class Menu : MonoBehaviour
         }
     }
     public void hoverButton(int _id){
-        selected=true;
         selectedButtonId=_id;
         buttons[selectedButtonId].Select();
     }

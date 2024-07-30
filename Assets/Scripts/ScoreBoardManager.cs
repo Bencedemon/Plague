@@ -17,7 +17,7 @@ public class ScoreBoardManager : MonoBehaviour
 
     [Header("ScoreBoard")]
     [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private TMP_Text maxHealthValue,movementSpeedValue,strengthValue,damageReductionValue,reloadSpeedValue,healPowerValue;
+    [SerializeField] private TMP_Text maxHealthValue,movementSpeedValue,strengthValue,armorValue,reloadSpeedValue,healPowerValue;
 
     private PlayerManager playerManager;
     void Awake(){
@@ -41,7 +41,8 @@ public class ScoreBoardManager : MonoBehaviour
 
         movementSpeedValue.text = playerStats.movementSpeed*100+"%";
         strengthValue.text = playerStats.strength*100+"%";
-        damageReductionValue.text = playerStats.damageReduction*100+"%";
+        float damageReduction = Calculator.CalcDamageReduction(playerStats.armor)*100;
+        armorValue.text = playerStats.armor+" ("+damageReduction.ToString("F0")+"%)";
         reloadSpeedValue.text = playerStats.reloadSpeed*100+"%";
         healPowerValue.text = playerStats.healPower*100+"%";
     }

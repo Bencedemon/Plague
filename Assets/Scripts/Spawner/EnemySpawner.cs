@@ -21,7 +21,6 @@ public class EnemySpawner : NetworkBehaviour
     [SerializeField] private GameObject exit;
 
     private bool waveStart=true;
-    private bool gameEnded=false;
 
     [Space]
     public EnemySpawnLocation[] enemySpawnLocations;

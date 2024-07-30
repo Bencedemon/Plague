@@ -7,7 +7,7 @@ public abstract class Item : NetworkBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(base.IsServer)
+        if(base.IsServerInitialized)
         if(other.tag=="Player"){
             PickUp(other);
         }

@@ -14,13 +14,34 @@ public class TarotCard : MonoBehaviour
 
     private UpgradesPanel upgradesPanel;
     
-    public void Initialize(CardProperty _cardProperty,ToggleGroup _toggleGroup,UpgradesPanel _upgradesPanel,Button _selectButton){
+    public void Initialize(CardProperty _cardProperty,ToggleGroup _toggleGroup,UpgradesPanel _upgradesPanel,Button _selectButton,Ability _ability=null){
         upgradesPanel = _upgradesPanel;
         selectButton = _selectButton;
         cardProperty = _cardProperty;
 
+        string extraText="";
+        switch (cardProperty.cardId)
+        {
+            case 22:
+                    extraText = _ability.cooldownUpgrade+"s.";
+            break;
+            case 23:
+                extraText = _ability.strengthUpgrade+"%.";
+            break;
+            case 24:
+                extraText = _ability.durationUpgrade+"s.";
+            break;
+            case 25:
+                extraText = _ability.rangeUpgrade+"m.";
+            break;
+            default:
+                extraText = "";
+            break;
+        }
+        
+
         _texture.sprite=cardProperty.cardTexture;
-        descText.text=cardProperty.cardDesc;
+        descText.text=cardProperty.cardDesc+" "+extraText;
 
         toggle.group = _toggleGroup;
     }

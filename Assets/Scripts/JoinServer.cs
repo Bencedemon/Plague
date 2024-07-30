@@ -47,10 +47,11 @@ public class JoinServer : MonoBehaviour
         CharacterSelection[] characterSelections;
         int tries=0;
         bool connected = false;
+        connectionNotification.text = "Tries: "+tries;
         while(tries<=30){
-            connectionNotification.text = "Tries: "+tries;
             yield return new WaitForSeconds(1f);
             tries++;
+            connectionNotification.text = "Tries: "+tries;
             characterSelections=FindObjectsOfType<CharacterSelection>();
 
             if(characterSelections.Length>0){

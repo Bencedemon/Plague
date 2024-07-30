@@ -13,7 +13,6 @@ public class MouseLook : NetworkBehaviour
 
     float xRotation = 0f;
     public Transform cam;
-    public Camera camera;
 
     private float x,y;
     public float mouseX;

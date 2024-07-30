@@ -4913,6 +4913,7 @@ MonoBehaviour:
   explosionParticle: {fileID: 7328177570539393713, guid: 7e58aa6867bd62a4aab4a29bda7211a0,
     type: 3}
   collider: {fileID: 4608592754481713079}
+  parent: {fileID: 121051016989269438}
 --- !u!135 &4608592754481713079
 SphereCollider:
   m_ObjectHideFlags: 0

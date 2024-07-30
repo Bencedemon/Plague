@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardId: 25
   cardName: 9OfWands
-  cardDesc: 
+  cardDesc: Increase ability range by
   cardTexture: {fileID: 21300000, guid: ffa90bf812d0043439265805fd3557ce, type: 3}
   weight: 10

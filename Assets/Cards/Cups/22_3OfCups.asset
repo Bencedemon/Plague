@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardId: 22
   cardName: 3OfCups
-  cardDesc: 
+  cardDesc: Decrease ability cooldown by
   cardTexture: {fileID: 21300000, guid: 53d1de0b1e1eb7445b100794919db0f9, type: 3}
   weight: 10

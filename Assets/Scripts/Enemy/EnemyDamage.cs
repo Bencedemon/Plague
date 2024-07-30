@@ -23,7 +23,7 @@ public class EnemyDamage : NetworkBehaviour
 
     private bool inAction = false;
     void FixedUpdate(){
-        if(!IsServer)
+        if(!IsServerInitialized)
             return;
             
         if(!inAction){
@@ -53,14 +53,14 @@ public class EnemyDamage : NetworkBehaviour
     }
     
     public void doDamage(){
-        if(!IsServer)
+        if(!IsServerInitialized)
             return;
 
         hitColliders = Physics.OverlapSphere(attackPoint.position, attackRadius,layerMask);
         foreach (var hitCollider in hitColliders)
         {
             if(hitCollider.gameObject.TryGetComponent(out PlayerStats playerStats)){
-                playerStats.TakeDamage(Random.Range(damage-5,damage+5));
+                playerStats.TakeDamage(damage);//Random.Range(damage-5,damage+5)
             }
         }
     }

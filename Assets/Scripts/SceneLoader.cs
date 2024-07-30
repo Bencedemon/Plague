@@ -15,12 +15,6 @@ namespace FishNet.Example.Scened
     public class SceneLoader : MonoBehaviour
     {
         /// <summary>
-        /// True to move the triggering object.
-        /// </summary>
-        [Tooltip("True to move the triggering object.")]
-        [SerializeField]
-        private bool _moveObject = true;
-        /// <summary>
         /// True to move all connection objects (clients).
         /// </summary>
         [Tooltip("True to move all connection objects (clients).")]
@@ -50,12 +44,6 @@ namespace FishNet.Example.Scened
         [Tooltip("True to automatically unload the loaded scenes when no more connections are using them.")]
         [SerializeField]
         private bool _automaticallyUnload = true;
-        /// <summary>
-        /// True to fire when entering the trigger. False to fire when exiting the trigger.
-        /// </summary>
-        [Tooltip("True to fire when entering the trigger. False to fire when exiting the trigger.")]
-        [SerializeField]
-        private bool _onTriggerEnter = true;
 
         
         [Tooltip("True to unload unused scenes.")]
@@ -106,8 +94,6 @@ namespace FishNet.Example.Scened
             sld.MovedNetworkObjects = movedObjects.ToArray();
 
             InstanceFinder.SceneManager.LoadGlobalScenes(sld);
-
-
 
             //================================
             

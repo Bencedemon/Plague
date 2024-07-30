@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardId: 23
   cardName: 6OfSwords
-  cardDesc: 
+  cardDesc: Increase ability damage by
   cardTexture: {fileID: 21300000, guid: 3f501c7d65224c746b0443901452da12, type: 3}
   weight: 10

@@ -7,7 +7,7 @@ using TMPro;
 public class ScorePlayerCard : MonoBehaviour
 {
     [SerializeField] private Image pp;
-    [SerializeField] private TMP_Text name,health,kills;
+    [SerializeField] private TMP_Text playerNameField,health,kills;
 
     private PlayerStats playerStats;
     private PlayerProfileManager playerProfileManager;
@@ -17,7 +17,7 @@ public class ScorePlayerCard : MonoBehaviour
         playerStats = _playerStats;
 
         pp.sprite = playerProfileManager.sprites[playerStats.pictureId.Value];
-        name.text = ""+playerStats.playerName.Value;
+        playerNameField.text = ""+playerStats.playerName.Value;
         health.text = "100";
         kills.text = "0";
     }
@@ -25,11 +25,11 @@ public class ScorePlayerCard : MonoBehaviour
     void FixedUpdate(){
         if(playerStats!=null){
             pp.sprite = playerProfileManager.sprites[playerStats.pictureId.Value];
-            name.text = ""+playerStats.playerName.Value;
+            playerNameField.text = ""+playerStats.playerName.Value;
             health.text = ""+playerStats._currentHealth.Value;
             kills.text = ""+playerStats.kills.Value;
         }else{
-            name.text = "Disconected";
+            playerNameField.text = "Disconected";
         }
     }
 

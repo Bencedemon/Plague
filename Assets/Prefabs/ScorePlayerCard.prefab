@@ -602,8 +602,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pp: {fileID: 5344476627839362548}
-  name: {fileID: 797842696131246996}
+  playerNameField: {fileID: 797842696131246996}
   health: {fileID: 5791049073200524595}
   kills: {fileID: 786962729547351395}
-  playerStats: {fileID: 0}
-  playerProfileManager: {fileID: 0}

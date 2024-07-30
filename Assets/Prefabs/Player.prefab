@@ -725,7 +725,7 @@ MonoBehaviour:
   revives: 2
   movementSpeed: 1
   strength: 1
-  damageReduction: 0
+  armor: 0
   reloadSpeed: 1
   healPower: 1
   playerSpectator: {fileID: 516150444946832369}
@@ -1199,8 +1199,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -25}
-  m_SizeDelta: {x: 80, y: 50}
+  m_AnchoredPosition: {x: 255, y: -25}
+  m_SizeDelta: {x: 90, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8246507040809828905
 CanvasRenderer:
@@ -1503,8 +1503,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -25}
-  m_SizeDelta: {x: 80, y: 50}
+  m_AnchoredPosition: {x: 255, y: -25}
+  m_SizeDelta: {x: 90, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &171220382525647783
 CanvasRenderer:
@@ -2221,8 +2221,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -25}
-  m_SizeDelta: {x: 220, y: 50}
+  m_AnchoredPosition: {x: 105, y: -25}
+  m_SizeDelta: {x: 210, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &314380864910300634
 CanvasRenderer:
@@ -2371,21 +2371,26 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 4319170283229056642}
   cardProperty: {fileID: 11400000, guid: f67ac2e592b11d8498d37624930e8433, type: 2}
   playerStats: {fileID: 4382132314798828345}
-  strengthLevel: 10
-  strength: 150
-  rangeLevel: 10
+  strengthLevel: 0
+  strength: 100
+  strengthUpgrade: 10
+  rangeLevel: 0
   range: 5
+  rangeUpgrade: 2.5
   durationLevel: 0
   duration: 60
+  durationUpgrade: 10
   cooldownLevel: 0
-  cooldown: 5
+  cooldown: 1
+  cooldownUpgrade: 1
   currentCooldown: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 8
-  fireBall: {fileID: 6128569781362184485, guid: 93adff90b1cfb6543870d73468058492,
+  fireBall: {fileID: 8226843987173916667, guid: ab9eed090a582204997ca6c9e03ade1e,
     type: 3}
   _cameraTransform: {fileID: 780332950809823589}
+  throwForce: 5
 --- !u!1 &1475343719242973171
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,8 +2532,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -25}
-  m_SizeDelta: {x: 80, y: 50}
+  m_AnchoredPosition: {x: 255, y: -25}
+  m_SizeDelta: {x: 90, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &708255404298675628
 CanvasRenderer:
@@ -2558,7 +2563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0%
+  m_text: 0 (0%)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2cb3b8ca3716bc047b6fefbc8feca421, type: 2}
   m_sharedMaterial: {fileID: -4141034169723843704, guid: 2cb3b8ca3716bc047b6fefbc8feca421,
@@ -2622,7 +2627,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -90, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4329,8 +4334,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -25}
-  m_SizeDelta: {x: 220, y: 50}
+  m_AnchoredPosition: {x: 105, y: -25}
+  m_SizeDelta: {x: 210, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3332324719762683653
 CanvasRenderer:
@@ -4555,7 +4560,7 @@ MonoBehaviour:
   maxHealthValue: {fileID: 2301757279820669943}
   movementSpeedValue: {fileID: 3864609052578663931}
   strengthValue: {fileID: 490780807529031738}
-  damageReductionValue: {fileID: 6036134188099156233}
+  armorValue: {fileID: 6036134188099156233}
   reloadSpeedValue: {fileID: 917631126319463226}
   healPowerValue: {fileID: 8107608758243042635}
 --- !u!1 &2971225318347033167
@@ -5079,8 +5084,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -25}
-  m_SizeDelta: {x: 80, y: 50}
+  m_AnchoredPosition: {x: 255, y: -25}
+  m_SizeDelta: {x: 90, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1038353162090043627
 CanvasRenderer:
@@ -6566,8 +6571,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -25}
-  m_SizeDelta: {x: 220, y: 50}
+  m_AnchoredPosition: {x: 105, y: -25}
+  m_SizeDelta: {x: 210, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4307681709520297885
 CanvasRenderer:
@@ -6701,8 +6706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -25}
-  m_SizeDelta: {x: 80, y: 50}
+  m_AnchoredPosition: {x: 255, y: -25}
+  m_SizeDelta: {x: 90, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1387825150785644904
 CanvasRenderer:
@@ -7156,8 +7161,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -25}
-  m_SizeDelta: {x: 80, y: 50}
+  m_AnchoredPosition: {x: 255, y: -25}
+  m_SizeDelta: {x: 90, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1030135929775143497
 CanvasRenderer:
@@ -7805,6 +7810,89 @@ RectTransform:
   m_AnchoredPosition: {x: -125, y: -146}
   m_SizeDelta: {x: 96, y: 199}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &6638352792171392260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8712338850010484477}
+  - component: {fileID: 8114673271603097154}
+  - component: {fileID: 7314215019879638949}
+  m_Layer: 0
+  m_Name: Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8712338850010484477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6638352792171392260}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5190182450347408033}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8114673271603097154
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6638352792171392260}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7314215019879638949
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6638352792171392260}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5f9183be318b2fe4284e96ee3a53dd2d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6691854797643650160
 GameObject:
   m_ObjectHideFlags: 0
@@ -7974,8 +8062,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -25}
-  m_SizeDelta: {x: 220, y: 50}
+  m_AnchoredPosition: {x: 105, y: -25}
+  m_SizeDelta: {x: 210, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1835679345456019920
 CanvasRenderer:
@@ -8005,7 +8093,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Damage Reduction
+  m_text: Armor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2cb3b8ca3716bc047b6fefbc8feca421, type: 2}
   m_sharedMaterial: {fileID: -4141034169723843704, guid: 2cb3b8ca3716bc047b6fefbc8feca421,
@@ -8237,8 +8325,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -25}
-  m_SizeDelta: {x: 220, y: 50}
+  m_AnchoredPosition: {x: 105, y: -25}
+  m_SizeDelta: {x: 210, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6863520087602090932
 CanvasRenderer:
@@ -9463,7 +9551,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8712338850010484477}
   m_Father: {fileID: 2375197180179581022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1984755748126228293
@@ -9485,16 +9574,21 @@ MonoBehaviour:
   playerStats: {fileID: 4382132314798828345}
   strengthLevel: 0
   strength: 5
+  strengthUpgrade: 10
   rangeLevel: 0
   range: 10
+  rangeUpgrade: 3.5
   durationLevel: 0
   duration: 5
+  durationUpgrade: 2.5
   cooldownLevel: 0
   cooldown: 30
+  cooldownUpgrade: 3
   currentCooldown: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
+  effect: {fileID: 6638352792171392260}
 --- !u!1 &7785693985439815672
 GameObject:
   m_ObjectHideFlags: 0
@@ -9996,8 +10090,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -25}
-  m_SizeDelta: {x: 220, y: 50}
+  m_AnchoredPosition: {x: 105, y: -25}
+  m_SizeDelta: {x: 210, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6961493286884235516
 CanvasRenderer:
@@ -10162,7 +10256,7 @@ GameObject:
   - component: {fileID: 7814090121956479136}
   - component: {fileID: 1977316383263633398}
   m_Layer: 5
-  m_Name: DamageReduction
+  m_Name: Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11461,7 +11555,7 @@ MonoBehaviour:
   currentTotalAmmo: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 66568
   _cameraTransform: {fileID: 780332950809823589}
   weaponSelf: {fileID: 6576314156877664037}
   muzzleFlashSelf: {fileID: 0}
@@ -14330,7 +14424,7 @@ MonoBehaviour:
   currentTotalAmmo: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 66568
   _cameraTransform: {fileID: 780332950809823589}
   weaponSelf: {fileID: 5864544853576191026}
   muzzleFlashSelf: {fileID: 9099880218257374994}
@@ -17267,7 +17361,7 @@ MonoBehaviour:
   currentTotalAmmo: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 66568
   _cameraTransform: {fileID: 780332950809823589}
   weaponSelf: {fileID: 7334796874261632169}
   muzzleFlashSelf: {fileID: 5187879348099547512}
@@ -19083,7 +19177,7 @@ MonoBehaviour:
   currentTotalAmmo: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 66568
   _cameraTransform: {fileID: 780332950809823589}
   weaponSelf: {fileID: 5133006024117296062}
   muzzleFlashSelf: {fileID: 8275624741143204268}
@@ -20657,7 +20751,7 @@ MonoBehaviour:
   currentTotalAmmo: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 66568
   _cameraTransform: {fileID: 780332950809823589}
   weaponSelf: {fileID: 3008412016679553320}
   muzzleFlashSelf: {fileID: 3437326940565346381}

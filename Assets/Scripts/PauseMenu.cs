@@ -34,7 +34,7 @@ public class PauseMenu : NetworkBehaviour
         base.OnStartClient();
 
         if(!base.IsOwner) return;
-        if(base.IsServer){
+        if(base.IsServerInitialized){
             backToLobby.SetActive(true);
             backToMain.SetActive(true);
         }else{
@@ -62,7 +62,7 @@ public class PauseMenu : NetworkBehaviour
     public void BackToMain(){
         sceneLoader.StartLoading("00_MainMenu");
         
-        if(base.IsServer)
+        if(base.IsServerInitialized)
             _networkManager.ServerManager.StopConnection(true);
             
         _networkManager.ClientManager.StopConnection();

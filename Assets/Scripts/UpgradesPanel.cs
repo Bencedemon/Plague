@@ -139,7 +139,11 @@ public class UpgradesPanel : MonoBehaviour
                 }
             } while (exists);
             ids.Add(cardId);
-            newCard.Initialize(cardProperties[cardId],toggleGroup,this,selectButton);
+            if(playerAbility.ability==null){
+                newCard.Initialize(cardProperties[cardId],toggleGroup,this,selectButton);
+            }else{
+                newCard.Initialize(cardProperties[cardId],toggleGroup,this,selectButton,playerAbility.ability);
+            }
             audioSource.Play();
         }
     }

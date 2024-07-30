@@ -25,7 +25,7 @@ public class LevelManager : NetworkBehaviour
     }
     public override void OnStartClient(){
         base.OnStartClient();
-        if(base.IsServer){
+        if(base.IsServerInitialized){
             _experiance.OnChange += OnExperianceChanged;;
             _playerDone.OnChange += OnPlayerDoneChanged;;
             SetNextLevel(100*playerManager.Clients.Count);
@@ -33,7 +33,7 @@ public class LevelManager : NetworkBehaviour
     }
 
     void Update(){
-        if(!base.IsServer) return;
+        if(!base.IsServerInitialized) return;
         if(Time.timeScale<1 && levelingUpEnd){
             speedUpTime((1f / slowDonwLength)*Time.unscaledDeltaTime);
         }else
@@ -63,7 +63,7 @@ public class LevelManager : NetworkBehaviour
         float extra = _experiance.Value-_nextLevel.Value;
         SetExperiance(extra);
         SetLevel(+1);
-        SetNextLevel((100+(50*_level.Value))*playerManager.Clients.Count);
+        SetNextLevel((100+(20*_level.Value))*playerManager.Clients.Count);
     }
 
     

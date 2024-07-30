@@ -831,7 +831,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
-  rigidbody: {fileID: 5778897267933483196}
+  rb: {fileID: 5778897267933483196}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &8176781510111316550
 CharacterJoint:
@@ -951,7 +951,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
-  rigidbody: {fileID: 5311955897207832628}
+  rb: {fileID: 5311955897207832628}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &3832974524221513121
 CharacterJoint:
@@ -1071,7 +1071,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
-  rigidbody: {fileID: 4223830703281465636}
+  rb: {fileID: 4223830703281465636}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &3905173520629238521
 CharacterJoint:
@@ -1189,7 +1189,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 1
-  rigidbody: {fileID: 3249245074050340475}
+  rb: {fileID: 3249245074050340475}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &3462861624321648184
 CharacterJoint:
@@ -1309,7 +1309,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
-  rigidbody: {fileID: 5983921803187350319}
+  rb: {fileID: 5983921803187350319}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &8842949458681699499
 CharacterJoint:
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 1
-  rigidbody: {fileID: 6692312890457886851}
+  rb: {fileID: 6692312890457886851}
   enemy: {fileID: 7796650377709073211}
 --- !u!1 &2050408902639474787 stripped
 GameObject:
@@ -1501,7 +1501,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
-  rigidbody: {fileID: 7024066288520279635}
+  rb: {fileID: 7024066288520279635}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &3107739809913305156
 CharacterJoint:
@@ -1611,6 +1611,9 @@ MonoBehaviour:
   - {fileID: 1403534141275804553}
   - {fileID: 5983921803187350319}
   - {fileID: 7024066288520279635}
+  deadBodyLayer:
+    serializedVersion: 2
+    m_Bits: 65536
   enemySpawner: {fileID: 0}
 --- !u!114 &5419693331719330980
 MonoBehaviour:
@@ -1850,7 +1853,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
-  rigidbody: {fileID: 6392897484439140216}
+  rb: {fileID: 6392897484439140216}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &7598173233198931870
 CharacterJoint:
@@ -1970,7 +1973,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
-  rigidbody: {fileID: 7221152064973333203}
+  rb: {fileID: 7221152064973333203}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &144552488015995833
 CharacterJoint:
@@ -2088,7 +2091,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 0
-  rigidbody: {fileID: 1403534141275804553}
+  rb: {fileID: 1403534141275804553}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &1698040435364767827
 CharacterJoint:
@@ -2208,7 +2211,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 2471342499990687217}
   _networkObjectCache: {fileID: 2471342499990687217}
   hitboxType: 2
-  rigidbody: {fileID: 6601772032160733357}
+  rb: {fileID: 6601772032160733357}
   enemy: {fileID: 7796650377709073211}
 --- !u!144 &6309977295986789074
 CharacterJoint:

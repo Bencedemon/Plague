@@ -8,19 +8,14 @@ public class Trap : NetworkBehaviour
     
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private NetworkObject explosionParticle;
-    [SerializeField] private Collider collider;
+    [SerializeField] public Collider collider;
+    [SerializeField] private GameObject parent;
 
     private float strength=0f; 
     private float range=0f;
     private float duration=0f;
     private PlayerStats playerStats;
 
-    public override void OnStartClient(){
-        base.OnStartClient();
-        if(IsServer){
-            collider.enabled = true;
-        }
-    }
 
     public void Initialize(float _strength, float _range, float _duration, PlayerStats _playerStats){
         strength = _strength;
@@ -28,13 +23,13 @@ public class Trap : NetworkBehaviour
         duration = _duration;
         playerStats = _playerStats;
 
-        Destroy(gameObject,_duration);
+        Destroy(parent,_duration);
     }
 
     private bool activated=false;
     private void OnTriggerEnter(Collider other)
     {
-        if(!base.IsServer) return;
+        if(!base.IsServerInitialized) return;
         if(!activated){
             activated=true;
             Debug.Log("activated");

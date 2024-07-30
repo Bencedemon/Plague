@@ -19,7 +19,7 @@ public class PlayerStats : NetworkBehaviour
     public int revives = 0;
     public float movementSpeed = 1f;
     public float strength = 1f;
-    public float damageReduction = 0f;
+    public float armor = 0f;
     public float reloadSpeed = 1f;
     public float healPower = 1f;
     
@@ -69,7 +69,10 @@ public class PlayerStats : NetworkBehaviour
 
     public void TakeDamage(int damage){
         if(_currentHealth.Value<=0) return;
-        if(_currentHealth.Value-damage <= 0){
+        float damageReduction = Calculator.CalcDamageReduction(armor);
+        int actualDamage = damage-(int)(damage*damageReduction);
+        Debug.Log("DamageReduction:"+damageReduction+" ActualDamage:"+actualDamage);
+        if(_currentHealth.Value-actualDamage <= 0){
             SetDamageTaken(_currentHealth.Value);
             SetHealth(0);
             SetDeaths(1);
@@ -81,8 +84,8 @@ public class PlayerStats : NetworkBehaviour
                 HealPlayer(maxHealth);
             }
         }else{
-            SetDamageTaken(damage);
-            SetHealth(_currentHealth.Value-damage);
+            SetDamageTaken(actualDamage);
+            SetHealth(_currentHealth.Value-actualDamage);
         }
     }
 
@@ -131,10 +134,10 @@ public class PlayerStats : NetworkBehaviour
 
     public void HealPlayer(int heal){
         int actualHeal = (int)(heal*healPower);
-        if(_currentHealth.Value+heal >= maxHealth){
+        if(_currentHealth.Value+actualHeal >= maxHealth){
             SetHealth(maxHealth);
         }else{
-            SetHealth(_currentHealth.Value+heal);
+            SetHealth(_currentHealth.Value+actualHeal);
         }
     }
 

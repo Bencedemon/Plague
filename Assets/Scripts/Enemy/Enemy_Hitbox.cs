@@ -10,7 +10,7 @@ public class Enemy_Hitbox : NetworkBehaviour
     public HitboxType hitboxType;
 
 
-    public Rigidbody rigidbody;
+    public Rigidbody rb;
     public Enemy enemy;
 
 

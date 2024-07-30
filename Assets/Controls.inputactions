@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "1",
+                    "name": "Primary",
                     "type": "Button",
                     "id": "8d311729-1d70-4bb4-8434-d544562f86c3",
                     "expectedControlType": "Button",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "2",
+                    "name": "Secondary",
                     "type": "Button",
                     "id": "5d82fd2d-859f-471a-876e-fa75d75a7f40",
                     "expectedControlType": "Button",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "3",
+                    "name": "Meele",
                     "type": "Button",
                     "id": "d0cb05cd-6c50-4809-b6c1-ac941f616232",
                     "expectedControlType": "Button",
@@ -132,7 +132,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Light",
+                    "name": "Lantern",
                     "type": "Button",
                     "id": "603e5c49-8954-4f27-9bb3-6ac80a53af08",
                     "expectedControlType": "Button",
@@ -211,7 +211,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "1",
+                    "action": "Primary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -222,7 +222,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "1",
+                    "action": "Primary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -233,7 +233,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "2",
+                    "action": "Secondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -244,7 +244,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "2",
+                    "action": "Secondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -255,7 +255,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "3",
+                    "action": "Meele",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -266,7 +266,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "3",
+                    "action": "Meele",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -398,7 +398,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Light",
+                    "action": "Lantern",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -409,7 +409,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Light",
+                    "action": "Lantern",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1429,6 +1429,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "InLobby",
+            "id": "38cfc01e-a247-480b-bb29-23c47f95c2ad",
+            "actions": [
+                {
+                    "name": "BackFlip",
+                    "type": "Button",
+                    "id": "dc34cdc4-82fd-46e1-8fd7-bdb0a3b46c55",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c189430a-1aa0-4037-9566-6dd34943c1de",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "BackFlip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

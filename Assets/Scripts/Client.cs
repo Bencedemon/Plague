@@ -32,6 +32,7 @@ public class Client : NetworkBehaviour
     public override void OnStopClient(){
         base.OnStopClient();
 
+
         playerManager.Clients.Remove(this);
         ServerManager.Despawn(cs);
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -27,11 +28,19 @@ public class MainMenu : MonoBehaviour
 
     [Header("ButtonManager")]
     public Button[] buttons;
+
+    [Header("Version")]
+    public TMP_Text version;
+
+    [Header("ConnectionLost")]
+    public GameObject connectionLostPanel;
     
-    void AWake(){
+    void Awake(){
         titleScreenCamera.SetActive(true);
+        version.text="v "+Application.version;
     }
     public void PlayGame(){
+        connectionLostPanel.SetActive(false);
         titleScreen.SetActive(false);
         multiplayerScreen.SetActive(true);
         multiplayerCamera.SetActive(true);

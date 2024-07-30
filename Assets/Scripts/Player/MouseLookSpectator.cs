@@ -13,7 +13,6 @@ public class MouseLookSpectator : NetworkBehaviour
 
     float xRotation = 0f;
     public Transform cam;
-    public Camera camera;
 
     public float mouseX;
     public float mouseY;

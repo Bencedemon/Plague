@@ -122,7 +122,7 @@ public class PlayerUpgrades : NetworkBehaviour
     }
 
     private void TheEmperor(){
-        playerStats.damageReduction+=0.05f;
+        playerStats.armor+=10f;
     }
 
     private void TheChariot(){
@@ -144,19 +144,15 @@ public class PlayerUpgrades : NetworkBehaviour
     }
 
     private void Cups(){
-        playerAbility.ability.cooldownLevel++;
-        playerAbility.ability.cooldown-=5f;
+        playerAbility.ability.UpgradeCooldown();
     }
     private void Swords(){
-        playerAbility.ability.strengthLevel++;
-        playerAbility.ability.strength+=5f;
+        playerAbility.ability.UpgradeStrength();
     }
     private void Pentacles(){
-        playerAbility.ability.durationLevel++;
-        playerAbility.ability.duration+=5f;
+        playerAbility.ability.UpgradeDuration();
     }
     private void Wands(){
-        playerAbility.ability.rangeLevel++;
-        playerAbility.ability.range+=5f;
+        playerAbility.ability.UpgradeRange();
     }
 }

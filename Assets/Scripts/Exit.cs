@@ -11,9 +11,6 @@ public class Exit : NetworkBehaviour
     [Space]
     [SerializeField] private FishNet.Example.Scened.SceneLoader sceneLoader;
 
-
-
-    private bool exit=false;
     private PlayerManager playerManager;
     void Awake(){
         playerManager = FindObjectOfType<PlayerManager>();

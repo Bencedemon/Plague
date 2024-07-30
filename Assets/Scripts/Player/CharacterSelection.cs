@@ -17,7 +17,7 @@ public class CharacterSelection : NetworkBehaviour
     [SerializeField] private GameObject startButton;
 
     public readonly SyncVar<int> pp = new();
-    public readonly SyncVar<string> name = new();
+    public readonly SyncVar<string> playerName = new();
     public readonly SyncVar<int> level = new();
     public readonly SyncVar<bool> ready = new(false);
 
@@ -27,22 +27,34 @@ public class CharacterSelection : NetworkBehaviour
 
     [Space]
     [SerializeField] private GameObject lobbyCharacters;
+    [SerializeField] private GameObject lightObject;
+    [SerializeField] private GameObject playerCard;
     [SerializeField] private Vector3[] points;
+    [SerializeField] private Vector3[] rotation;
     private GameObject lobbyPlayer;
 
     //=====================
     [Space]
     [SerializeField] private FishNet.Example.Scened.SceneLoader sceneLoader;
     //=====================
+
+
+    private GameObject MainCamera;
     
     private PlayerProfileManager playerProfileManager;
     private PlayerManager playerManager;
     private NetworkManager _networkManager;
-
+    private MainMenu mainMenu;
+    private LoadingScreen loadingScreen;
+    private bool leaving=false;
     void Awake(){
         playerProfileManager = FindObjectOfType<PlayerProfileManager>();
         playerManager = FindObjectOfType<PlayerManager>();
         _networkManager = FindObjectOfType<NetworkManager>();
+        
+        mainMenu = FindObjectOfType<MainMenu>();
+
+        loadingScreen = FindObjectOfType<LoadingScreen>();
     }
 
     public override void OnStartClient(){
@@ -57,6 +69,7 @@ public class CharacterSelection : NetworkBehaviour
             canvasObject.SetActive(true);
             mainCamera.SetActive(true);
             fadePanel.SetActive(true);
+            //lightObject.SetActive(true);
             SetPP(playerProfileManager.playerProfile.pictureId);
             SetName(playerProfileManager.playerProfile.playerName);
             SetLevel(playerProfileManager.playerProfile.playerLevel);
@@ -71,6 +84,10 @@ public class CharacterSelection : NetworkBehaviour
     public override void OnStopClient(){
         base.OnStopClient();
 
+        if(base.IsOwner && !base.IsServerInitialized && !leaving){
+            mainMenu.connectionLostPanel.SetActive(true);
+        }
+
         playerManager.Players.Remove(this);
         ServerManager.Despawn(lobbyPlayer);
     }
@@ -79,7 +96,6 @@ public class CharacterSelection : NetworkBehaviour
         if(!base.IsOwner) return;
         if(!base.IsServerInitialized) return;
 
-        bool canStart=false;
         for (int i = 0; i < playerManager.Players.Count; i++)
         {
             if(!playerManager.Players[i].ready.Value){
@@ -92,6 +108,7 @@ public class CharacterSelection : NetworkBehaviour
     }
 
     public void StartGame(){
+        loadingScreen.OnLoadinScreenActivate();
         startButton.SetActive(false);
         sceneLoader.StartLoading("01_Game");
     }
@@ -101,27 +118,35 @@ public class CharacterSelection : NetworkBehaviour
     }
 
     void LobbySpawn(int id){
+        /*if(base.IsOwner){
+            lobbyCharacters.transform.position=points[0];
+            lobbyCharacters.transform.localRotation=Quaternion.Euler(rotation[0]);
+            return;
+        }*/
         for (int i = 0; i < playerManager.Players.Count; i++)
         {
             if(playerManager.Players[i]==this){
                 lobbyCharacters.transform.position=points[i];
+                lobbyCharacters.transform.localRotation=Quaternion.Euler(rotation[i]);
+                playerCard.transform.eulerAngles = new Vector3(0,186,0);
             }
         }
     }
 
     public void Leave(){
+        leaving=true;
         MainMenu mainMenu = FindObjectOfType<MainMenu>();
         mainMenu.multiplayerScreen.SetActive(true);
         mainMenu.multiplayerCamera.SetActive(true);
         
-        if(base.IsServer)
+        if(base.IsServerInitialized)
             _networkManager.ServerManager.StopConnection(true);
             
         _networkManager.ClientManager.StopConnection();
     }
     
     [ServerRpc] private void SetPP(int _pp) => pp.Value = _pp;
-    [ServerRpc] private void SetName(string _name) => name.Value = _name;
+    [ServerRpc] private void SetName(string _playerName) => playerName.Value = _playerName;
     [ServerRpc] private void SetLevel(int _level) => level.Value = _level;
     [ServerRpc] private void SetReady(bool _ready) => ready.Value = _ready;
 

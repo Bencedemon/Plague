@@ -15,7 +15,7 @@ public class Enemy : NetworkBehaviour
     [SerializeField] private NetworkObject organPrefab;
 
     public Rigidbody[] rigidbodies;
-
+    [SerializeField] private LayerMask deadBodyLayer;
     public EnemySpawner enemySpawner;
 
     public override void OnStartClient(){
@@ -93,9 +93,10 @@ public class Enemy : NetworkBehaviour
             //body.useGravity=true;
             body.isKinematic=false;
             body.velocity = originalVelocity;
+            body.gameObject.layer=deadBodyLayer;
         }
         if(_rigidbody!=null)
-            _rigidbody.rigidbody.AddForce(direction*damage*25f);
+            _rigidbody.rb.AddForce(direction*damage*25f);
         Destroy(gameObject,25f);
     }
 

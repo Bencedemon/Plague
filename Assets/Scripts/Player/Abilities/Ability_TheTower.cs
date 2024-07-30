@@ -6,6 +6,8 @@ public class Ability_TheTower : Ability
 {
     [Space]
     public LayerMask layerMask;
+
+    [SerializeField] private GameObject effect;
     private float currentDuration=0;
     void FixedUpdate(){
         if(currentCooldown>0){
@@ -19,10 +21,13 @@ public class Ability_TheTower : Ability
     }
     private IEnumerator Curse()
     {
+        effect.transform.localScale = new Vector3(range,range,range);
+        effect.SetActive(true);
         currentCooldown=cooldown;
         currentDuration=duration;
         while (currentDuration>0)
         {
+            effect.transform.localScale = new Vector3(range,range,range);
             currentDuration-=0.25f;
             yield return new WaitForSeconds(0.25f);
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, range, layerMask);
@@ -35,6 +40,7 @@ public class Ability_TheTower : Ability
                 }
             }
         }
+        effect.SetActive(false);
         currentDuration=duration;
     }
 }

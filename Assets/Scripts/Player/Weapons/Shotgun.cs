@@ -79,7 +79,7 @@ public class Shotgun : AWeapon
         }
     }
     
-    public void ReloadWeapon(){
+    public override void ReloadWeapon(){
         weaponSelf.SetBool("reloading",true);
         audioSource.clip = weaponProperty.reload;
         audioSource.Play();
@@ -95,9 +95,4 @@ public class Shotgun : AWeapon
             weaponSelf.SetBool("reloading",false);
         }
     }
-    public void ActionEnd(){
-        inAction = false;
-        inReload = false;
-    }
-
 }

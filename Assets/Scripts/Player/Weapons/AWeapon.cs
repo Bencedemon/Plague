@@ -145,7 +145,7 @@ public abstract class AWeapon : NetworkBehaviour
         }
     }
 
-    public void ReloadWeapon(){
+    public virtual void ReloadWeapon(){
         int missingBullet = weaponProperty.maxAmmo-currentAmmoCount;
         if(currentTotalAmmo-missingBullet >= 0){
             currentAmmoCount+=missingBullet;

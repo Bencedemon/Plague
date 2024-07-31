@@ -20,14 +20,27 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private AudioClip[] audioClips_tick;
     [SerializeField] private AudioClip audioClipBell;
 
+    [SerializeField] private Animator fadeIn;
+
     private bool gameStarted = false;
     private bool gameEnded = false;
 
     private PlayerMovement[] playerMovements;
     private PlayerManager playerManager;
+    private DiscordManager discordManager;
     void Awake(){
         playerManager = FindObjectOfType<PlayerManager>();
-
+        discordManager=FindObjectOfType<DiscordManager>();
+        if(discordManager!=null){
+            discordManager.details="In Game";
+            if(playerManager.Clients.Count==1){
+                discordManager.state="Playing Solo (1 of 4)";
+            }else{
+                discordManager.state="Playing Multiplayer ("+playerManager.Clients.Count+" of 4)";
+            }
+            discordManager.largeImage = "ingame";
+            discordManager.largeText = "Currently in Game";
+        }
     }
     public override void OnStartClient(){
         base.OnStartClient();
@@ -40,6 +53,7 @@ public class GameManager : NetworkBehaviour
         if(!gameStarted){
             if(playerManager.PlayerGameObject.Count==playerManager.Clients.Count){
                 gameStarted=true;
+                fadeIn.SetTrigger("FadeIn");
                 StartCoroutine(CountDown());
             }
         }else if(!gameEnded){
@@ -61,7 +75,7 @@ public class GameManager : NetworkBehaviour
 
     [ServerRpc(RequireOwnership=false)]
     private void Spawn(NetworkConnection conn){
-        GameObject player = Instantiate(playerPrefab,new Vector3(-70+Random.Range(-3,3),1.04f,180+Random.Range(-3,3)),Quaternion.identity);
+        GameObject player = Instantiate(playerPrefab,new Vector3(-70+Random.Range(-3,3),1.04f,180+Random.Range(-3,3)),Quaternion.Euler(0, Random.Range(45f,135f), 0));
         Spawn(player,conn);
     }
 
@@ -106,7 +120,7 @@ public class GameManager : NetworkBehaviour
         audioSource.Play();
 
         if(base.IsServerInitialized){
-            countDownText.text = "GameStarted";
+            //countDownText.text = "GameStarted";
             StartCoroutine(enemySpawner.StartNewWave());
         }
     }

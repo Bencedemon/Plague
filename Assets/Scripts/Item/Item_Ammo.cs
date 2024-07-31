@@ -8,8 +8,9 @@ public class Item_Ammo : Item
         if (player.transform.TryGetComponent<PlayerWeapon>(out PlayerWeapon playerWeapon))
         {
             if(playerWeapon.CanGetAmmo()){
+                audioSource.Play();
                 playerWeapon.GetAmmo();
-                DespawnObject(gameObject);
+                DespawnObject(parent);
             }
         }
     }

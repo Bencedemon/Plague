@@ -28,7 +28,7 @@ public class LevelManager : NetworkBehaviour
         if(base.IsServerInitialized){
             _experiance.OnChange += OnExperianceChanged;;
             _playerDone.OnChange += OnPlayerDoneChanged;;
-            SetNextLevel(100*playerManager.Clients.Count);
+            SetNextLevel(CalculateLevelCap(_level.Value, playerManager.Clients.Count));
         }
     }
 
@@ -63,7 +63,22 @@ public class LevelManager : NetworkBehaviour
         float extra = _experiance.Value-_nextLevel.Value;
         SetExperiance(extra);
         SetLevel(+1);
-        SetNextLevel((100+(20*_level.Value))*playerManager.Clients.Count);
+        SetNextLevel(CalculateLevelCap(_level.Value, playerManager.Clients.Count));
+    }
+    private float CalculateLevelCap(float _currentLevel, int _playerCount){
+        switch (_playerCount)
+        {
+            case 1:
+                return 50+(25*_currentLevel);
+            case 2:
+                return (50+(25*_currentLevel))*1.35f;
+            case 3:
+                return (50+(25*_currentLevel))*1.75f;
+            case >=4:
+                return (50+(25*_currentLevel))*2.2f;
+            default:
+                return 50;
+        }
     }
 
     

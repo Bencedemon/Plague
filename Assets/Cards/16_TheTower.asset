@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardId: 16
   cardName: TheTower
-  cardDesc: 
+  cardDesc: Press "E" to activate a damaging area around you, enemies in the area
+    will take 7.5 damage every 0.25 seconds. The area lasts for 5 seconds.
   cardTexture: {fileID: 21300000, guid: 8f67933b8f828cf4487c581221ed0b45, type: 3}
-  weight: 100
+  weight: 50

@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 99c9720ab356a0642a771bea13969a05
+  m_OcclusionCullingData: {fileID: 36300000, guid: 85d5f33917b391942bcd1148b0f013e4,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -578,6 +579,7 @@ Transform:
   - {fileID: 1714641240}
   - {fileID: 1577345538}
   - {fileID: 523505924}
+  - {fileID: 587095240}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &58503876
@@ -5167,7 +5169,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 1}
   m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
@@ -5207,7 +5209,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -6186,6 +6188,56 @@ MonoBehaviour:
   _port: 7770
   _maximumClients: 4
   _clientAddress: localhost
+--- !u!1 &587095239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 587095240}
+  - component: {fileID: 587095241}
+  m_Layer: 0
+  m_Name: DiscordManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &587095240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587095239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 58503875}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &587095241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587095239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fe24872ccd2d5b429303bb0d77da776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  details: In Menu
+  state: 
+  largeImage: inmenu
+  largeText: Main Menu
+  partySize: 0
+  partyMax: 4
 --- !u!1 &595540271
 GameObject:
   m_ObjectHideFlags: 0
@@ -11549,9 +11601,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 0.53333336, g: 0.03137255, b: 0.03137255, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -17905,37 +17957,37 @@ PrefabInstance:
     - target: {fileID: 2488337279179094760, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -17.080017
       objectReference: {fileID: 0}
     - target: {fileID: 2488337279179094760, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 4.880005
       objectReference: {fileID: 0}
     - target: {fileID: 2488337279179094760, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10.51
       objectReference: {fileID: 0}
     - target: {fileID: 2488337279179094760, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.36167887
       objectReference: {fileID: 0}
     - target: {fileID: 2488337279179094760, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.028751913
       objectReference: {fileID: 0}
     - target: {fileID: 2488337279179094760, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.9289287
       objectReference: {fileID: 0}
     - target: {fileID: 2488337279179094760, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.07384586
       objectReference: {fileID: 0}
     - target: {fileID: 2488337279179094760, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
@@ -18010,7 +18062,7 @@ PrefabInstance:
     - target: {fileID: 4319170283229056642, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 3984644079
+      value: 4294375423
       objectReference: {fileID: 0}
     - target: {fileID: 4319170283229056642, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
@@ -18257,6 +18309,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6638352792171392260, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6696739324232775441, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
       propertyPath: _componentIndexCache
@@ -18351,6 +18408,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7783930233196981955, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8009516998931903502, guid: 9b1f282ea6f48e242af3d4834c3c92a3,
         type: 3}
@@ -20063,6 +20125,7 @@ MonoBehaviour:
   Players: []
   PlayerGameObject: []
   gameStarted: 0
+  discordManager: {fileID: 587095241}
 --- !u!1 &1728728130
 GameObject:
   m_ObjectHideFlags: 0

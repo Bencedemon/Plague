@@ -11,7 +11,7 @@ public class PlayerProjectile : NetworkBehaviour
     public override void OnStartClient(){
         base.OnStartClient();
         if(IsServerInitialized){
-            trap.collider.enabled = true;
+            trap.GetComponent<Collider>().enabled = true;
             rb.AddForce(transform.forward*10f, ForceMode.Impulse);
         }
     }

@@ -1,0 +1,189 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &991077313958894970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3448300385880833084}
+  - component: {fileID: 6817510058529993699}
+  - component: {fileID: 3323177947919244669}
+  m_Layer: 0
+  m_Name: Spanwer_04
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3448300385880833084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991077313958894970}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6817510058529993699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991077313958894970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7fa1378e90b3d4f9054e8e1f1a7eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 3323177947919244669}
+  _networkObjectCache: {fileID: 3323177947919244669}
+  enemySpawnLocations:
+  - position: {x: -70, y: 1.5, z: 182.5}
+    size: {x: 9, y: 3, z: 14}
+    range: 0
+  - position: {x: -61, y: 1.5, z: 180}
+    size: {x: 10, y: 3, z: 9}
+    range: 0
+  - position: {x: -44.75, y: 1.5, z: 180}
+    size: {x: 15, y: 3, z: 4}
+    range: 0
+  - position: {x: -36.5, y: 1.5, z: 195.75}
+    size: {x: 8, y: 3, z: 10}
+    range: 0
+  - position: {x: -35, y: 1.5, z: 208.25}
+    size: {x: 7, y: 3, z: 9}
+    range: 0
+  - position: {x: -18.5, y: 1.5, z: 210}
+    size: {x: 25, y: 3, z: 6}
+    range: 0
+  - position: {x: -29.75, y: -1, z: 182.25}
+    size: {x: 2, y: 3, z: 2}
+    range: 0
+  - position: {x: -10.75, y: 1.5, z: 199.25}
+    size: {x: 13, y: 3, z: 7}
+    range: 0
+  - position: {x: 0.5, y: 1.5, z: 193}
+    size: {x: 9, y: 3, z: 24}
+    range: 0
+  - position: {x: -12.5, y: 1.5, z: 192.75}
+    size: {x: 14, y: 3, z: 4}
+    range: 0
+  - position: {x: -13.75, y: -3, z: 180}
+    size: {x: 10, y: 5, z: 19}
+    range: 0
+  - position: {x: -6, y: -3, z: 167}
+    size: {x: 11, y: 5, z: 22}
+    range: 0
+  - position: {x: 11.75, y: 1.5, z: 171.25}
+    size: {x: 7, y: 3, z: 7}
+    range: 0
+  - position: {x: 11, y: -3.4999995, z: 153.25}
+    size: {x: 12, y: 3, z: 13}
+    range: 0
+  - position: {x: 2.5, y: 1.5, z: 164.75}
+    size: {x: 3, y: 3, z: 29}
+    range: 0
+  - position: {x: -8.75, y: 1.5, z: 152.25}
+    size: {x: 19, y: 3, z: 4}
+    range: 0
+  - position: {x: 9, y: 7.0000005, z: 171.5}
+    size: {x: 7, y: 3, z: 12}
+    range: 0
+  - position: {x: 8.75, y: -3.5, z: 139.25}
+    size: {x: 7, y: 3, z: 6}
+    range: 0
+  - position: {x: 36, y: -3.5000005, z: 134.5}
+    size: {x: 12, y: 3, z: 22}
+    range: 0
+  - position: {x: 16.5, y: -3.4999995, z: 114.75}
+    size: {x: 6, y: 3, z: 8}
+    range: 0
+  - position: {x: 5.75, y: -4, z: 108.75}
+    size: {x: 7, y: 3, z: 11}
+    range: 0
+  - position: {x: -5.75, y: 1.5, z: 145.75}
+    size: {x: 19, y: 3, z: 7}
+    range: 0
+  - position: {x: 5.25, y: -3.5, z: 117.75}
+    size: {x: 16, y: 3, z: 5}
+    range: 0
+  - position: {x: 27, y: -3.5000005, z: 117.5}
+    size: {x: 14, y: 3, z: 5}
+    range: 0
+  ground:
+    serializedVersion: 2
+    m_Bits: 24
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 8
+  spawner_Groups:
+    spawner_Units:
+    - enemyPrefab: {fileID: 1742435846262610214, guid: 7392788eebb390246a6b4e8243e7db54,
+        type: 3}
+      weight: 50
+    - enemyPrefab: {fileID: 2471342499990687217, guid: e9eb99cb52376a5439b3e923b1ed74ad,
+        type: 3}
+      weight: 100
+    startDelay: 0
+    enemyCount: 25
+    enemyCountDispersion: 0
+    frequency: 1
+    frequencyDispersion: 0
+  enemySpawner: {fileID: 0}
+--- !u!114 &3323177947919244669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991077313958894970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  _networkBehaviours:
+  - {fileID: 6817510058529993699}
+  <SerializedRootNetworkBehaviour>k__BackingField: {fileID: 0}
+  <NestedRootNetworkBehaviours>k__BackingField: []
+  SerializedTransformProperties:
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    LocalScale: {x: 1, y: 1, z: 1}
+  _isNetworked: 1
+  _isSpawnable: 1
+  _isGlobal: 0
+  _initializeOrder: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  _enablePrediction: 0
+  _predictionType: 0
+  _graphicalObject: {fileID: 0}
+  _detachGraphicalObject: 0
+  _enableStateForwarding: 1
+  _networkTransform: {fileID: 0}
+  _ownerInterpolation: 1
+  _ownerSmoothedProperties: 255
+  _adaptiveInterpolation: 3
+  _spectatorSmoothedProperties: 255
+  _spectatorInterpolation: 2
+  _enableTeleport: 0
+  _teleportThreshold: 1
+  <PrefabId>k__BackingField: 20
+  <SpawnableCollectionId>k__BackingField: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 10793471078039268293

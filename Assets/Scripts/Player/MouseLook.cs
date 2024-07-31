@@ -40,8 +40,8 @@ public class MouseLook : NetworkBehaviour
                 
         //mouseX = Input.GetAxis("Mouse X") * playerDataManager.playerData.mouseSensitivity * Time.fixedDeltaTime;
         //mouseY = Input.GetAxis("Mouse Y") * playerDataManager.playerData.mouseSensitivity * Time.fixedDeltaTime;
-        mouseX = x * Time.fixedDeltaTime * playerDataManager.playerData.mouseSensitivity;
-        mouseY = y * Time.fixedDeltaTime * playerDataManager.playerData.mouseSensitivity;
+        mouseX = x * Time.fixedDeltaTime * playerDataManager.playerData.mouseSensitivity / Time.timeScale;
+        mouseY = y * Time.fixedDeltaTime * playerDataManager.playerData.mouseSensitivity / Time.timeScale;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

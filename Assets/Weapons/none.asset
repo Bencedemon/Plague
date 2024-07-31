@@ -32,3 +32,4 @@ MonoBehaviour:
   reload: {fileID: 0}
   cock: {fileID: 0}
   punch: []
+  level: 999

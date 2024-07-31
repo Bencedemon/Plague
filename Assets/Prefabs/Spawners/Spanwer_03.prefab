@@ -49,11 +49,77 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 3323177947919244669}
   _networkObjectCache: {fileID: 3323177947919244669}
   enemySpawnLocations:
+  - position: {x: -70, y: 1.5, z: 182.5}
+    size: {x: 9, y: 3, z: 14}
+    range: 0
+  - position: {x: -61, y: 1.5, z: 180}
+    size: {x: 10, y: 3, z: 9}
+    range: 0
   - position: {x: -44.75, y: 1.5, z: 180}
     size: {x: 15, y: 3, z: 4}
     range: 0
   - position: {x: -36.5, y: 1.5, z: 195.75}
     size: {x: 8, y: 3, z: 10}
+    range: 0
+  - position: {x: -35, y: 1.5, z: 208.25}
+    size: {x: 7, y: 3, z: 9}
+    range: 0
+  - position: {x: -18.5, y: 1.5, z: 210}
+    size: {x: 25, y: 3, z: 6}
+    range: 0
+  - position: {x: -29.75, y: -1, z: 182.25}
+    size: {x: 2, y: 3, z: 2}
+    range: 0
+  - position: {x: -10.75, y: 1.5, z: 199.25}
+    size: {x: 13, y: 3, z: 7}
+    range: 0
+  - position: {x: 0.5, y: 1.5, z: 193}
+    size: {x: 9, y: 3, z: 24}
+    range: 0
+  - position: {x: -12.5, y: 1.5, z: 192.75}
+    size: {x: 14, y: 3, z: 4}
+    range: 0
+  - position: {x: -13.75, y: -3, z: 180}
+    size: {x: 10, y: 5, z: 19}
+    range: 0
+  - position: {x: -6, y: -3, z: 167}
+    size: {x: 11, y: 5, z: 22}
+    range: 0
+  - position: {x: 11.75, y: 1.5, z: 171.25}
+    size: {x: 7, y: 3, z: 7}
+    range: 0
+  - position: {x: 11, y: -3.4999995, z: 153.25}
+    size: {x: 12, y: 3, z: 13}
+    range: 0
+  - position: {x: 2.5, y: 1.5, z: 164.75}
+    size: {x: 3, y: 3, z: 29}
+    range: 0
+  - position: {x: -8.75, y: 1.5, z: 152.25}
+    size: {x: 19, y: 3, z: 4}
+    range: 0
+  - position: {x: 9, y: 7.0000005, z: 171.5}
+    size: {x: 7, y: 3, z: 12}
+    range: 0
+  - position: {x: 8.75, y: -3.5, z: 139.25}
+    size: {x: 7, y: 3, z: 6}
+    range: 0
+  - position: {x: 36, y: -3.5000005, z: 134.5}
+    size: {x: 12, y: 3, z: 22}
+    range: 0
+  - position: {x: 16.5, y: -3.4999995, z: 114.75}
+    size: {x: 6, y: 3, z: 8}
+    range: 0
+  - position: {x: 5.75, y: -4, z: 108.75}
+    size: {x: 7, y: 3, z: 11}
+    range: 0
+  - position: {x: -5.75, y: 1.5, z: 145.75}
+    size: {x: 19, y: 3, z: 7}
+    range: 0
+  - position: {x: 5.25, y: -3.5, z: 117.75}
+    size: {x: 16, y: 3, z: 5}
+    range: 0
+  - position: {x: 27, y: -3.5000005, z: 117.5}
+    size: {x: 14, y: 3, z: 5}
     range: 0
   ground:
     serializedVersion: 2
@@ -63,13 +129,13 @@ MonoBehaviour:
     m_Bits: 8
   spawner_Groups:
     spawner_Units:
-    - enemyPrefab: {fileID: 2471342499990687217, guid: e9eb99cb52376a5439b3e923b1ed74ad,
+    - enemyPrefab: {fileID: 1742435846262610214, guid: 7392788eebb390246a6b4e8243e7db54,
         type: 3}
       weight: 100
     startDelay: 0
-    enemyCount: 10
+    enemyCount: 18
     enemyCountDispersion: 0
-    frequency: 0.5
+    frequency: 1
     frequencyDispersion: 0
   enemySpawner: {fileID: 0}
 --- !u!114 &3323177947919244669
@@ -114,7 +180,7 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 13
+  <PrefabId>k__BackingField: 20
   <SpawnableCollectionId>k__BackingField: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 14810430328008734359

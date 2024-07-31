@@ -16,9 +16,9 @@ public class ItemHolder : NetworkBehaviour
         if(!IsServerInitialized) return;
         if(_itemReference!=null) return;
         if(cooldown<=0){
-            _itemReference = Instantiate(itemPrefab, transform.position, transform.rotation);
+            _itemReference = Instantiate(itemPrefab, transform.position+new Vector3(0,1,0), transform.rotation);
             ServerManager.Spawn(_itemReference);
-            cooldown=30f;
+            cooldown=Random.Range(15f,60f);
         }else{
             cooldown -= Time.fixedDeltaTime;
         }

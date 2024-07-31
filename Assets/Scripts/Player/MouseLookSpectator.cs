@@ -37,8 +37,8 @@ public class MouseLookSpectator : NetworkBehaviour
                 
         //mouseX = Input.GetAxis("Mouse X") * playerDataManager.playerData.mouseSensitivity * Time.fixedDeltaTime;
         //mouseY = Input.GetAxis("Mouse Y") * playerDataManager.playerData.mouseSensitivity * Time.fixedDeltaTime;
-        mouseX = Input.GetAxis("Mouse X") * 100 * Time.fixedDeltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * 100 * Time.fixedDeltaTime;
+        mouseX = Input.GetAxis("Mouse X") * 100 * Time.fixedDeltaTime/Time.timeScale;
+        mouseY = Input.GetAxis("Mouse Y") * 100 * Time.fixedDeltaTime/Time.timeScale;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

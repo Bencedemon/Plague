@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardId: 15
   cardName: TheDevil
-  cardDesc: 
+  cardDesc: Press "E" to throw a fireball and as soon as an enemy touches it, the
+    fireball explodes dealing 50 damage to all nearby enemies.
   cardTexture: {fileID: 21300000, guid: 26f3f49195ac72741b45220a48fe3fa6, type: 3}
-  weight: 200
+  weight: 50

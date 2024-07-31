@@ -21,13 +21,13 @@ public class Ability_TheTower : Ability
     }
     private IEnumerator Curse()
     {
-        effect.transform.localScale = new Vector3(range,range,range);
+        effect.transform.localScale = new Vector3(range*2,range*2,range*2);
         effect.SetActive(true);
         currentCooldown=cooldown;
         currentDuration=duration;
         while (currentDuration>0)
         {
-            effect.transform.localScale = new Vector3(range,range,range);
+            effect.transform.localScale = new Vector3(range*2,range*2,range*2);
             currentDuration-=0.25f;
             yield return new WaitForSeconds(0.25f);
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, range, layerMask);

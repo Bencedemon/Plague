@@ -10,21 +10,7 @@ public class PlayerManager : MonoBehaviour
 
     public bool gameStarted = false;
 
+    [Space]
+    [SerializeField] private DiscordManager discordManager;
 
-    /*void FixedUpdate(){
-        if(GameManagers.Count==0) return;
-        int count=0;
-        foreach (var item in PlayerGameObject)
-        {
-            if(item.GetComponent<PlayerStats>()._currentHealth.Value<=0){
-                count++;
-            }
-        }
-        if(count==GameManagers.Count){
-            foreach (var manager in GameManagers)
-            {
-                manager.gameEnd();
-            }
-        }
-    }*/
 }

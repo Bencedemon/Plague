@@ -8,7 +8,6 @@ public class Trap : NetworkBehaviour
     
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private NetworkObject explosionParticle;
-    [SerializeField] public Collider collider;
     [SerializeField] private GameObject parent;
 
     private float strength=0f; 

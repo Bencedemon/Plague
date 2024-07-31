@@ -11,7 +11,7 @@ public class Item_Heal : Item
             if(playerStats._currentHealth.Value<=0) return;
             if(playerStats._currentHealth.Value<playerStats.maxHealth){
                 playerStats.HealPlayer(healPowers);
-                DespawnObject(gameObject);
+                DespawnObject(parent);
             }
         }
     }

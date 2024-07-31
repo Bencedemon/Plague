@@ -26,7 +26,7 @@ public class PlayerProfileManager : MonoBehaviour
 
             playerProfile.crosshairId=1;
 
-            playerProfile.crosshairColor = new float[3];
+            playerProfile.crosshairColor = new float[4];
             for (int i = 0; i < 4; i++)
             {
                 playerProfile.crosshairColor[i]=1;

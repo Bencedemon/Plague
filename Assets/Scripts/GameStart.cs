@@ -19,13 +19,22 @@ public class GameStart : MonoBehaviour
 
     private Client[] clients;
 
+    private DiscordManager discordManager;
+
     void Awake(){
         playerPerformance=FindObjectOfType<PlayerPerformance>();
+        discordManager=FindObjectOfType<DiscordManager>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        if(discordManager!=null){
+            discordManager.details="In Menu";
+            discordManager.state="";
+            discordManager.largeImage = "inmenu";
+            discordManager.largeText = "Main Menu";
+        }
         Cursor.lockState = CursorLockMode.None;
         clients = FindObjectsOfType<Client>();
         if(clients.Length == 0){

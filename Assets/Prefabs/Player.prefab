@@ -187,7 +187,6 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 4319170283229056642}
   player: {fileID: 2488337279179094760}
   cam: {fileID: 6172488882397568040}
-  camera: {fileID: 9037664214924810059}
   mouseX: 0
   mouseY: 0
   playerStats: {fileID: 4382132314798828345}
@@ -394,22 +393,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6cc740dc-32ad-43e7-9dbf-39d396a7806c
     m_ActionName: "InGame/Interakci\xF3[/Mouse/leftButton]"
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6373945726100020766}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Sprinting
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 43cd2f23-376b-4b1a-a145-1a9d3d074aa8
-    m_ActionName: InGame/Sprint[/Keyboard/leftShift]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 8fbc68ae-f5a1-41b5-bc87-e854254dbef1
@@ -698,6 +681,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6b7f87d1-90ed-4932-80b8-9801ef0d240e
     m_ActionName: InGame/Ability 1[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dc34cdc4-82fd-46e1-8fd7-bdb0a3b46c55
+    m_ActionName: InLobby/BackFlip[/Keyboard/b]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6373945726100020766}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Sprinting
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b06704e6-d249-458c-b108-0029a6429d9a
+    m_ActionName: InGame/Sprint[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: InGame
@@ -2154,8 +2157,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.53333336, g: 0.03137255, b: 0.03137255, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2372,7 +2375,7 @@ MonoBehaviour:
   cardProperty: {fileID: 11400000, guid: f67ac2e592b11d8498d37624930e8433, type: 2}
   playerStats: {fileID: 4382132314798828345}
   strengthLevel: 0
-  strength: 100
+  strength: 50
   strengthUpgrade: 10
   rangeLevel: 0
   range: 5
@@ -2381,8 +2384,8 @@ MonoBehaviour:
   duration: 60
   durationUpgrade: 10
   cooldownLevel: 0
-  cooldown: 1
-  cooldownUpgrade: 1
+  cooldown: 25
+  cooldownUpgrade: 2
   currentCooldown: 0
   layerMask:
     serializedVersion: 2
@@ -2390,7 +2393,6 @@ MonoBehaviour:
   fireBall: {fileID: 8226843987173916667, guid: ab9eed090a582204997ca6c9e03ade1e,
     type: 3}
   _cameraTransform: {fileID: 780332950809823589}
-  throwForce: 5
 --- !u!1 &1475343719242973171
 GameObject:
   m_ObjectHideFlags: 0
@@ -3411,8 +3413,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.53333336, g: 0.03137255, b: 0.03137255, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6172,8 +6174,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.53333336, g: 0.03137255, b: 0.03137255, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -7448,7 +7450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0bd615c19366a4bac7b4dac9310f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveObject: 1
   _moveAllObjects: 0
   _replaceOption: 2
   _scenes:
@@ -7456,7 +7457,6 @@ MonoBehaviour:
   - 01_Game
   _connectionOnly: 0
   _automaticallyUnload: 1
-  _onTriggerEnter: 1
   _unloadUnused: 1
 --- !u!1 &6197651319012404749
 GameObject:
@@ -7838,7 +7838,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5190182450347408033}
@@ -8911,8 +8911,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.53333336, g: 0.03137255, b: 0.03137255, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -9574,10 +9574,10 @@ MonoBehaviour:
   playerStats: {fileID: 4382132314798828345}
   strengthLevel: 0
   strength: 5
-  strengthUpgrade: 10
+  strengthUpgrade: 2.5
   rangeLevel: 0
-  range: 10
-  rangeUpgrade: 3.5
+  range: 7.5
+  rangeUpgrade: 2.5
   durationLevel: 0
   duration: 5
   durationUpgrade: 2.5
@@ -9821,8 +9821,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.53333336, g: 0.03137255, b: 0.03137255, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -10241,7 +10241,6 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 4319170283229056642}
   player: {fileID: 7170326988371839806}
   cam: {fileID: 3646313118280274571}
-  camera: {fileID: 0}
   mouseX: 0
   mouseY: 0
 --- !u!1 &9185116852557378039

@@ -26,7 +26,7 @@ public class TarotCard : MonoBehaviour
                     extraText = _ability.cooldownUpgrade+"s.";
             break;
             case 23:
-                extraText = _ability.strengthUpgrade+"%.";
+                extraText = _ability.strengthUpgrade+".";
             break;
             case 24:
                 extraText = _ability.durationUpgrade+"s.";

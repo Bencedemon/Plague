@@ -8,6 +8,7 @@ public class Enemy : NetworkBehaviour
 {
     public float health = 100f;
     public float attackRange=2f;
+    [SerializeField] private bool stopOnAttack=false;
     public Animator animator;
     public NavMeshAgent navMeshAgent;
     public Transform player;
@@ -15,7 +16,6 @@ public class Enemy : NetworkBehaviour
     [SerializeField] private NetworkObject organPrefab;
 
     public Rigidbody[] rigidbodies;
-    [SerializeField] private LayerMask deadBodyLayer;
     public EnemySpawner enemySpawner;
 
     public override void OnStartClient(){
@@ -29,8 +29,12 @@ public class Enemy : NetworkBehaviour
 
 
     void FixedUpdate(){
-        if(navMeshAgent!=null && health>0)
-            GoToPosition(GetClosestPlayerPosition());
+        if(!IsServerInitialized) return;
+        if(navMeshAgent!=null && health>0){
+            if(!stopOnAttack){
+                GoToPosition(GetClosestPlayerPosition());
+            }
+        }
     }
 
     private Vector3 GetClosestPlayerPosition(){
@@ -93,7 +97,7 @@ public class Enemy : NetworkBehaviour
             //body.useGravity=true;
             body.isKinematic=false;
             body.velocity = originalVelocity;
-            body.gameObject.layer=deadBodyLayer;
+            body.gameObject.layer=16;
         }
         if(_rigidbody!=null)
             _rigidbody.rb.AddForce(direction*damage*25f);

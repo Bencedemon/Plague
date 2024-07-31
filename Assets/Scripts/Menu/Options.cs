@@ -192,7 +192,7 @@ public class Options : MonoBehaviour
     }
 	public void SaveData(){
         //audioSource.Play();
-		//animator.Play("FadeOut");
+		animator.Play("Fade");
 		playerDataManager.SaveData();
 	}
     public void Back(){

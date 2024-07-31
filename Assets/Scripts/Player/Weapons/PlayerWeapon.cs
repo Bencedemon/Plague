@@ -171,9 +171,11 @@ public class PlayerWeapon : NetworkBehaviour
 
     public bool CanGetAmmo(){
         if(primary.currentTotalAmmo<primary.weaponProperty.totalAmmo){
+            Debug.Log("PrimaryIsNotFull");
             return true;
         }
         if(secondary.currentTotalAmmo<secondary.weaponProperty.totalAmmo){
+            Debug.Log("SecondaryIsNotFull");
             return true;
         }
         return false;

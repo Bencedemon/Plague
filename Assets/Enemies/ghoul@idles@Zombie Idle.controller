@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: idles@Zombie Run
+  m_Name: Zombie Run
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -35,7 +35,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: idles@Zombie Run
+  m_Name: Zombie Run
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -49,8 +49,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: d8dcdf583be038b4b82098eadc0dd665,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 9b50d431db195084fb455ae30421f16f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -217,7 +216,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: idles@Zombie Walk
+  m_Name: Zombie Walk
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -231,8 +230,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 1a1ac63349259d341a980ef500171a80,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 2d6c45f9cf606fc408120844e983dd0d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -452,7 +450,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: idles@Zombie Walk
+  m_Name: Zombie Walk
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

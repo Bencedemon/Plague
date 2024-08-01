@@ -15,6 +15,7 @@ public class Enemy : NetworkBehaviour
 
     [SerializeField] private NetworkObject organPrefab;
 
+
     public Rigidbody[] rigidbodies;
     public EnemySpawner enemySpawner;
 

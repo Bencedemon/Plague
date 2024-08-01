@@ -30,7 +30,7 @@ public abstract class Ability : NetworkBehaviour
     public abstract void UseAbility();
     public void UpgradeStrength(){
         strengthLevel++;
-        strength+=strength*(strengthUpgrade/100);
+        strength+=strengthUpgrade;
     }
     public void UpgradeRange(){
         rangeLevel++;

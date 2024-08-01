@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: bpPistol
   icon: {fileID: 21300000, guid: 4404eb2cd56653a4db859d2479107b9b, type: 3}
   iconSmall: {fileID: 21300000, guid: 6336170a587f37b48a27af30c8f2e573, type: 3}
-  damage: 35
+  damage: 50
   maxRange: 20
   punchDamage: 10
   punchRange: 2
@@ -39,3 +39,4 @@ MonoBehaviour:
   cock: {fileID: 8300000, guid: 518bf141e97dc724aa98f11ae7902e19, type: 3}
   punch:
   - {fileID: 8300000, guid: 6c00eae89383aae4984f2934aac0896f, type: 3}
+  level: 0

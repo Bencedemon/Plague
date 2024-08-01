@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: ak
   icon: {fileID: 21300000, guid: 0f42ffe5a2e86d949bcd0f479c1d919b, type: 3}
   iconSmall: {fileID: 21300000, guid: 9feb94576b09fc845b259485d9314b7c, type: 3}
-  damage: 45
+  damage: 60
   maxRange: 50
   punchDamage: 10
   punchRange: 2
@@ -36,3 +36,4 @@ MonoBehaviour:
   cock: {fileID: 8300000, guid: 11f4297d75122e5498e4ce9190ef130f, type: 3}
   punch:
   - {fileID: 8300000, guid: 6c00eae89383aae4984f2934aac0896f, type: 3}
+  level: 0

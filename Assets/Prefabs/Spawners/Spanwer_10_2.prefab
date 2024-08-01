@@ -135,8 +135,8 @@ MonoBehaviour:
     startDelay: 0
     enemyCount: 50
     enemyCountDispersion: 0
-    frequency: 1
-    frequencyDispersion: 0
+    frequency: 0.75
+    frequencyDispersion: 0.15
   enemySpawner: {fileID: 0}
 --- !u!114 &3323177947919244669
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 20
+  <PrefabId>k__BackingField: 32
   <SpawnableCollectionId>k__BackingField: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 16303956743842512881

@@ -37,7 +37,7 @@ public class LevelManager : NetworkBehaviour
         if(Time.timeScale<1 && levelingUpEnd){
             speedUpTime((1f / slowDonwLength)*Time.unscaledDeltaTime);
         }else
-        if(Time.timeScale>0 && levelingUp){
+        if(Time.timeScale>0.25f && levelingUp){
             slowDownTime((1f / slowDonwLength)*Time.unscaledDeltaTime);
         }
     }
@@ -88,14 +88,15 @@ public class LevelManager : NetworkBehaviour
     }
     [ObserversRpc]
     private void slowDownTimeObserver(float _time){
-        if(Time.timeScale-_time<=0){
-            Time.timeScale=0;
+        if(Time.timeScale-_time<=0.25f){
+            Time.timeScale=0.25f;
         }else{
             Time.timeScale -= _time;
-            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f,1f);
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0.25f,1f);
         }
 
-        if(Time.timeScale<=0){
+        if(Time.timeScale<=0.25f){
+            Time.timeScale = 0;
             foreach (var player in playerManager.PlayerGameObject)
             {
                 if (player.TryGetComponent<PlayerUpgrades>(out PlayerUpgrades playerUpgrade))
@@ -122,7 +123,7 @@ public class LevelManager : NetworkBehaviour
             Time.timeScale=1;
         }else{
             Time.timeScale += _time;
-            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f,1f);
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0.25f,1f);
         }
 
         if(Time.timeScale>=1){
